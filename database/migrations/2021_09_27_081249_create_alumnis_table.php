@@ -16,8 +16,6 @@ class CreateAlumnisTable extends Migration
         Schema::create('alumnis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('npm');
-            $table->string('nama');
             $table->string('agama');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');
@@ -32,6 +30,8 @@ class CreateAlumnisTable extends Migration
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O']);
             $table->integer('tinggi_badan');
             $table->integer('berat_badan');
+            $table->string('pekerjaan')->nullable();
+            $table->string('tempat_pekerjaan')->nullable();
             $table->enum('status', ['Kawin', 'Belum Kawin'])->nullable();
             $table->string('judul_skripsi')->nullable();
             $table->string('asal_slta')->nullable();

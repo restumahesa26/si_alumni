@@ -276,8 +276,6 @@ class AlumniController extends Controller
 
         Mahasiswa::create([
             'user_id' => $item->user_id,
-            'npm' => $item->npm,
-            'nama' => $item->nama,
             'agama' => $item->agama,
             'tempat_lahir' => $item->tempat_lahir,
             'tanggal_lahir' => $item->tanggal_lahir,

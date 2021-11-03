@@ -37,55 +37,23 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'string', 'max:255', 'in:ALUMNI,MAHASISWA,DOSEN'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nama' => ['required', 'string', 'max:255'],
+            'npm' => ['required', 'string', 'max:255'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'username' => $request->username,
-            'role' => $request->role,
+            'role' => 'MAHASISWA',
+            'npm' => $request->npm,
+            'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        $roles = $request->role;
-
-        if($roles === 'ALUMNI'){
-            Alumni::create([
-                'user_id' => $user->id,
-                'npm' => $request->npm,
-                'nama' => $request->nama,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->alamat,
-                'tahun_wisuda' => $request->tahun_wisuda,
-                'no_ijazah' => $request->no_ijazah,
-                'no_hp' => $request->no_hp,
-                'pekerjaan' => $request->pekerjaan,
-                'alamat_kerja' => $request->alamat_kerja
-            ]);
-        }
-        if($roles === 'MAHASISWA'){
-            Mahasiswa::create([
-                'user_id' => $user->id,
-                'npm' => $request->npm,
-                'nama' => $request->nama,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->alamat,
-                'no_hp' => $request->no_hp,
-            ]);
-        }
-        if($roles === 'DOSEN'){
-            Dosen::create([
-                'user_id' => $user->id,
-                'nip' => $request->npm,
-                'nama' => $request->nama,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->alamat,
-                'no_hp' => $request->no_hp,
-            ]);
-        }
+        Mahasiswa::create([
+            'user_id' => $user->id,
+        ]);
 
         event(new Registered($user));
 

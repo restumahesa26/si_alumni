@@ -73,8 +73,8 @@
                                     @forelse ($items as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->npm }}</td>
-                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->users->npm }}</td>
+                                        <td>{{ $item->users->nama }}</td>
                                         <td>@if ($item->tanggal_sidang != NULL)
                                             {{ Carbon\Carbon::parse($item->tanggal_sidang)->translatedFormat('l, d F Y') }}
                                             @else
@@ -134,7 +134,7 @@
                             <h5>NPM</h5>
                         </div>
                         <div class="col-lg-8">
-                            <h5>{{ $item2->npm }}</h5>
+                            <h5>{{ $item2->users->npm }}</h5>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                             <h5>Nama</h5>
                         </div>
                         <div class="col-lg-8">
-                            <h5>{{ $item2->nama }}</h5>
+                            <h5>{{ $item2->users->nama }}</h5>
                         </div>
                     </div>
                 </div>

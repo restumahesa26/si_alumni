@@ -30,28 +30,8 @@
                     </div>
                     <div class="card-body px-4">
                         <h3>{{ $item->judul }}</h3>
-                        @php
-                            $nama;
-                        @endphp
-                        @if ($item->users->role === 'ALUMNI')
-                            @php
-                                $nama = $item->users->alumni->nama;
-                            @endphp
-                        @elseif ($item->users->role === 'MAHASISWA')
-                            @php
-                                $nama = $item->users->mahasiswa->nama;
-                            @endphp
-                        @elseif ($item->users->role === 'DOSEN')
-                            @php
-                                $nama = $item->users->dosen->nama;
-                            @endphp
-                        @elseif ($item->users->role === 'ADMIN')
-                            @php
-                                $nama = $item->users->dosen->nama;
-                            @endphp
-                        @endif
                         <p class="" style="color: #000">
-                            Diupload oleh <span class="">{{ $nama }}</span> pada tanggal {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+                            Diupload oleh <span class="">{{ $item->users->nama }}</span> pada tanggal {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
                         </p>
                         <div class="" style="color: #000">
                             {!! $item->isi !!}

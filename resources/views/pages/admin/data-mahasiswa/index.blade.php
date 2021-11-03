@@ -72,8 +72,8 @@
                                     @forelse ($items as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->npm }}</td>
-                                        <td>{{ $item->nama }}</td>
+                                        <td>{{ $item->users->npm }}</td>
+                                        <td>{{ $item->users->nama }}</td>
                                         <td>{{ $item->users->email }}</td>
                                         <td>{{ $item->no_hp }}</td>
                                         <td>
@@ -124,7 +124,7 @@
                             <h5>NPM</h5>
                         </div>
                         <div class="col-lg-8">
-                            <h5>{{ $item2->npm }}</h5>
+                            <h5>{{ $item2->users->npm }}</h5>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                             <h5>Nama</h5>
                         </div>
                         <div class="col-lg-8">
-                            <h5>{{ $item2->nama }}</h5>
+                            <h5>{{ $item2->users->nama }}</h5>
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,9 @@
                             <h5>Tempat, Tanggal Lahir</h5>
                         </div>
                         <div class="col-lg-8">
-                            <h5>{{ $item->tempat_lahir }}, {{ Carbon\Carbon::parse($item->tanggal_lahir)->translatedFormat('d F Y') }}</h5>
+                            <h5>{{ $item->tempat_lahir }}, @if ($item->tanggal_lahir)
+                                {{ Carbon\Carbon::parse($item->tanggal_lahir)->translatedFormat('d F Y') }}
+                            @endif </h5>
                         </div>
                     </div>
                 </div>
@@ -166,7 +168,7 @@
                         <div class="col-lg-8">
                             <h5>@if ($item2->jenis_kelamin == 'L')
                                 Laki-Laki
-                            @else
+                            @elseif ($item2->jenis_kelamin == 'P')
                                 Perempuan
                             @endif</h5>
                         </div>

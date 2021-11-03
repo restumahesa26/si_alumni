@@ -12,6 +12,13 @@
             </li>
 
             <li class="nav-label">MENU</li>
+            @if (Auth::user()->role === 'ALUMNI' || Auth::user()->role === 'MAHASISWA')
+            <li class="@if(Route::is('profile.*'))mm-active @endif">
+                <a href="{{ route('profile.edit') }}" class="@if(Route::is('profile.*'))mm-active @endif">
+                    <i class="ti-user"></i><span class="nav-text">Profile</span>
+                </a>
+            </li>
+            @endif
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="ti-agenda"></i><span class="nav-text">Data</span></a>
                 <ul aria-expanded="false">
@@ -47,13 +54,6 @@
                     <i class="ti-image"></i><span class="nav-text">Berita</span>
                 </a>
             </li>
-            @if (Auth::user()->role === 'ALUMNI' || Auth::user()->role === 'MAHASISWA')
-            <li class="@if(Route::is('profile.*'))mm-active @endif">
-                <a href="{{ route('profile.edit') }}" class="@if(Route::is('profile.*'))mm-active @endif">
-                    <i class="ti-user"></i><span class="nav-text">Profile</span>
-                </a>
-            </li>
-            @endif
         </ul>
     </div>
 </div>

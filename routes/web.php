@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskusiController;
 use App\Http\Controllers\DosenController;
@@ -26,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
 
 Route::put('/data-alumni/pindah-ke-mahasiswa/{id}/', [AlumniController::class, 'change_to_mahasiswa'])->name('data-mahasiswa.change-to-mahasiswa');
 Route::post('/data-alumni/import-excel', [AlumniController::class, 'import'])->name('import-alumni-excel');

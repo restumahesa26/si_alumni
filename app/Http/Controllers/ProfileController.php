@@ -30,7 +30,6 @@ class ProfileController extends Controller
         if (Auth::user()->role == 'ALUMNI') {
 
             $request->validate([
-                'nama' => 'required|string|max:255',
                 'agama' => 'required|string|max:255',
                 'tempat_lahir' => 'required|string|max:255',
                 'tanggal_lahir' => 'required|date',
@@ -68,16 +67,13 @@ class ProfileController extends Controller
 
             $item = Alumni::where('user_id', Auth::user()->id)->first();
 
-            if ($request->email != $item->users->email && $request->npm != $item->npm) {
+            if ($request->email != $item->users->email) {
                 $request->validate([
-                    'email' => 'required|string|max:255|email|unique:users',
-                    'npm' => 'required|string|max:255|unique:alumnis',
+                    'email' => 'required|string|max:255|email|unique:users'
                 ]);
             }
 
             $user = User::where('id', $item->user_id)->first();
-            $user->nama = $request->nama;
-            $user->npm = $request->npm;
             $user->email = $request->email;
             if ($request->password) {
                 $user->password = Hash::make($request->password);
@@ -86,8 +82,6 @@ class ProfileController extends Controller
 
             $item->update([
                 'user_id' => Auth::user()->id,
-                'npm' => $request->npm,
-                'nama' => $request->nama,
                 'agama' => $request->agama,
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,

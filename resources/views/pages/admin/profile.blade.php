@@ -14,7 +14,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Profile</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $item->nama }}</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $item->users->nama }}</a></li>
                 </ol>
             </div>
         </div>
@@ -33,7 +33,7 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for='npm'>NPM</label>
-                                <input class='form-control @error('npm') is-invalid @enderror' type='text' name='npm' id='npm' placeholder='Masukkan NPM' value='{{ $item->npm }}' required />
+                                <input class='form-control @error('npm') is-invalid @enderror' type='text' name='npm' id='npm' placeholder='Masukkan NPM' value='{{ $item->users->npm }}' disabled />
                                 @error('npm')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='nama'>Nama</label>
-                                <input class='form-control @error('nama') is-invalid @enderror' type='text' name='nama' id='nama' placeholder='Masukkan Nama' value='{{ $item->nama }}' required />
+                                <input class='form-control @error('nama') is-invalid @enderror' type='text' name='nama' id='nama' placeholder='Masukkan Nama' value='{{ $item->users->nama }}' disabled />
                                 @error('nama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,7 +50,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for='password'>Password</label>
+                                <label for='password'>Ubah Password</label>
                                 <input class='form-control @error('password') is-invalid @enderror' type='password' name='password' id='password' placeholder='Masukkan Password' value='{{ old('password') }}' />
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -377,6 +377,24 @@
                                 <label for='foto'>Foto</label>
                                 <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' required />
                                 @error('foto')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for='pekerjaan'>Pekerjaan</label>
+                                <input class='form-control @error('pekerjaan') is-invalid @enderror' type='text' name='pekerjaan' id='pekerjaan' placeholder='Masukkan Pekerjaan' value='{{ $item->pekerjaan }}' required />
+                                @error('pekerjaan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for='tempat_pekerjaan'>Tempat Pekerjaan</label>
+                                <input class='form-control @error('tempat_pekerjaan') is-invalid @enderror' type='text' name='tempat_pekerjaan' id='tempat_pekerjaan' placeholder='Masukkan Tempat Pekerjaan' value='{{ $item->tempat_pekerjaan }}' required />
+                                @error('tempat_pekerjaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
