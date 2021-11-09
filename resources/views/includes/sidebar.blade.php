@@ -22,14 +22,14 @@
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="ti-agenda"></i><span class="nav-text">Data</span></a>
                 <ul aria-expanded="false">
-                    <li class="@if(Route::is('data-alumni.*'))mm-active @endif" >
-                        <a href="{{ route('data-alumni.index') }}" class="@if(Route::is('data-alumni.*'))mm-active @endif">
-                            Data Alumni
-                        </a>
-                    </li>
                     <li class="@if(Route::is('data-mahasiswa.*'))mm-active @endif">
                         <a href="{{ route('data-mahasiswa.index') }}" class="@if(Route::is('data-mahasiswa.*'))mm-active @endif">
                             Data Mahasiswa
+                        </a>
+                    </li>
+                    <li class="@if(Route::is('data-alumni.*'))mm-active @endif" >
+                        <a href="{{ route('data-alumni.index') }}" class="@if(Route::is('data-alumni.*'))mm-active @endif">
+                            Data Alumni
                         </a>
                     </li>
                     <li class="@if(Route::is('data-admin.*'))mm-active @endif">

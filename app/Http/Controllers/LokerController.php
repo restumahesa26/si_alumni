@@ -42,17 +42,17 @@ class LokerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'nama_kerja' => 'required|string|max:255',
             'tempat_kerja' => 'required|string|max:255',
-            'kriteria_kerja' => 'required|string|max:255',
+            'lokasi_kerja' => 'required|string|max:255',
             'isi' => 'required|string'
         ]);
 
         Loker::create([
             'user_id' => Auth::user()->id,
-            'judul' => $request->judul,
+            'nama_kerja' => $request->nama_kerja,
             'tempat_kerja' => $request->tempat_kerja,
-            'kriteria_kerja' => $request->kriteria_kerja,
+            'lokasi_kerja' => $request->lokasi_kerja,
             'isi' => $request->isi
         ]);
 
@@ -100,18 +100,18 @@ class LokerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'nama_kerja' => 'required|string|max:255',
             'tempat_kerja' => 'required|string|max:255',
-            'kriteria_kerja' => 'required|string|max:255',
+            'lokasi_kerja' => 'required|string|max:255',
             'isi' => 'required|string'
         ]);
 
         $item = Loker::findOrFail($id);
 
         $item->update([
-            'judul' => $request->judul,
+            'nama_kerja' => $request->nama_kerja,
             'tempat_kerja' => $request->tempat_kerja,
-            'kriteria_kerja' => $request->kriteria_kerja,
+            'lokasi_kerja' => $request->lokasi_kerja,
             'isi' => $request->isi
         ]);
 

@@ -176,8 +176,6 @@ class MahasiswaController extends Controller
 
         $item->update([
             'user_id' => $user->id,
-            'npm' => $request->npm,
-            'nama' => $request->nama,
             'agama' => $request->agama,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
