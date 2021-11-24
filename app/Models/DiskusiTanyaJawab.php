@@ -20,8 +20,4 @@ class DiskusiTanyaJawab extends Model
     public function diskusis(){
         return $this->hasOne(Diskusi::class, 'id', 'diskusi_id');
     }
-
-    public function diskusi(){
-        return $this->belongsToMany(Diskusi::class, 'id', 'diskusi_id');
-    }
 }

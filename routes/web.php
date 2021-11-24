@@ -7,6 +7,7 @@ use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskusiController;
 use App\Http\Controllers\DosenController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
@@ -24,9 +25,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
+Route::get('/daftar-alumni', [HomeController::class, 'daftar_alumni'])->name('daftar-alumni');
+
+Route::get('/user/berita', [HomeController::class, 'berita'])->name('user.berita');
+
+Route::get('/user/berita/detail/{id}', [HomeController::class, 'detail_berita'])->name('user.detail-berita');
+
+Route::get('/user/loker', [HomeController::class, 'loker'])->name('user.loker');
+
+Route::get('/user/loker/detail/{id}', [HomeController::class, 'detail_loker'])->name('user.detail-loker');
+
+Route::get('/user/diskusi', [HomeController::class, 'diskusi'])->name('user.diskusi');
+
+Route::get('/user/diskusi/detail/{id}', [HomeController::class, 'detail_diskusi'])->name('user.detail-diskusi');
+
+Route::post('/user/diskusi/detail/{id}/kirim-jawaban', [HomeController::class, 'kirim_jawaban_diskusi'])->name('user.kirim-jawaban-diskusi');
+
+Route::delete('/user/diskusi/detail/{id}/hapus-jawaban', [HomeController::class, 'hapus_jawaban_diskusi'])->name('user.hapus-jawaban-diskusi');
 
 Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
 

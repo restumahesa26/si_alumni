@@ -52,7 +52,7 @@
                             @else
                                 text-left
                             @endif">
-                                <h5 style="font-size: 18px;">{{ $tanya_jawab->tanya_jawab }}</h5>
+                                <h5 style="font-size: 18px;">{!! $tanya_jawab->tanya_jawab !!}</h5>
                                 <p style="color: #000; margin-top: -8px; font-size: 14px;">dari {{ $tanya_jawab->users->nama }} pada {{ \Carbon\Carbon::parse($tanya_jawab->created_at)->format('d F Y H:i') }}</p>
                                 @if ($tanya_jawab->user_id === Auth::user()->id)
                                     <form action="{{ route('hapus_tanya_jawab_diskusi', $tanya_jawab->id) }}" method="POST" class="inline-block">

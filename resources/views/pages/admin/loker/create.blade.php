@@ -31,9 +31,9 @@
                         <form action="{{ route('loker.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for='judul'>Judul Lowongan Kerja</label>
-                                <input class='form-control @error('judul') is-invalid @enderror' type='text' name='judul' id='judul' placeholder='Masukkan Judul Lowongan Kerja' value='{{ old('judul') }}' />
-                                @error('judul')
+                                <label for='nama_kerja'>Nama Kerja</label>
+                                <input class='form-control @error('nama_kerja') is-invalid @enderror' type='text' name='nama_kerja' id='nama_kerja' placeholder='Masukkan Nama Kerja' value='{{ old('nama_kerja') }}' />
+                                @error('nama_kerja')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -49,9 +49,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for='kriteria_kerja'>Kriteria Kerja</label>
-                                <input class='form-control @error('kriteria_kerja') is-invalid @enderror' type='text' name='kriteria_kerja' id='kriteria_kerja' placeholder='Masukkan Kriteria Kerja' value='{{ old('kriteria_kerja') }}' />
-                                @error('kriteria_kerja')
+                                <label for='lokasi_kerja'>Lokasi Kerja</label>
+                                <input class='form-control @error('lokasi_kerja') is-invalid @enderror' type='text' name='lokasi_kerja' id='lokasi_kerja' placeholder='Masukkan Lokasi Kerja' value='{{ old('lokasi_kerja') }}' />
+                                @error('lokasi_kerja')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

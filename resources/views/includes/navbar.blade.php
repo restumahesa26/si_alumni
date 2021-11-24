@@ -17,13 +17,13 @@
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
+                            <a href="{{ route('home') }}" class="dropdown-item">
+                                <i class="icon-envelope-open"></i>
+                                <span class="ml-2">Home </span>
+                            </a>
                             <a href="./app-profile.html" class="dropdown-item">
                                 <i class="icon-user"></i>
                                 <span class="ml-2">Profile </span>
-                            </a>
-                            <a href="./email-inbox.html" class="dropdown-item">
-                                <i class="icon-envelope-open"></i>
-                                <span class="ml-2">Inbox </span>
                             </a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

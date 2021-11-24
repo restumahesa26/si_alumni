@@ -18,10 +18,6 @@ class Diskusi extends Model
     }
 
     public function tanya_jawab_diskusi(){
-        return $this->belongsTo(Diskusi::class, 'id', 'diskusi_id');
-    }
-
-    public function tanya_jawab_diskusis(){
-        return $this->hasMany(Diskusi::class, 'id', 'diskusi_id');
+        return $this->hasMany(DiskusiTanyaJawab::class, 'diskusi_id', 'id');
     }
 }

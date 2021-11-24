@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>SI ATI</title>
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/favicons/favicon.ico"
+    />
+    <link rel="manifest" href="assets/img/favicons/manifest.json" />
+    <meta
+      name="msapplication-TileImage"
+      content="assets/img/favicons/mstile-150x150.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="bg-primary py-2 d-none d-sm-block">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-auto d-none d-lg-block">
+              <p class="my-2 fs--1">
+                <i class="fas fa-map-marker-alt me-3"></i
+                ><span
+                  >Jl. W.R. Supratman Kandang Limun Bengkulu 38371 A Sumatera -
+                  INDONESIA
+                </span>
+              </p>
+            </div>
+            <div class="col-auto">
+              <p class="my-2 fs--1">
+                <i class="fas fa-envelope me-3"></i
+                ><a class="text-900" href="mailto:vctung@outlook.com"
+                  >informatika@unib.ac.id
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <nav
+        class="navbar navbar-expand-lg navbar-light sticky-top py-3 d-block"
+        data-navbar-on-scroll="data-navbar-on-scroll"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="utama.html"
+            ><img src="assets/img/gallery/logo-n.png" alt=""
+          /></a>
+          
+          <div>
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2">
+                <a
+                  class="nav-link btn btn-primary"
+                  aria-current="page"
+                  href="login.html"
+                  ><i class="fas fa-sign-in-alt"></i> Masuk</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <section class="pt-5 bg-600 pb-6 h-100" id="home">
+        <div class="container h-100">
+          <div class="row align-items-center justify-content-center">
+              <h3 class="text-center">Daftar</h3>
+              <p class="text-center">Registrasi Akun</p>
+              <div class="col-lg-10">
+                <div class="card">
+                  <div class="card-body">
+                    
+                    <div class="form-group row justify-content-center align-items-center mt-4">
+                        <div class="col-2">
+                            <label for="npm">NPM</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="text" name="npm" id="npm" class="form-control" placeholder="NPM">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="nama">Nama</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="agama">Agama</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="text" name="nama" id="agama" class="form-control" placeholder="Agama">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="tempatLahir">Tempat Lahir</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" placeholder="Tempat Lahir">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="tanggalLahir">Tanggal Lahir</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="date" name="tanggal_lahir" id="tanggal_lahir" class="form-control" placeholder="Tanggal Lahir">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="gender">Jenis Kelamin</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <select name="gender" id="gender" class="form-select">
+                                <option hidden>-- Pilih Jenis Kelamin --</option>
+                                <option value="L">Laki-Laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="noHP">No. Handphone</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="text" name="noHP" id="noHP" class="form-control" placeholder="No. Handphone">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="alamat">Alamat</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <textarea name="alamat" id="alamat" cols="30" rows="5" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-center align-items-center mt-3">
+                        <div class="col-2">
+                            <label for="konfirPassword">Konfirmasi Password</label>
+                        </div>
+                        <div class="col-8 text-center">
+                            <input type="password" name="konfirPassword" id="konfirPassword" class="form-control" placeholder="Konfirmasi Password">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <button type="reset" class="btn btn-info mx-3">Reset</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                  </div>
+              </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+    <script src="assets/js/jquery-2.2.3.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Rubik:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>

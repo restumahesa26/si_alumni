@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>SI ATI | Data Saya</title>
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/img/favicons/favicon.ico"
+    />
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="bg-primary py-2 d-none d-sm-block">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-auto d-none d-lg-block">
+              <p class="my-2 fs--1">
+                <i class="fas fa-map-marker-alt me-3"></i
+                ><span
+                  >Jl. W.R. Supratman Kandang Limun Bengkulu 38371 A Sumatera -
+                  INDONESIA
+                </span>
+              </p>
+            </div>
+            <div class="col-auto">
+              <p class="my-2 fs--1">
+                <i class="fas fa-envelope me-3"></i
+                ><a class="text-900" href="mailto:vctung@outlook.com"
+                  >informatika@unib.ac.id
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <nav
+        class="navbar navbar-expand-lg navbar-light sticky-top py-3 d-block shadow"
+        data-navbar-on-scroll="data-navbar-on-scroll"
+      >
+        <div class="container">
+          <a class="navbar-brand" href="index.html"
+            ><img src="assets/img/gallery/logo-n.png" alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"> </span>
+          </button>
+          <div
+            class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav ms-auto pt-2 pt-lg-0 font-base">
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="index.html"
+                  >Beranda</a
+                >
+              </li>
+              <li class="nav-item px-2">
+                <a
+                  class="nav-link"
+                  aria-current="page"
+                  href="daftar-alumni.html"
+                  >Daftar Alumni</a
+                >
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="berita.html"
+                  >Berita</a
+                >
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="info-loker.html"
+                  >Info Loker</a
+                >
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" aria-current="page" href="diskusi.html"
+                  >Diskusi</a
+                >
+              </li>
+
+              <div class="nav-item px-2 btn-group">
+                <a class="d-flex align-items-center" href="">
+                  <img
+                    class="img-profile rounded-circle border-secondary"
+                    alt="image"
+                    src="assets/img/favicons/logo-bulat1.png"
+                    height="30"
+                  />
+                </a>
+                <a
+                  role="button"
+                  class="btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  id="userDropdown"
+                >
+                  Alumni
+                </a>
+                <ul
+                  class="
+                    dropdown-menu dropdown-menu-end
+                    shadow
+                    animated--grow-in
+                    bg-white
+                  "
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="data-saya.html"
+                    ><i class="fas fa-database fa-sm fa-fw text-gray-400"></i>
+                    Data Saya</a
+                  >
+                  <a class="dropdown-item" href="utama.html"
+                    ><i
+                      class="fas fa-sign-out-alt fa-sm fa-fw text-gray-400"
+                    ></i>
+                    Log Out</a
+                  >
+                </ul>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="pb-0">
+        <div class="container">
+          <div class="row">
+            <div class="d-flex justify-content-md-between">
+              <div class="col">
+                <h1 class="fs-lg-6">Data Saya</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="pt-2 pb-2">
+        <div class="container">
+          <div class="row">
+            <div class="p-5">
+              <div class="border rounded-3 border-3 border-primary p-4">
+                <form action="" method="">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1>Data Akun</h1>
+                    </div>
+                    <div class="col mx-auto p-3 text-center">
+                      <p class="uploadProfile">
+                        <label for="profile">
+                          <img
+                            src="assets/img/gallery/macrohard.png"
+                            alt="alumni-profile"
+                            width="150px"
+                            class="btn"
+                          >
+                        </label>
+                        <label for="profile">
+                          <a class="btn btn-warning" rel="nofollow"
+                            >Upload Profil</a
+                          >
+                        </label>
+                        <input
+                          class="d-none"
+                          type="file"
+                          name="profile"
+                          id="profile"
+                        >
+                      </p>
+                    </div>
+                    <div class="col-md-9 d-grid gap-3 pt-3 pb-4">
+                      <div>
+                        <label for="npm">NPM</label>
+                        <input
+                          class="form-control"
+                          name="npm"
+                          id="npm"
+                          type="text"
+                          placeholder="NPM"
+                        >
+                      </div>
+                      <div>
+                        <label for="nama">Nama</label>
+                        <input
+                          class="form-control"
+                          name="nama"
+                          id="nama"
+                          type="text"
+                          placeholder="Nama"
+                        >
+                      </div>
+                      <div>
+                        <label for="password">Password</label>
+                        <input
+                          class="form-control"
+                          name="password"
+                          id="password"
+                          type="password"
+                          placeholder="Password"
+                        >
+                      </div>
+                      <div>
+                        <label for="konfirPassword">Konfirmasi Password</label>
+                        <input
+                          class="form-control"
+                          name="konfirPassword"
+                          id="konfirPassword"
+                          type="password"
+                          placeholder="Konfirmasi Password"
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mt-2 text-end">
+                      <button
+                        class="btn btn-lg btn-primary"
+                        value="Send"
+                        name="simpan"
+                        type="submit"
+                        aria-expanded="false"
+                      >
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="p-5 pt-0">
+              <div class="border rounded-3 border-3 border-primary p-4">
+                <form action="" method="">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1>Data Pribadi</h1>
+                    </div>
+                    <div class="col d-grid gap-3 pt-3 pb-4">
+                      <div class="d-grid">
+                        <label for="agama">Agama</label>
+                        <select class="form-select" name="agama" id="agama">
+                          <option hidden>Agama Anda...</option>
+                          <option value="islam">Islam</option>
+                          <option value="kristen">Kristen</option>
+                          <option value="hindu">Hindu</option>
+                          <option value="budha">Budha</option>
+                          <option value="konghucu">Konghucu</option>
+                        </select>
+                      </div>
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="tempatLahir">Tempat</label>
+                          <input
+                            class="form-control"
+                            name="tempatLahir"
+                            id="tempatLahir"
+                            type="text"
+                            placeholder="Tempat Lahir Anda...."
+                          >
+                        </div>
+                        <div class="col-md-6">
+                          <label for="tglLahir">Tanggal Lahir</label>
+                          <input
+                            class="form-control"
+                            name="tglLahir"
+                            id="tglLahir"
+                            type="date"
+                          >
+                        </div>
+                      </div>
+                      <div>
+                        <label for="gender">Jenis Kelamin</label>
+                        <select class="form-select" name="gender" id="gender">
+                          <option hidden>-- Pilih Jenis Kelamin --</option>
+                          <option value="L">Laki-laki</option>
+                          <option value="P">Perempuan</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label for="alamat">Alamat</label>
+                        <textarea
+                          class="form-control"
+                          name="alamat"
+                          id="alamat"
+                          placeholder="Alamat Anda..."
+                        ></textarea>
+                      </div>
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="noHP">Nomor Handphone</label>
+                          <input
+                            class="form-control"
+                            name="noHP"
+                            id="noHP"
+                            type="number"
+                            placeholder="Nomor Handphone Anda...."
+                          >
+                        </div>
+                        <div class="col-md-6">
+                          <label for="email">Email</label>
+                          <input
+                            class="form-control"
+                            name="email"
+                            id="email"
+                            type="email"
+                            placeholder="Email Anda..."
+                          >
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="goldar">Golongan Darah</label>
+                          <select class="form-select" name="goldar" id="goldar">
+                            <option hidden>-- Pilih Golongan Darah --</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="status">Status</label>
+                          <select class="form-select" name="status" id="status">
+                            <option hidden>Status Anda...</option>
+                            <option value="Menikah">Menikah</option>
+                            <option value="Belum Menihkah">
+                              Belum Menikah
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="tinggiBadan">Tinggi Badan</label>
+                          <div class="input-group">
+                            <input
+                              class="form-control"
+                              name="tinggiBadan"
+                              id="tinggiBadan"
+                              type="number"
+                              placeholder="Tinggi Badan Anda...."
+                            >
+                            <span class="input-group-text" id="basic-addon2"
+                              >Meter</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="beratBadan">Berat Badan</label>
+                          <div class="input-group">
+                            <input
+                              class="form-control"
+                              name="beratBadan"
+                              id="beratBadan"
+                              type="number"
+                              placeholder="Berat Badan Anda...."
+                            >
+                            <span class="input-group-text" id="basic-addon2"
+                              >Kg</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <label for="SLTA">Asal SLTA</label>
+                        <input
+                            class="form-control"
+                            name="SLTA"
+                            id="SLTA"
+                            type="text"
+                            placeholder="Asal SLTA Anda..."
+                          >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mt-2 text-end">
+                      <button
+                        class="btn btn-lg btn-primary"
+                        name="simpan"
+                        value="Send"
+                        type="submit"
+                        aria-expanded="false"
+                      >
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="p-5 pt-0">
+              <div class="border rounded-3 border-3 border-primary p-4">
+                <form action="" method="">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1>Data Orangtua</h1>
+                    </div>
+                    <div class="col d-grid gap-3 pt-3 pb-4">
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="namaAyah">Nama Ayah</label>
+                          <input
+                            class="form-control"
+                            name="namaAyah"
+                            id="namaAyah"
+                            type="text"
+                            placeholder="Nama Ayah Anda...."
+                          >
+                        </div>
+                        <div class="col-md-6">
+                          <label for="namaIbu">Nama Ibu</label>
+                          <input
+                            class="form-control"
+                            name="namaIbu"
+                            id="namaIbu"
+                            type="text"
+                            placeholder="Nama Ibu Anda...."
+                          >
+                        </div>
+                      </div>
+                      <div>
+                        <label for="alamatOrtu">Alamat Orangtua</label>
+                        <textarea
+                          class="form-control"
+                          name="alamatOrtu"
+                          id="alamatOrtu"
+                          placeholder="Alamat Orangtua Anda..."
+                        ></textarea>
+                      </div>
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="kerjaAyah">Pekerjaan Ayah</label>
+                          <input
+                            class="form-control"
+                            name="kerjaAyah"
+                            id="kerjaAyah"
+                            type="text"
+                            placeholder="Pekerjaan Ayah Anda..."
+                          >
+                        </div>
+                        <div class="col-md-6">
+                          <label for="kerjaIbu">Pekerjaan Ibu</label>
+                          <input
+                            class="form-control"
+                            name="kerjaIbu"
+                            id="kerjaIbu"
+                            type="text"
+                            placeholder="Pekerjaan Ibu Anda..."
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mt-2 text-end">
+                      <button
+                        class="btn btn-lg btn-primary"
+                        name="simpan"
+                        value="Send"
+                        type="submit"
+                        aria-expanded="false"
+                      >
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="p-5 pt-0">
+              <div class="border rounded-3 border-3 border-primary p-4">
+                <form action="" method="">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1>Data Skripsi</h1>
+                    </div>
+                    <div class="col d-grid gap-3 pt-3 pb-4">
+                      <div>
+                        <label for="judulSkripsi">Judul Skripsi</label>
+                        <textarea
+                          class="form-control"
+                          name="judulSkripsi"
+                          placeholder="Judul Skripsi Anda..."
+                        ></textarea>
+                      </div>
+                      
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="bobotSKS">Bobot SKS</label>
+                          <div class="input-group">
+                            <input
+                              class="form-control"
+                              name="bobotSKS"
+                              id="bobotSKS"
+                              type="number"
+                              placeholder="Bobot SKS..."
+                            >
+                            <span class="input-group-text" id="basic-addon2"
+                              >SKS</span
+                            >
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <label for="tglSemprop">Tanggal Seminar Proposal</label>
+                            <input
+                              class="form-control"
+                              name="tglSemprop"
+                              id="tglSemprop"
+                              type="date"
+                            >
+                        </div>
+                      </div>
+                      <div class="d-flex">
+                        <div class="col-md-6 pe-3">
+                          <label for="tglSidang">Tanggal Sidang</label>
+                          <input
+                            class="form-control"
+                            name="tglSidang"
+                            id="tglSidang"
+                            type="date"
+                          >
+                        </div>
+                        <div class="col-md-6">
+                          <label for="tglWisuda">Tanggal Wisuda</label>
+                          <input
+                            class="form-control"
+                            name="tglWisuda"
+                            id="tglWisuda"
+                            type="date"
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mt-2 text-end">
+                      <button
+                        class="btn btn-lg btn-primary"
+                        name="simpan"
+                        value="Send"
+                        type="submit"
+                        aria-expanded="false"
+                      >
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="p-5 pt-0">
+              <div class="border rounded-3 border-3 border-primary p-4">
+                <form action="" method="">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h1>Data Bimbingan Skripsi</h1>
+                    </div>
+                    <div class="col d-grid gap-3 pt-3 pb-4">
+                      <div>
+                        <label for="tglMulaiBimbingan">Tanggal Mulai Bimbingan</label>
+                        <input
+                            class="form-control"
+                            name="tglMulaiBimbingan"
+                            id="tglMulaiBimbingan"
+                            type="date"
+                          >
+                      </div>
+                      <div>
+                        <label for="pembimbing1">Dosen Pembimbing 1</label>
+                        <input
+                            class="form-control"
+                            name="pembimbing1"
+                            id="pembimbing1"
+                            type="text"
+                            placeholder="Nama Dosen Pembimbing 1"
+                          >
+                      </div>
+                      <div>
+                        <label for="pembimbing2">Dosen Pembimbing 2</label>
+                        <input
+                            class="form-control"
+                            name="pembimbing2"
+                            id="pembimbing2"
+                            type="text"
+                            placeholder="Nama Dosen Pembimbing 2"
+                          >
+                      </div>
+                      <div>
+                        <label for="penguji1">Dosen Penguji 1</label>
+                        <input
+                            class="form-control"
+                            name="penguji1"
+                            id="penguji1"
+                            type="text"
+                            placeholder="Nama Dosen Penguji 1"
+                          >
+                      </div>
+                      <div>
+                        <label for="penguji2">Dosen Penguji 2</label>
+                        <input
+                            class="form-control"
+                            name="penguji2"
+                            id="penguji2"
+                            type="text"
+                            placeholder="Nama Dosen Penguji 2"
+                          >
+                      </div>
+                      <div>
+                        <label for="jumlSKS">Jumlah SKS</label>
+                        <input
+                            class="form-control"
+                            name="jumSKS"
+                            id="jumSKS"
+                            type="number"
+                            placeholder="Jumlah SKS Anda..."
+                          >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mt-2 text-end">
+                      <button
+                        class="btn btn-lg btn-primary"
+                        name="simpan"
+                        value="Send"
+                        type="submit"
+                        aria-expanded="false"
+                      >
+                        Simpan
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- end of .container-->
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <!-- ============================================-->
+      <!-- <section> begin ============================-->
+      <section class="bg-secondary">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-lg-7 mb-4 order-0 order-sm-0">
+              <a class="text-decoration-none" href="#"
+                ><img src="assets/img/gallery/footer-logo.png" alt="logo"
+              /></a>
+              <p class="text-light my-4">
+                <i class="fas fa-map-marker-alt me-3"></i
+                ><span class="text-light"
+                  >Jl. W.R. Supratman Kandang Limun Bengkulu 38371 A Sumatera -
+                  INDONESIA</span
+                >
+              </p>
+              <p class="text-light">
+                <i class="fas fa-envelope me-3"> </i
+                ><a class="text-light" href="mailto:vctung@outlook.com"
+                  >informatika@unib.ac.id
+                </a>
+              </p>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-3 mb-3 order-2 order-sm-1">
+              <h5 class="lh-lg fw-bold mb-4 text-light font-sans-serif">
+                Link Terkait
+              </h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg">
+                  <a class="text-200" href="#!">Informatika</a>
+                </li>
+                <li class="lh-lg">
+                  <a class="text-200" href="#!">Fakultas Teknik</a>
+                </li>
+                <li class="lh-lg">
+                  <a class="text-200" href="#!">HIMATIF</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2 mb-3 order-3 order-sm-2">
+              <h5 class="lh-lg fw-bold text-light mb-4 font-sans-serif">
+                Temukan Kami
+              </h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <a class="hover-icon" href=""
+                  ><i
+                    class="fab fa-instagram text-light"
+                    style="font-size: 40px; margin: 10px"
+                  ></i
+                ></a>
+                <a href=""
+                  ><i
+                    class="fab fa-twitter text-light"
+                    style="font-size: 40px; margin: 10px"
+                  ></i
+                ></a>
+              </ul>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <a href=""
+                  ><i
+                    class="fab fa-facebook text-light"
+                    style="font-size: 40px; margin: 10px"
+                  ></i
+                ></a>
+                <a href=""
+                  ><i
+                    class="fab fa-pinterest text-light"
+                    style="font-size: 40px; margin: 10px"
+                  ></i
+                ></a>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- end of .container-->
+      </section>
+      <!-- <section> close ============================-->
+      <!-- ============================================-->
+
+      <section class="py-0" style="margin-top: -5.8rem">
+        <div class="container bg-primary">
+          <div
+            class="row justify-content-md-between justify-content-evenly py-4"
+          >
+            <div>
+              <p class="fs--1 my-2 fw-bold text-center">
+                All rights Reserved &copy; Informatika FT UNIB, 2021
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Rubik:wght@300;400;500;600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+  </body>
+</html>

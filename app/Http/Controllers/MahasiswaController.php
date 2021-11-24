@@ -46,7 +46,7 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'npm' => 'required|string|max:255|unique:alumnis',
+            'npm' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
             'agama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
@@ -76,8 +76,6 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create([
             'user_id' => $user->id,
-            'npm' => $request->npm,
-            'nama' => $request->nama,
             'agama' => $request->agama,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
