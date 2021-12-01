@@ -31,18 +31,18 @@
                         <form action="{{ route('data-admin.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for='nip'>NIP</label>
-                                <input class='form-control @error('nip') is-invalid @enderror' type='text' name='nip' id='nip' placeholder='Masukkan NIP' value='{{ old('nip') }}' />
-                                @error('nip')
+                                <label for='nama'>Nama</label>
+                                <input class='form-control @error('nama') is-invalid @enderror' type='text' name='nama' id='nama' placeholder='Masukkan Nama' value='{{ old('nama') }}' />
+                                @error('nama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for='username'>Username</label>
-                                <input class='form-control @error('username') is-invalid @enderror' type='text' name='username' id='username' placeholder='Masukkan Username' value='{{ old('username') }}' />
-                                @error('username')
+                                <label for='email'>Email</label>
+                                <input class='form-control @error('email') is-invalid @enderror' type='email' name='email' id='email' placeholder='Masukkan Email' value='{{ old('email') }}' />
+                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -61,55 +61,6 @@
                                 <label for='password_confirmation'>Konfirmasi Password</label>
                                 <input class='form-control @error('password_confirmation') is-invalid @enderror' type='password' name='password_confirmation' id='password_confirmation' placeholder='Masukkan Konfirmasi Password' value='{{ old('password_confirmation') }}' />
                                 @error('password_confirmation')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for='nama'>Nama</label>
-                                <input class='form-control @error('nama') is-invalid @enderror' type='text' name='nama' id='nama' placeholder='Masukkan Nama' value='{{ old('nama') }}' />
-                                @error('nama')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for='jenis_kelamin'>Jenis Kelamin</label>
-                                <select class='form-control @error('jenis_kelamin') is-invalid @enderror' name='jenis_kelamin' id='jenis_kelamin'>
-                                    <option value=''>--Pilih Jenis Kelamin--</option>
-                                    <option value='L'>Laki-Laki</option>
-                                    <option value='P'>Perempuan</option>
-                                </select>
-                                @error('jenis_kelamin')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for='alamat'>Alamat</label>
-                                <input class='form-control @error('alamat') is-invalid @enderror' type='text' name='alamat' id='alamat' placeholder='Masukkan Alamat' value='{{ old('alamat') }}' />
-                                @error('alamat')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for='no_hp'>Nomor Handphone</label>
-                                <input class='form-control @error('no_hp') is-invalid @enderror' type='text' name='no_hp' id='no_hp' placeholder='Masukkan Nomor Handphone' value='{{ old('no_hp') }}' />
-                                @error('no_hp')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for='email'>Email</label>
-                                <input class='form-control @error('email') is-invalid @enderror' type='email' name='email' id='email' placeholder='Masukkan Email' value='{{ old('email') }}' />
-                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

@@ -8,9 +8,12 @@
                 <div class="col">
                     <h1 class="">Info Loker</h1>
                 </div>
+                @if (Auth::user() && Auth::user()->role === 'ADMIN')
+
+                @elseif (Auth::user() && Auth::user()->role !== 'ADMIN')
                 <div class="col-auto">
                     <div class="">
-                        <a href="ajukan-loker.html">
+                        <a href="{{ route('user.ajukan-loker') }}">
                             <button class="btn btn-primary ms-2" type="submit" aria-expanded="false">
                                 Ajukan Loker
                                 <i class="fas fa-plus-circle text-secondary"></i>
@@ -18,22 +21,23 @@
                         </a>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         <div class="row" style="margin-top: 2rem">
             <div class="col-md-3">
-                <form>
-                    <input class="form-control" type="search" placeholder="Cari Pekerjaan" aria-label="Search" />
+                <form action="{{ route('user.search-loker', 'pekerjaan') }}">
+                    <input class="form-control" type="search" placeholder="Cari Pekerjaan" aria-label="Search" name="search" />
                 </form>
             </div>
             <div class="col-md-3">
-                <form>
-                    <input class="form-control" type="search" placeholder="Cari Perusahaan" aria-label="Search" />
+                <form action="{{ route('user.search-loker', 'perusahaan') }}">
+                    <input class="form-control" type="search" placeholder="Cari Perusahaan" aria-label="Search" name="search" />
                 </form>
             </div>
             <div class="col-md-3">
-                <form>
-                    <input class="form-control" type="search" placeholder="Cari Lokasi" aria-label="Search" />
+                <form action="{{ route('user.search-loker', 'lokasi') }}">
+                    <input class="form-control" type="search" placeholder="Cari Lokasi" aria-label="Search" name="search" />
                 </form>
             </div>
             <div class="col-md-1">
@@ -55,13 +59,20 @@
             <div class="pt-3 table-responsive">
                 <table class="table table-striped table-hover display nowrap align-middle">
                     <tbody>
-                        @foreach ($lokers as $item)
+                        @forelse ($lokers as $item)
                         <tr>
                             <td>
+                                @if ($item->logo_perusahaan != NULL)
+                                <div class="p-3">
+                                    <img src="{{ asset('storage/assets/foto-loker/' . $item->logo_perusahaan) }}" class="mx-auto d-block"
+                                        height="100px" alt="profil-perusahaan" />
+                                </div>
+                                @else
                                 <div class="p-3">
                                     <img src="{{ url('frontend/public/assets/img/favicons/apple-touch-icon2.png') }}" class="mx-auto d-block"
                                         height="100px" alt="profil-perusahaan" />
                                 </div>
+                                @endif
                             </td>
                             <td>
                                 <h2>{{ $item->nama_kerja }}</h1>
@@ -70,7 +81,11 @@
                             </td>
                             <td><a href="{{ route('user.detail-loker', $item->id) }}"><button class="btn btn-info btn-lg">Detail</button></a></td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <td class="text-center" colspan="3">Data Kosong</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

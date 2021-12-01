@@ -10,7 +10,7 @@ class Diskusi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'judul', 'isi'
+        'user_id', 'judul', 'isi', 'status'
     ];
 
     public function users(){

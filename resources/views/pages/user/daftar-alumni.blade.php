@@ -9,6 +9,18 @@
                 <h1 class="mb-6">Daftar Alumni</h1>
             </div>
 
+            <div class="col-md-6">
+                <div class="d-flex justify-content-end">
+                    <form>
+                        <input class="form-control" type="search" placeholder="Cari Alumni" aria-label="Search" />
+                    </form>
+                    <button class="btn btn-outline-light ms-2" id="dropdownMenuButton1" type="submit"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-search text-800"></i>
+                    </button>
+                </div>
+            </div>
+
             <div class="col-md-12">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover display nowrap align-middle" id="table">
@@ -26,11 +38,11 @@
                             @forelse ($alumnis as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->user->nama }}</td>
-                                <td>{{ $item->user->npm }}</td>
+                                <td>{{ $item->users->nama }}</td>
+                                <td>{{ $item->users->npm }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_wisuda)->translatedFormat('Y') }}</td>
                                 <td>{{ $item->pekerjaan }}</td>
-                                <td><a href="detail-alumni.html"><button class="btn btn-info">Detail</button></a></td>
+                                <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-info">Detail</button></a></td>
                             </tr>
                             @empty
                             <tr>
@@ -73,9 +85,7 @@
 @push('addon-script')
     <script>
         $(document).ready(function() {
-            $('#table').DataTable({
-                'ordering': false
-            });
+            $('#table').DataTable();
         });
     </script>
 @endpush

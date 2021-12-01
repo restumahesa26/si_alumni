@@ -56,7 +56,7 @@ class LokerController extends Controller
             'isi' => $request->isi
         ]);
 
-        return redirect()->route('loker.index');
+        return redirect()->route('loker.index')->with(['success' => 'Berhasil Menambah Lowongan Pekerjaan']);
     }
 
     /**
@@ -115,7 +115,7 @@ class LokerController extends Controller
             'isi' => $request->isi
         ]);
 
-        return redirect()->route('loker.index');
+        return redirect()->route('loker.index')->with(['success' => 'Berhasil Mengubah Lowongan Pekerjaan']);
     }
 
     /**
@@ -130,6 +130,28 @@ class LokerController extends Controller
 
         $item->delete();
 
-        return redirect()->route('loker.index');
+        return redirect()->route('loker.index')->with(['success' => 'Berhasil Menghapus Lowongan Pekerjaan']);
+    }
+
+    public function set_aktif($id)
+    {
+        $item = Loker::findOrFail($id);
+
+        $item->update([
+            'status' => '1'
+        ]);
+
+        return redirect()->route('loker.index')->with(['success' => 'Berhasil Mengaktifkan Lowongan Pekerjaan']);
+    }
+
+    public function set_non_aktif($id)
+    {
+        $item = Loker::findOrFail($id);
+
+        $item->update([
+            'status' => '0'
+        ]);
+
+        return redirect()->route('loker.index')->with(['success' => 'Berhasil Menonaktifkan Lowongan Pekerjaan']);
     }
 }

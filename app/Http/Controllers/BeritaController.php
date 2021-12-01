@@ -61,7 +61,7 @@ class BeritaController extends Controller
             'thumbnail' => $imageNames
         ]);
 
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with(['success' => 'Berhasil Menambah Berita']);
     }
 
     /**
@@ -128,7 +128,7 @@ class BeritaController extends Controller
             'thumbnail' => $imageNames
         ]);
 
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with(['success' => 'Berhasil Mengubah Berita']);
     }
 
     /**
@@ -143,6 +143,26 @@ class BeritaController extends Controller
 
         $item->delete();
 
-        return redirect()->route('berita.index');
+        return redirect()->route('berita.index')->with(['success' => 'Berhasil Menghapus Berita']);
+    }
+
+    public function set_populer($id)
+    {
+        $item = Berita::findOrFail($id);
+
+        $item->is_populer = '1';
+        $item->save();
+
+        return redirect()->route('berita.index')->with(['success' => 'Berhasil Mengset Populer']);
+    }
+
+    public function set_non_populer($id)
+    {
+        $item = Berita::findOrFail($id);
+
+        $item->is_populer = '0';
+        $item->save();
+
+        return redirect()->route('berita.index')->with(['success' => 'Berhasil Mengset Tidak Populer']);
     }
 }

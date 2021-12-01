@@ -121,7 +121,7 @@ class AlumniController extends Controller
             'jumlah_sks' => $request->jumlah_sks
         ]);
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Menambah Data Alumni ' . $request->nama]);
     }
 
     /**
@@ -187,6 +187,8 @@ class AlumniController extends Controller
             'dosen_pembimbing_2' => 'required|string|max:255',
             'dosen_penguji_1' => 'required|string|max:255',
             'dosen_penguji_2' => 'required|string|max:255',
+            'pekerjaan' => 'required|string|max:255',
+            'lokasi_pekerjaan' => 'required|string|max:255',
             'jumlah_sks' => 'required|numeric',
         ]);
 
@@ -215,9 +217,6 @@ class AlumniController extends Controller
         $user->save();
 
         $item->update([
-            'user_id' => $user->id,
-            'npm' => $request->npm,
-            'nama' => $request->nama,
             'agama' => $request->agama,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -244,10 +243,12 @@ class AlumniController extends Controller
             'dosen_pembimbing_2' => $request->dosen_pembimbing_2,
             'dosen_penguji_1' => $request->dosen_penguji_1,
             'dosen_penguji_2' => $request->dosen_penguji_2,
-            'jumlah_sks' => $request->jumlah_sks
+            'jumlah_sks' => $request->jumlah_sks,
+            'pekerjaan' => $request->pekerjaan,
+            'lokasi_pekerjaan' => $request->lokasi_pekerjaan,
         ]);
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Mengubah Data Alumni ' . $request->nama]);
     }
 
     /**
@@ -264,10 +265,11 @@ class AlumniController extends Controller
         $item->forceDelete();
 
         $user = User::where('id', $idd)->first();
+        $nama = $user->nama;
 
         $user->forceDelete();
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Menambah Data Mahasiswa ' . $nama]);
     }
 
     public function change_to_mahasiswa($id)
@@ -298,7 +300,7 @@ class AlumniController extends Controller
 
         $item->delete();
 
-        return redirect()->route('data-mahasiswa.index');
+        return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Memindah Data ke Data Mahasiswa ' . $user->nama]);
     }
 
     public function import(Request $request)
@@ -315,6 +317,6 @@ class AlumniController extends Controller
 
         Excel::import(new AlumniImport, public_path('file-import/'. $nama_file));
 
-        return dd('Berhasil Import Data');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Mengimport Data Alumni']);
     }
 }

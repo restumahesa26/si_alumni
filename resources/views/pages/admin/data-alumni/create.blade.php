@@ -322,7 +322,28 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_pembimbing_1'>Dosen Pembimbing 1</label>
-                                        <input class='form-control @error('dosen_pembimbing_1') is-invalid @enderror' type='text' name='dosen_pembimbing_1' id='dosen_pembimbing_1' placeholder='Masukkan Dosen Pembimbing 1' value='{{ old('dosen_pembimbing_1') }}' required />
+                                        <select name="dosen_pembimbing_1" id="dosen_pembimbing_1" class="form-control @error('dosen_pembimbing_1') is-invalid @enderror" required>
+                                            <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
+                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                        </select>
                                         @error('dosen_pembimbing_1')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -331,7 +352,28 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_pembimbing_2'>Dosen Pembimbing 2</label>
-                                        <input class='form-control @error('dosen_pembimbing_1') is-invalid @enderror' type='text' name='dosen_pembimbing_2' id='dosen_pembimbing_2' placeholder='Masukkan Dosen Pembimbing 2' value='{{ old('dosen_pembimbing_2') }}' required />
+                                        <select name="dosen_pembimbing_2" id="dosen_pembimbing_2" class="form-control @error('dosen_pembimbing_2') is-invalid @enderror" required>
+                                            <option hidden>-- Pilih Dosen Pembimbing 2 --</option>
+                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                        </select>
                                         @error('dosen_pembimbing_2')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -344,7 +386,28 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_penguji_1'>Dosen Penguji 1</label>
-                                        <input class='form-control @error('dosen_penguji_1') is-invalid @enderror' type='text' name='dosen_penguji_1' id='dosen_penguji_1' placeholder='Masukkan Dosen Penguji 1' value='{{ old('dosen_penguji_1') }}' required />
+                                        <select name="dosen_penguji_1" id="dosen_penguji_1" class="form-control @error('dosen_penguji_1') is-invalid @enderror" required>
+                                            <option hidden>-- Pilih Dosen Penguji 1 --</option>
+                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                        </select>
                                         @error('dosen_penguji_1')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -353,7 +416,28 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_penguji_2'>Dosen Penguji 2</label>
-                                        <input class='form-control @error('dosen_penguji_2') is-invalid @enderror' type='text' name='dosen_penguji_2' id='dosen_penguji_2' placeholder='Masukkan Dosen Penguji 2' value='{{ old('dosen_penguji_2') }}' required />
+                                        <select name="dosen_penguji_2" id="dosen_penguji_2" class="form-control @error('dosen_penguji_2') is-invalid @enderror" required>
+                                            <option hidden>-- Pilih Dosen Penguji 2 --</option>
+                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                        </select>
                                         @error('dosen_penguji_2')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>

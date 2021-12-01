@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -44,36 +45,18 @@ class AdminController extends Controller
     {
         $request->validate([
             'email' => 'required|string|max:255|email|unique:users',
-            'nip' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'no_hp' => 'required|numeric',
-            'jenis_kelamin' => 'required|in:L,P',
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
-        try {
-            $user = User::create([
-                'username' => $request->username,
-                'role' => 'ADMIN',
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
+        User::create([
+            'nama' => $request->nama,
+            'role' => 'ADMIN',
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
-            Dosen::create([
-                'user_id' => $user->id,
-                'nip' => $request->nip,
-                'nama' => $request->nama,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->alamat,
-                'no_hp' => $request->no_hp,
-            ]);
-        } catch (\Throwable $e) {
-            # code...
-        }
-
-        return redirect()->route('data-admin.index');
+        return redirect()->route('data-admin.index')->with(['success' => 'Berhasil Menambah Data Admin ' . $request->nama]);
     }
 
     /**
@@ -112,12 +95,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nip' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
             'nama' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'no_hp' => 'required|numeric',
-            'jenis_kelamin' => 'required|in:L,P',
         ]);
 
         if ($request->password) {
@@ -126,31 +104,22 @@ class AdminController extends Controller
             ]);
         }
 
-        $item = Dosen::where('user_id', $id)->first();
+        $user = User::findOrFail($id);
 
-        if ($request->email != $item->users->email) {
+        if ($request->email != $user->email) {
             $request->validate([
                 'email' => 'required|string|max:255|email|unique:users',
             ]);
         }
 
-        $user = User::findOrFail($id);
-        $user->username = $request->username;
+        $user->nama = $request->nama;
         $user->email = $request->email;
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
 
-        $item->update([
-            'nip' => $request->nip,
-            'nama' => $request->nama,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
-        ]);
-
-        return redirect()->route('data-admin.index');
+        return redirect()->route('data-admin.index')->with(['success' => 'Berhasil Mengubah Data Admin ' . $request->nama]);
     }
 
     /**
@@ -161,6 +130,15 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = User::findOrFail($id);
+        $nama = $item->nama;
+
+        if (Auth::user()->id == $item->id) {
+            return redirect()->back()->with(['success' => 'Gagal Menghapus Data Admin ' . $nama]);
+        }else {
+            $item->delete();
+
+            return redirect()->route('data-admin.index')->with(['success' => 'Berhasil Menghapus Data Admin ' . $nama]);
+        }
     }
 }

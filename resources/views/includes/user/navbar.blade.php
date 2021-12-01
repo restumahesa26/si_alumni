@@ -38,17 +38,22 @@
                         href="{{ route('home') }}">Beranda</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a class="nav-link @if(Route::is('daftar-alumni')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('daftar-alumni') }}">Daftar Alumni</a>
+                    <a class="nav-link @if(Route::is('daftar-alumni') || Route::is('detail-alumni')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('daftar-alumni') }}">Daftar Alumni</a>
                 </li>
                 <li class="nav-item px-2">
                     <a class="nav-link @if(Route::is('user.berita') || Route::is('user.detail-berita')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.berita') }}">Berita</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a class="nav-link @if(Route::is('user.loker') || Route::is('user.detail-loker')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.loker') }}">Info Loker</a>
+                    <a class="nav-link @if(Route::is('user.loker') || Route::is('user.detail-loker') ||Route::is('user.ajukan-loker') || Route::is('user.search-loker')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.loker') }}">Info Loker</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a class="nav-link @if(Route::is('user.diskusi') || Route::is('user.detail-diskusi')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.diskusi') }}">Diskusi</a>
+                    <a class="nav-link @if(Route::is('user.diskusi') || Route::is('user.detail-diskusi') || Route::is('user.diskusi-saya') || Route::is('user.ajukan-diskusi')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.diskusi') }}">Diskusi</a>
                 </li>
+                @if (Auth::user() && Auth::user()->role == 'ADMIN')
+                <li class="nav-item px-2">
+                    <a class="nav-link" aria-current="page" href="{{ route('dashboard') }}">Admin</a>
+                </li>
+                @endif
                 @if (Auth::user())
                 <div class="nav-item px-2 btn-group">
                     <a class="d-flex align-items-center" href="">
@@ -56,7 +61,7 @@
                             src="{{ url('frontend/public/assets/img/favicons/logo-bulat1.png') }}" height="30" />
                     </a>
                     <a role="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" id="userDropdown" style="text-transform: capitalize !important;">
+                        aria-expanded="false" id="userDropdown" class="text-lowercase">
                         {{ Auth::user()->role }}
                     </a>
                     <ul class="
@@ -65,7 +70,7 @@
                     animated--grow-in
                     bg-white
                   " aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="data-saya.html"><i
+                        <a class="dropdown-item" href="{{ route('user.data-saya') }}"><i
                                 class="fas fa-database fa-sm fa-fw text-gray-400"></i>
                             Data Saya</a>
                         <form method="POST" action="{{ route('logout') }}">
@@ -80,10 +85,12 @@
                 </div>
                 @else
                 <li class="nav-item px-2">
-                    <a class="nav-link" aria-current="page" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link btn btn-primary" aria-current="page" href="{{ route('login') }}">
+                        <i class="fas fa-sign-in-alt"></i> Masuk</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a class="nav-link" aria-current="page" href="{{ route('register') }}">Register</a>
+                    <a class="nav-link btn btn-secondary text-light" aria-current="page" href="{{ route('register') }}">
+                        <i class="fas fa-user-plus"></i> Daftar</a>
                 </li>
                 @endif
 

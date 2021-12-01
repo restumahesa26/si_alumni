@@ -18,6 +18,13 @@
             </div>
         </div>
 
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong class="text-primary">{{ $message }}</strong>
+        </div>
+        @endif
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -257,7 +264,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <form action="{{ route('data-alumni.change-to-alumni', $item->id) }}" method="POST">
+                <form action="{{ route('data-alumni.change-to-alumni', $item2->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn btn-primary">Pindah Ke Alumni</button>

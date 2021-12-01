@@ -56,7 +56,7 @@
         <div class="row ms-4 me-4">
             <h2>Jawaban</h2>
         </div>
-        @foreach ($tanya_jawabs as $item2)
+        @forelse ($tanya_jawabs as $item2)
         <div class="row mt-0 m-5 border-start border-5 d-grid gap-3">
             <div class="col-auto border rounded-3 border-3 border-primary ms-3 p-5">
                 <div class="row border-bottom border-3 border-secondary pb-3">
@@ -86,7 +86,16 @@
                 @endif
             </div>
         </div>
-        @endforeach
+        @empty
+        <div class="row mt-0 m-5 border-start border-5 d-grid gap-3">
+            <div class="col-auto border rounded-3 border-3 border-primary ms-3 p-5">
+                <div class="row border-bottom border-3 border-secondary pb-3">
+                    <h4>Belum ada tanya jawab dalam diskusi ini</h4>
+                </div>
+            </div>
+        </div>
+        @endforelse
+        @if (Auth::user())
         <div class="row border border-primary rounded-3 border-3 m-5 mt-0 mb-5 p-3">
             <div class="col-auto mt-3 mb-3">
                 <h2 id="jawab-diskusi">Tambahkan Jawaban</h2>
@@ -103,7 +112,9 @@
                 </div>
             </form>
         </div>
-
+        @else
+            <h4 class="ms-5">Untuk bertanya / menjawab dalam diskusi ini, silahkan login terlebih dahulu!</h4>
+        @endif
     </div>
     <!-- end of .container-->
 </section>

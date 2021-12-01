@@ -375,8 +375,26 @@
                             </div>
                             <div class="form-group">
                                 <label for='foto'>Foto</label>
-                                <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' required />
+                                <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' />
                                 @error('foto')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for='pekerjaan'>Pekerjaan</label>
+                                <input class='form-control @error('pekerjaan') is-invalid @enderror' type='number' name='pekerjaan' id='pekerjaan' placeholder='Masukkan Pekerjaan' value='{{ $item->pekerjaan }}' required />
+                                @error('pekerjaan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for='lokasi_pekerjaan'>Lokasi Pekerjaan</label>
+                                <input class='form-control @error('lokasi_pekerjaan') is-invalid @enderror' type='number' name='lokasi_pekerjaan' id='lokasi_pekerjaan' placeholder='Masukkan Lokasi Pekerjaan' value='{{ $item->lokasi_pekerjaan }}' required />
+                                @error('lokasi_pekerjaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

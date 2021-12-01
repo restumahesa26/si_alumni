@@ -10,7 +10,7 @@ class Loker extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'nama_kerja', 'tempat_kerja', 'isi', 'lokasi_kerja'
+        'user_id', 'nama_kerja', 'tempat_kerja', 'isi', 'lokasi_kerja', 'status', 'logo_perusahaan'
     ];
 
     public function users(){
@@ -18,10 +18,6 @@ class Loker extends Model
     }
 
     public function tanya_jawab_loker(){
-        return $this->belongsTo(LokerTanyaJawab::class, 'id', 'loker_id');
-    }
-
-    public function tanya_jawab_lokers(){
-        return $this->hasMany(LokerTanyaJawab::class, 'id', 'loker_id');
+        return $this->hasMany(LokerTanyaJawab::class, 'loker_id', 'id');
     }
 }

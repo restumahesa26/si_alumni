@@ -92,7 +92,7 @@ class MahasiswaController extends Controller
             'berat_badan' => $request->berat_badan,
         ]);
 
-        return redirect()->route('data-mahasiswa.index');
+        return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Menambah Data Mahasiswa ' . $request->nama]);
     }
 
     /**
@@ -190,7 +190,7 @@ class MahasiswaController extends Controller
             'berat_badan' => $request->berat_badan,
         ]);
 
-        return redirect()->route('data-mahasiswa.index');
+        return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Mengubah Data Mahasiswa ' . $request->nama]);;
     }
 
     /**
@@ -207,10 +207,11 @@ class MahasiswaController extends Controller
         $item->forceDelete();
 
         $user = User::where('id', $idd)->first();
+        $nama = $user->nama;
 
         $user->forceDelete();
 
-        return redirect()->route('data-mahasiswa.index');
+        return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Menghapus Data Mahasiswa ' . $nama]);
     }
 
     public function change_to_alumni($id)
@@ -241,7 +242,7 @@ class MahasiswaController extends Controller
 
         $item->delete();
 
-        return redirect()->route('data-alumni.index');
+        return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Memindah Data ke Data Alumni ' . $user->nama]);
     }
 
     public function import(Request $request)
@@ -258,6 +259,6 @@ class MahasiswaController extends Controller
 
         Excel::import(new MahasiswaImport, public_path('file-import/'. $nama_file));
 
-        return dd('Berhasil Import Data');
+        return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Mengimport Data Mahasiswa']);
     }
 }

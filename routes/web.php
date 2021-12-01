@@ -25,60 +25,109 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth'])
+    ->group(function() {
+        Route::post('/diskusi/detail/{id}/kirim-jawaban', [HomeController::class, 'kirim_jawaban_diskusi'])->name('user.kirim-jawaban-diskusi');
+
+        Route::delete('/diskusi/detail/{id}/hapus-jawaban', [HomeController::class, 'hapus_jawaban_diskusi'])->name('user.hapus-jawaban-diskusi');
+
+        Route::get('/diskusi-saya', [HomeController::class, 'diskusi_saya'])->name('user.diskusi-saya');
+
+        Route::get('/diskusi/ajukan-diskusi', [HomeController::class, 'ajukan_diskusi'])->name('user.ajukan-diskusi');
+
+        Route::post('/diskusi/ajukan-diskusi/store', [HomeController::class, 'ajukan_diskusi_store'])->name('user.ajukan-diskusi-store');
+
+        Route::get('/data-saya', [HomeController::class, 'data_saya'])->name('user.data-saya');
+
+        Route::get('/daftar-alumni', [HomeController::class, 'daftar_alumni'])->name('daftar-alumni');
+
+        Route::get('/daftar-alumni/detail/{id}', [HomeController::class, 'detail_alumni'])->name('detail-alumni');
+
+        Route::post('/berita/kirim-komentar/store/{id}', [HomeController::class, 'store_komentar'])->name('user.komentar-store');
+
+        Route::delete('/berita/hapus-komentar/delete/{id}', [HomeController::class, 'delete_komentar'])->name('user.komentar-delete');
+
+        Route::post('/lowongan-kerja/kirim-tanya-jawab/store/{id}', [HomeController::class, 'store_tanya_jawab_loker'])->name('user.tanya-jawab-loker');
+
+        Route::delete('/lowongan-kerja/kirim-tanya-jawab/delete/{id}', [HomeController::class, 'delete_tanya_jawab_loker'])->name('user.tanya-jawab-loker-hapus');
+    });
+
+Route::middleware(['auth','alumni'])
+    ->group(function() {
+        Route::get('/user/loker/ajukan-loker', [HomeController::class, 'ajukan_loker'])->name('user.ajukan-loker');
+
+        Route::post('/user/loker/ajukan-loker/store', [HomeController::class, 'ajukan_loker_store'])->name('user.ajukan-loker-store');
+    });
+
+Route::prefix('admin')
+    ->middleware(['auth','admin'])
+    ->group(function() {
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+        Route::put('/data-alumni/pindah-ke-mahasiswa/{id}/', [AlumniController::class, 'change_to_mahasiswa'])->name('data-mahasiswa.change-to-mahasiswa');
+
+        Route::post('/data-alumni/import-excel', [AlumniController::class, 'import'])->name('import-alumni-excel');
+        Route::resource('data-alumni', AlumniController::class);
+
+        Route::put('/data-mahasiswa/pindah-ke-alumni/{id}/', [MahasiswaController::class, 'change_to_alumni'])->name('data-alumni.change-to-alumni');
+
+        Route::post('/data-mahasiswa/import-excel', [MahasiswaController::class, 'import'])->name('import-mahasiswa-excel');
+
+        Route::resource('data-mahasiswa', MahasiswaController::class);
+
+        Route::resource('data-admin', AdminController::class);
+
+        Route::get('/loker/set-aktif/{id}', [LokerController::class, 'set_aktif'])->name('loker.set-aktif');
+
+        Route::get('/loker/set-non-aktif/{id}', [LokerController::class, 'set_non_aktif'])->name('loker.set-non-aktif');
+
+        Route::get('/diskusi/set-aktif/{id}', [DiskusiController::class, 'set_aktif'])->name('diskusi.set-aktif');
+
+        Route::get('/diskusi/set-non-aktif/{id}', [DiskusiController::class, 'set_non_aktif'])->name('diskusi.set-non-aktif');
+
+        Route::get('/berita/set-populer/{id}', [BeritaController::class, 'set_populer'])->name('berita.set-populer');
+
+        Route::get('/berita/set-non-populer/{id}', [BeritaController::class, 'set_non_populer'])->name('berita.set-not-populer');
+
+        Route::resource('loker', LokerController::class);
+
+        Route::resource('berita', BeritaController::class);
+
+        Route::resource('diskusi', DiskusiController::class);
+
+        Route::get('/profile/show', [ProfileController::class, 'edit'])->name('profile.edit');
+
+        Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+        Route::post('/loker/{id}/tanya-jawab/', [TanyaJawabController::class, 'tanya_jawab_loker'])->name('tanya_jawab_loker');
+
+        Route::delete('/loker/{id}/tanya-jawab/hapus', [TanyaJawabController::class, 'hapus_tanya_jawab_loker'])->name('hapus_tanya_jawab_loker');
+
+        Route::post('/diskusi/{id}/tanya-jawab/', [TanyaJawabController::class, 'tanya_jawab_diskusi'])->name('tanya_jawab_diskusi');
+
+        Route::delete('/diskusi/{id}/tanya-jawab/hapus', [TanyaJawabController::class, 'hapus_tanya_jawab_diskusi'])->name('hapus_tanya_jawab_diskusi');
+
+        Route::post('/berita/{id}/komentar/', [TanyaJawabController::class, 'komentar_berita'])->name('komentar_berita');
+
+        Route::delete('/berita/{id}/komentar/hapus', [TanyaJawabController::class, 'hapus_komentar_berita'])->name('hapus_komentar_berita');
+    });
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/daftar-alumni', [HomeController::class, 'daftar_alumni'])->name('daftar-alumni');
+Route::get('/berita', [HomeController::class, 'berita'])->name('user.berita');
 
-Route::get('/user/berita', [HomeController::class, 'berita'])->name('user.berita');
+Route::get('/berita/detail/{id}', [HomeController::class, 'detail_berita'])->name('user.detail-berita');
 
-Route::get('/user/berita/detail/{id}', [HomeController::class, 'detail_berita'])->name('user.detail-berita');
+Route::get('/loker', [HomeController::class, 'loker'])->name('user.loker');
 
-Route::get('/user/loker', [HomeController::class, 'loker'])->name('user.loker');
+Route::get('/loker/detail/{id}', [HomeController::class, 'detail_loker'])->name('user.detail-loker');
 
-Route::get('/user/loker/detail/{id}', [HomeController::class, 'detail_loker'])->name('user.detail-loker');
+Route::get('/loker/pencarian/berdasarkan-{tipe}/', [HomeController::class, 'search_loker'])->name('user.search-loker');
 
-Route::get('/user/diskusi', [HomeController::class, 'diskusi'])->name('user.diskusi');
+Route::get('/diskusi', [HomeController::class, 'diskusi'])->name('user.diskusi');
 
-Route::get('/user/diskusi/detail/{id}', [HomeController::class, 'detail_diskusi'])->name('user.detail-diskusi');
-
-Route::post('/user/diskusi/detail/{id}/kirim-jawaban', [HomeController::class, 'kirim_jawaban_diskusi'])->name('user.kirim-jawaban-diskusi');
-
-Route::delete('/user/diskusi/detail/{id}/hapus-jawaban', [HomeController::class, 'hapus_jawaban_diskusi'])->name('user.hapus-jawaban-diskusi');
+Route::get('/diskusi/detail/{id}', [HomeController::class, 'detail_diskusi'])->name('user.detail-diskusi');
 
 Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
-
-Route::put('/data-alumni/pindah-ke-mahasiswa/{id}/', [AlumniController::class, 'change_to_mahasiswa'])->name('data-mahasiswa.change-to-mahasiswa');
-Route::post('/data-alumni/import-excel', [AlumniController::class, 'import'])->name('import-alumni-excel');
-Route::resource('data-alumni', AlumniController::class);
-
-Route::put('/data-mahasiswa/pindah-ke-alumni/{id}/', [MahasiswaController::class, 'change_to_alumni'])->name('data-alumni.change-to-alumni');
-Route::post('/data-mahasiswa/import-excel', [MahasiswaController::class, 'import'])->name('import-mahasiswa-excel');
-Route::resource('data-mahasiswa', MahasiswaController::class);
-
-Route::resource('data-admin', AdminController::class);
-
-Route::resource('loker', LokerController::class);
-
-Route::resource('berita', BeritaController::class);
-
-Route::resource('diskusi', DiskusiController::class);
-
-Route::get('/profile/show', [ProfileController::class, 'edit'])->name('profile.edit');
-
-Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-
-Route::post('/loker/{id}/tanya-jawab/', [TanyaJawabController::class, 'tanya_jawab_loker'])->name('tanya_jawab_loker');
-
-Route::delete('/loker/{id}/tanya-jawab/hapus', [TanyaJawabController::class, 'hapus_tanya_jawab_loker'])->name('hapus_tanya_jawab_loker');
-
-Route::post('/diskusi/{id}/tanya-jawab/', [TanyaJawabController::class, 'tanya_jawab_diskusi'])->name('tanya_jawab_diskusi');
-
-Route::delete('/diskusi/{id}/tanya-jawab/hapus', [TanyaJawabController::class, 'hapus_tanya_jawab_diskusi'])->name('hapus_tanya_jawab_diskusi');
-
-Route::post('/berita/{id}/komentar/', [TanyaJawabController::class, 'komentar_berita'])->name('komentar_berita');
-
-Route::delete('/berita/{id}/komentar/hapus', [TanyaJawabController::class, 'hapus_komentar_berita'])->name('hapus_komentar_berita');
-
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

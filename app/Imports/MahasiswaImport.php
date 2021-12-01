@@ -28,8 +28,6 @@ class MahasiswaImport implements ToCollection, WithStartRow
 
             Mahasiswa::create([
                 'user_id' => $user->id,
-                'npm' => $row[1],
-                'nama' => $row[2],
                 'agama' => $row[3],
                 'tempat_lahir' => $row[4],
                 'tanggal_lahir' => $this->transformDate($row[5]),

@@ -10,14 +10,10 @@ class Berita extends Model
     use HasFactory;
 
     protected $fillable = [
-        'judul', 'isi', 'thumbnail'
+        'judul', 'isi', 'thumbnail', 'is_populer'
     ];
 
     public function komentar_berita(){
-        return $this->belongsTo(BeritaKomentar::class, 'id', 'berita_id');
-    }
-
-    public function komentar_beritas(){
-        return $this->hasMany(BeritaKomentar::class, 'id', 'berita_id');
+        return $this->hasMany(BeritaKomentar::class, 'berita_id', 'id');
     }
 }

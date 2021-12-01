@@ -21,7 +21,7 @@
                                 <i class="icon-envelope-open"></i>
                                 <span class="ml-2">Home </span>
                             </a>
-                            <a href="./app-profile.html" class="dropdown-item">
+                            <a href="{{ route('profile.edit') }}" class="dropdown-item">
                                 <i class="icon-user"></i>
                                 <span class="ml-2">Profile </span>
                             </a>

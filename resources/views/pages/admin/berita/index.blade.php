@@ -18,6 +18,13 @@
                 </div>
             </div>
 
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong class="text-primary">{{ $message }}</strong>
+            </div>
+            @endif
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -30,6 +37,7 @@
                                             <th>No</th>
                                             <th>Thumbnail</th>
                                             <th>Judul Berita</th>
+                                            <th>Populer</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -41,6 +49,18 @@
                                                 <img src="{{ asset('storage/assets/berita-thumbnail/' . $item->thumbnail) }}" alt="gambar-thumbnail" style="width: 200px;"></td>
                                             <td>{{ $item->judul }}</td>
                                             <td>
+                                                @if ($item->is_populer == 0)
+                                                    Tidak
+                                                @else
+                                                    Ya
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($item->is_populer == 0)
+                                                <a href="{{ route('berita.set-populer', $item->id) }}" class="btn btn-info btn-sm mr-1 text-white">Set Populer</a>
+                                                @else
+                                                <a href="{{ route('berita.set-not-populer', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white">Set Non Populer</a>
+                                                @endif
                                                 <a href="{{ route('berita.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Edit</a>
                                                 <form action="{{ route('berita.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf

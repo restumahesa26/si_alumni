@@ -52,7 +52,7 @@ class DiskusiController extends Controller
             'isi' => $request->isi
         ]);
 
-        return redirect()->route('diskusi.index');
+        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Menambah Diskusi']);
     }
 
     /**
@@ -107,7 +107,7 @@ class DiskusiController extends Controller
             'isi' => $request->isi
         ]);
 
-        return redirect()->route('diskusi.index');
+        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Mengubah Diskusi']);
     }
 
     /**
@@ -122,6 +122,28 @@ class DiskusiController extends Controller
 
         $item->delete();
 
-        return redirect()->route('diskusi.index');
+        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Mengubah Diskusi']);
+    }
+
+    public function set_aktif($id)
+    {
+        $item = Diskusi::findOrFail($id);
+
+        $item->update([
+            'status' => '1'
+        ]);
+
+        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Mengaktifkan Diskusi']);
+    }
+
+    public function set_non_aktif($id)
+    {
+        $item = Diskusi::findOrFail($id);
+
+        $item->update([
+            'status' => '0'
+        ]);
+
+        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Menonaktifkan Diskusi']);
     }
 }

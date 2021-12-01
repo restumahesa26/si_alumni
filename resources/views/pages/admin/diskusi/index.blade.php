@@ -18,6 +18,13 @@
                 </div>
             </div>
 
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong class="text-primary">{{ $message }}</strong>
+            </div>
+            @endif
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -41,6 +48,11 @@
                                             <td>{{ $item->users->nama }}
                                             </td>
                                             <td>
+                                                @if ($item->status == '0')
+                                                <a href="{{ route('diskusi.set-aktif', $item->id) }}" class="btn btn-success btn-sm mr-1 text-white">Set Aktif</a>
+                                                @elseif ($item->status == '1')
+                                                <a href="{{ route('diskusi.set-non-aktif', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white">Set Non Aktif</a>
+                                                @endif
                                                 <a href="{{ route('diskusi.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Edit</a>
                                                 <form action="{{ route('diskusi.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf

@@ -18,6 +18,13 @@
                 </div>
             </div>
 
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong class="text-primary">{{ $message }}</strong>
+            </div>
+            @endif
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -41,11 +48,11 @@
                                             <td>{{ $item->email }}</td>
                                             <td>
                                                 <a href="{{ route('data-admin.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Edit</a>
-                                                {{-- <form action="{{ route('data-admin.destroy', $item->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('data-admin.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                                                </form> --}}
+                                                </form>
                                             </td>
                                         </tr>
                                         @empty
