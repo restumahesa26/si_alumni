@@ -13,7 +13,7 @@
                 <h5 class="fs-6 fs-xl-5 mb-5">
                     Sistem Informasi Alumni Teknik Informatika Universitas Bengkulu
                 </h5>
-                <a class="btn btn-primary me-2" href="{{ route('daftar-alumni') }}" role="button">Selengkapnya</a>
+                <a class="btn btn-secondary me-2" href="{{ route('daftar-alumni') }}" role="button">Selengkapnya</a>
             </div>
         </div>
     </div>

@@ -104,7 +104,14 @@ class HomeController extends Controller
 
     public function search_berita(Request $request)
     {
-        //
+        $cari = $request->search;
+
+        $berita = Berita::orderBy('created_at', 'DESC')->where('judul','like',"%".$cari."%")->get();
+        $berita2 = Berita::where('is_populer', '1')->get();
+
+        return view('pages.user.berita', [
+            'beritas' => $berita, 'beritas2' => NULL
+        ]);
     }
 
     public function loker()

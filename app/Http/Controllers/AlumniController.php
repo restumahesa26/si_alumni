@@ -188,7 +188,7 @@ class AlumniController extends Controller
             'dosen_penguji_1' => 'required|string|max:255',
             'dosen_penguji_2' => 'required|string|max:255',
             'pekerjaan' => 'required|string|max:255',
-            'lokasi_pekerjaan' => 'required|string|max:255',
+            'tempat_pekerjaan' => 'required|string|max:255',
             'jumlah_sks' => 'required|numeric',
         ]);
 
@@ -245,7 +245,7 @@ class AlumniController extends Controller
             'dosen_penguji_2' => $request->dosen_penguji_2,
             'jumlah_sks' => $request->jumlah_sks,
             'pekerjaan' => $request->pekerjaan,
-            'lokasi_pekerjaan' => $request->lokasi_pekerjaan,
+            'tempat_pekerjaan' => $request->tempat_pekerjaan,
         ]);
 
         return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Mengubah Data Alumni ' . $request->nama]);

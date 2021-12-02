@@ -22,38 +22,43 @@
         <div class="row">
             <div class="p-5">
                 <div class="border rounded-3 border-3 border-primary p-4">
-                    <form action="" method="">
+                    <form action="{{ route('user.data-saya-update-akun') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1>Data Akun</h1>
                             </div>
                             <div class="col mx-auto p-3 text-center">
                                 <p class="uploadProfile">
-                                    <label for="profile">
-                                        <img src="{{ url('frontend/public/assets/img/gallery/macrohard.png') }}" alt="alumni-profile" width="150px"
-                                            class="btn">
+                                    <label for="foto">
+                                        @if ($user->foto != NULL)
+                                        <img src="{{ asset('storage/assets/foto-profil/' . $user->foto) }}" alt="alumni-profile" width="180px"
+                                        class="btn" id="foto_url">
+                                        @else
+                                        <img src="{{ url('frontend/public/assets/img/favicons/apple-touch-icon2.png') }}" alt="alumni-profile" width="150px"
+                                        class="btn" id="foto_url">
+                                        @endif
+
                                     </label>
-                                    <label for="profile">
-                                        <a class="btn btn-warning" rel="nofollow">Upload Profil</a>
-                                    </label>
-                                    <input class="d-none" type="file" name="profile" id="profile">
+                                    @if (Auth::user()->role !== 'ADMIN')
+                                        <label for="foto">
+                                            <a class="btn btn-warning" rel="nofollow">Upload Profil</a>
+                                        </label>
+                                        <input class="d-none" type="file" name="foto" id="foto">
+                                    @endif
                                 </p>
                             </div>
                             <div class="col-md-9 d-grid gap-3 pt-3 pb-4">
+                                @if (Auth::user()->role !== 'ADMIN')
                                 <div>
                                     <label for="npm">NPM</label>
                                     <input class="form-control" name="npm" id="npm" type="text" placeholder="NPM" value="{{ Auth::user()->npm }}">
                                 </div>
+                                @endif
                                 <div>
                                     <label for="nama">Nama</label>
-                                    <input class="form-control" name="nama" id="nama" type="text" placeholder="Nama" value="{{ $user->nama }}">
+                                    <input class="form-control" name="nama" id="nama" type="text" placeholder="Nama" value="{{ Auth::user()->nama }}">
                                 </div>
-                                @if (Auth::user()->role === 'ADMIN')
-                                <div>
-                                    <label for="email">Email</label>
-                                    <input class="form-control" name="email" id="email" type="text" placeholder="Email" value="{{ $user->email }}">
-                                </div>
-                                @endif
                                 <div>
                                     <label for="password">Password</label>
                                     <input class="form-control" name="password" id="password" type="password"
@@ -83,7 +88,8 @@
         <div class="row">
             <div class="p-5 pt-0">
                 <div class="border rounded-3 border-3 border-primary p-4">
-                    <form action="" method="">
+                    <form action="{{ route('user.data-saya-data-pribadi') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1>Data Pribadi</h1>
@@ -94,10 +100,10 @@
                                     <select class="form-select" name="agama" id="agama">
                                         <option hidden>Agama Anda...</option>
                                         <option value="Islam" @if($user->agama == 'Islam') selected @endif>Islam</option>
-                                        <option value="Kristen">Kristen</option>
-                                        <option value="Hindu">Hindu</option>
-                                        <option value="Budha">Budha</option>
-                                        <option value="Konghucu">Konghucu</option>
+                                        <option value="Kristen" @if($user->agama == 'Kristen') selected @endif>Kristen</option>
+                                        <option value="Hindu" @if($user->agama == 'Hindu') selected @endif>Hindu</option>
+                                        <option value="Buddha" @if($user->agama == 'Buddha') selected @endif>Buddha</option>
+                                        <option value="Konghucu" @if($user->agama == 'Konghucu') selected @endif>Konghucu</option>
                                     </select>
                                 </div>
                                 <div class="d-flex">
@@ -112,8 +118,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label for="gender">Jenis Kelamin</label>
-                                    <select class="form-select" name="gender" id="gender">
+                                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                                    <select class="form-select" name="jenis_kelamin" id="jenis_kelamin">
                                         <option hidden>-- Pilih Jenis Kelamin --</option>
                                         <option value="L" @if($user->jenis_kelamin == 'L') selected @endif>Laki-laki</option>
                                         <option value="P" @if($user->jenis_kelamin == 'P') selected @endif>Perempuan</option>
@@ -138,8 +144,8 @@
                                 </div>
                                 <div class="d-flex">
                                     <div class="col-md-6 pe-3">
-                                        <label for="goldar">Golongan Darah</label>
-                                        <select class="form-select" name="goldar" id="goldar">
+                                        <label for="golongan_darah">Golongan Darah</label>
+                                        <select class="form-select" name="golongan_darah" id="golongan_darah">
                                             <option hidden>-- Pilih Golongan Darah --</option>
                                             <option value="A" @if($user->golongan_darah == 'A') selected @endif>A</option>
                                             <option value="B" @if($user->golongan_darah == 'B') selected @endif>B</option>
@@ -147,14 +153,16 @@
                                             <option value="O" @if($user->golongan_darah == 'O') selected @endif>O</option>
                                         </select>
                                     </div>
+                                    @if (Auth::user()->role === 'ALUMNI')
                                     <div class="col-md-6">
                                         <label for="status">Status</label>
                                         <select class="form-select" name="status" id="status">
                                             <option hidden>Status Anda...</option>
-                                            <option value="Menikah" @if($user->status == 'Menikah') selected @endif>Menikah</option>
-                                            <option value="Belum Menihkah" @if($user->status == 'Belum Menikah') selected @endif>Belum Menikah</option>
+                                            <option value="Kawin" @if($user->status == 'Kawin') selected @endif>Kawin</option>
+                                            <option value="Belum Kawin" @if($user->status == 'Belum Kawin') selected @endif>Belum Kawin</option>
                                         </select>
                                     </div>
+                                    @endif
                                 </div>
                                 <div class="d-flex">
                                     <div class="col-md-6 pe-3">
@@ -173,11 +181,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if (Auth::user()->role == 'ALUMNI')
                                 <div>
                                     <label for="asal_slta">Asal SLTA</label>
                                     <input class="form-control" name="asal_slta" id="asal_slta" type="text"
                                         placeholder="Asal SLTA Anda..." value="{{ $user->asal_slta }}">
                                 </div>
+                                @endif
                             </div>
                         </div>
                         <div class="row">
@@ -196,7 +206,8 @@
         <div class="row">
             <div class="p-5 pt-0">
                 <div class="border rounded-3 border-3 border-primary p-4">
-                    <form action="" method="">
+                    <form action="{{ route('user.data-saya-data-orang-tua') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1>Data Orangtua</h1>
@@ -249,40 +260,41 @@
         <div class="row">
             <div class="p-5 pt-0">
                 <div class="border rounded-3 border-3 border-primary p-4">
-                    <form action="" method="">
+                    <form action="{{ route('user.data-saya-data-skripsi') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12">
                                 <h1>Data Skripsi</h1>
                             </div>
                             <div class="col d-grid gap-3 pt-3 pb-4">
                                 <div>
-                                    <label for="judulSkripsi">Judul Skripsi</label>
-                                    <textarea class="form-control" name="judulSkripsi"
-                                        placeholder="Judul Skripsi Anda..."></textarea>
+                                    <label for="judul_skripsi">Judul Skripsi</label>
+                                    <textarea class="form-control" name="judul_skripsi"
+                                        placeholder="Judul Skripsi Anda...">{{ $user->judul_skripsi }}</textarea>
                                 </div>
 
                                 <div class="d-flex">
                                     <div class="col-md-6 pe-3">
-                                        <label for="bobotSKS">Bobot SKS</label>
+                                        <label for="bobot_sks">Bobot SKS</label>
                                         <div class="input-group">
-                                            <input class="form-control" name="bobotSKS" id="bobotSKS" type="number"
-                                                placeholder="Bobot SKS...">
+                                            <input class="form-control" name="bobot_sks" id="bobot_sks" type="number"
+                                                placeholder="Bobot SKS..." value="{{ $user->bobot_sks }}">
                                             <span class="input-group-text" id="basic-addon2">SKS</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="tglSemprop">Tanggal Seminar Proposal</label>
-                                        <input class="form-control" name="tglSemprop" id="tglSemprop" type="date">
+                                        <label for="tanggal_seminar_proposal">Tanggal Seminar Proposal</label>
+                                        <input class="form-control" name="tanggal_seminar_proposal" id="tanggal_seminar_proposal" type="date" value="{{ $user->tanggal_seminar_proposal }}">
                                     </div>
                                 </div>
                                 <div class="d-flex">
                                     <div class="col-md-6 pe-3">
-                                        <label for="tglSidang">Tanggal Sidang</label>
-                                        <input class="form-control" name="tglSidang" id="tglSidang" type="date">
+                                        <label for="tanggal_sidang">Tanggal Sidang</label>
+                                        <input class="form-control" name="tanggal_sidang" id="tanggal_sidang" type="date" value="{{ $user->tanggal_sidang }}">
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="tglWisuda">Tanggal Wisuda</label>
-                                        <input class="form-control" name="tglWisuda" id="tglWisuda" type="date">
+                                        <label for="tanggal_wisuda">Tanggal Wisuda</label>
+                                        <input class="form-control" name="tanggal_wisuda" id="tanggal_wisuda" type="date" value="{{ $user->tanggal_wisuda }}">
                                     </div>
                                 </div>
                             </div>
@@ -310,34 +322,29 @@
                             </div>
                             <div class="col d-grid gap-3 pt-3 pb-4">
                                 <div>
-                                    <label for="tglMulaiBimbingan">Tanggal Mulai Bimbingan</label>
-                                    <input class="form-control" name="tglMulaiBimbingan" id="tglMulaiBimbingan"
-                                        type="date">
+                                    <label for="tanggal_mulai_bimbingan">Tanggal Mulai Bimbingan</label>
+                                    <input class="form-control" name="tanggal_mulai_bimbingan" id="tanggal_mulai_bimbingan" type="date" value="{{ $user->tanggal_mulai_bimbingan }}">
                                 </div>
                                 <div>
-                                    <label for="pembimbing1">Dosen Pembimbing 1</label>
-                                    <input class="form-control" name="pembimbing1" id="pembimbing1" type="text"
-                                        placeholder="Nama Dosen Pembimbing 1">
+                                    <label for="dosen_pembimbing_1">Dosen Pembimbing 1</label>
+                                    <input class="form-control" name="dosen_pembimbing_1" id="dosen_pembimbing_1" type="text" placeholder="Nama Dosen Pembimbing 1" value="{{ $user->dosen_pembimbing_1 }}">
                                 </div>
                                 <div>
-                                    <label for="pembimbing2">Dosen Pembimbing 2</label>
-                                    <input class="form-control" name="pembimbing2" id="pembimbing2" type="text"
-                                        placeholder="Nama Dosen Pembimbing 2">
+                                    <label for="dosen_pembimbing_2">Dosen Pembimbing 2</label>
+                                    <input class="form-control" name="dosen_pembimbing_2" id="dosen_pembimbing_2" type="text" placeholder="Nama Dosen Pembimbing 2" value="{{ $user->dosen_pembimbing_2 }}">
                                 </div>
                                 <div>
-                                    <label for="penguji1">Dosen Penguji 1</label>
-                                    <input class="form-control" name="penguji1" id="penguji1" type="text"
-                                        placeholder="Nama Dosen Penguji 1">
+                                    <label for="dosen_penguji_1">Dosen Penguji 1</label>
+                                    <input class="form-control" name="dosen_penguji_1" id="dosen_penguji_1" type="text" placeholder="Nama Dosen Penguji 1" value="{{ $user->dosen_penguji_1 }}">
                                 </div>
                                 <div>
-                                    <label for="penguji2">Dosen Penguji 2</label>
-                                    <input class="form-control" name="penguji2" id="penguji2" type="text"
-                                        placeholder="Nama Dosen Penguji 2">
+                                    <label for="dosen_penguji_2">Dosen Penguji 2</label>
+                                    <input class="form-control" name="dosen_penguji_2" id="dosen_penguji_2" type="text" placeholder="Nama Dosen Penguji 2" value="{{ $user->dosen_penguji_2 }}">
                                 </div>
                                 <div>
-                                    <label for="jumlSKS">Jumlah SKS</label>
-                                    <input class="form-control" name="jumSKS" id="jumSKS" type="number"
-                                        placeholder="Jumlah SKS Anda...">
+                                    <label for="jumlah_sks">Jumlah SKS</label>
+                                    <input class="form-control" name="jumlah_sks" id="jumlah_sks" type="number"
+                                        placeholder="Jumlah SKS Anda..." value="{{ $user->jumlah_sks }}">
                                 </div>
                             </div>
                         </div>
@@ -359,3 +366,23 @@
     <!-- end of .container-->
 </section>
 @endsection
+
+@push('addon-script')
+    <script>
+        function bacaGambar(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#foto_url').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#foto").change(function(){
+            bacaGambar(this);
+        });
+    </script>
+@endpush

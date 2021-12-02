@@ -68,8 +68,12 @@
                                 <p>{!! $item->isi !!}</p>
                             </td>
                             <td class="text-center">
+                                @if ($item->status === '0')
+                                <h4>Diskusi <br> Belum Diverifikasi</h4>
+                                @else
                                 <i class="fas fa-comments fa-4x text-secondary"></i>
                                 <h3>{{ $item->tanya_jawab_diskusi->count() }}</h3>
+                                @endif
                             </td>
                             <td class="text-center align-bottom"><a href="{{ route('user.detail-diskusi', $item->id) }}"><button
                                         class="btn btn-info btn-lg mb-3">Detail</button></a>

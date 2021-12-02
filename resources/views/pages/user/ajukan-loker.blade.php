@@ -29,14 +29,14 @@
                             </div>
                             <div class="col mx-auto p-3 align-self-center text-center">
                                 <p class="uploadLogo">
-                                    <label for="corpLogo">
+                                    <label for="logo">
                                         <img src="{{ url('frontend/public/assets/img/gallery/macrohard.png') }}"
-                                            alt="alumni-profile" width="100px" class="btn" />
+                                            alt="alumni-profile" width="100px" class="btn" id="logo_url" />
                                     </label>
-                                    <label for="corpLogo">
+                                    <label for="logo">
                                         <a class="btn btn-warning" rel="nofollow">Upload Logo</a>
                                     </label>
-                                    <input class="d-none" type="file" name="logo" id="corpLogo" />
+                                    <input class="d-none" type="file" name="logo" id="logo" />
                                 </p>
                             </div>
                             <div class="col-md-9 d-grid gap-3 pt-3 pb-4">
@@ -88,4 +88,21 @@
 
 @push('addon-script')
 <script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor/ckeditor.js') }}"></script>
+<script>
+    function bacaGambar(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#logo_url').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#logo").change(function(){
+        bacaGambar(this);
+    });
+</script>
 @endpush

@@ -50,6 +50,14 @@ Route::middleware(['auth'])
         Route::post('/lowongan-kerja/kirim-tanya-jawab/store/{id}', [HomeController::class, 'store_tanya_jawab_loker'])->name('user.tanya-jawab-loker');
 
         Route::delete('/lowongan-kerja/kirim-tanya-jawab/delete/{id}', [HomeController::class, 'delete_tanya_jawab_loker'])->name('user.tanya-jawab-loker-hapus');
+
+        Route::post('/data-saya/update-akun', [ProfileController::class, 'update_akun'])->name('user.data-saya-update-akun');
+
+        Route::post('/data-saya/update-data-pribadi', [ProfileController::class, 'data_pribadi'])->name('user.data-saya-data-pribadi');
+
+        Route::post('/data-saya/update-data-orang-tua', [ProfileController::class, 'data_orang_tua'])->name('user.data-saya-data-orang-tua');
+
+        Route::post('/data-saya/update-data-skripsi', [ProfileController::class, 'data_skripsi'])->name('user.data-saya-data-skripsi');
     });
 
 Route::middleware(['auth','alumni'])
@@ -117,6 +125,8 @@ Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/berita', [HomeController::class, 'berita'])->name('user.berita');
 
 Route::get('/berita/detail/{id}', [HomeController::class, 'detail_berita'])->name('user.detail-berita');
+
+Route::get('/loker/pencarian/', [HomeController::class, 'search_berita'])->name('user.search-berita');
 
 Route::get('/loker', [HomeController::class, 'loker'])->name('user.loker');
 

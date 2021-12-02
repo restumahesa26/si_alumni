@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-7 mb-4 order-0 order-sm-0">
-                <a class="text-decoration-none" href="#"><img src="{{ url('frontend/public/assets/img/gallery/footer-logo.png') }}" alt="logo" /></a>
+                <h3 class="text-white"><a class="text-decoration-none" href="#"><img src="{{ url('logo-unib.png') }}" alt="logo" width="120" /></a>SI Alumni Informatika UNIB</h3>
                 <p class="text-light my-4">
                     <i class="fas fa-map-marker-alt me-3"></i><span class="text-light">Jl. W.R. Supratman
                         Kandang Limun Bengkulu 38371 A Sumatera -
@@ -54,7 +54,7 @@
 <!-- ============================================-->
 
 <section class="py-0" style="margin-top: -5.8rem">
-    <div class="container bg-primary">
+    <div class="container bg-primary text-white">
         <div class="row justify-content-md-between justify-content-evenly py-4">
             <div>
                 <p class="fs--1 my-2 fw-bold text-center">

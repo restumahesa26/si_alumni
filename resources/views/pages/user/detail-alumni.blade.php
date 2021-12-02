@@ -30,11 +30,20 @@
           <div class="border rounded-3 border-3 border-primary p-5">
             <div class="row">
               <div class="col-auto me-4">
+                @if ($alumni->foto !== NULL)
                 <img
-                  src="{{ url('frontend/public/assets/img/favicons/apple-touch-icon2.png') }}"
-                  alt="alumni-profile"
-                  width="200px"
-                />
+                src="{{ asset('storage/assets/foto-profil/' . $alumni->foto) }}"
+                alt="alumni-profile"
+                width="200px"
+              />
+                @else
+                <img
+                src="{{ url('frontend/public/assets/img/favicons/apple-touch-icon2.png') }}"
+                alt="alumni-profile"
+                width="200px"
+              />
+                @endif
+
               </div>
               <div class="col-auto fs-lg-2 fw-bold">
                 <p>Nama</p>

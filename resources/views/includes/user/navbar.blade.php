@@ -1,6 +1,6 @@
 <!-- ============================================-->
 <!-- <section> begin ============================-->
-<section class="bg-primary py-2 d-none d-sm-block">
+<section class="bg-primary py-2 d-none d-sm-block text-white">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-auto d-none d-lg-block">
@@ -13,7 +13,7 @@
             </div>
             <div class="col-auto">
                 <p class="my-2 fs--1">
-                    <i class="fas fa-envelope me-3"></i><a class="text-900"
+                    <i class="fas fa-envelope me-3"></i><a class="text-white"
                         href="mailto:vctung@outlook.com">informatika@unib.ac.id
                     </a>
                 </p>
@@ -26,7 +26,7 @@
 <!-- ============================================-->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ url('frontend/public/assets/img/gallery/logo-n.png') }}" alt="" /></a>
+        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ url('logo-unib.png') }}" alt="" style="width: 80px" />SI Alumni</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"> </span>
@@ -41,7 +41,7 @@
                     <a class="nav-link @if(Route::is('daftar-alumni') || Route::is('detail-alumni')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('daftar-alumni') }}">Daftar Alumni</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a class="nav-link @if(Route::is('user.berita') || Route::is('user.detail-berita')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.berita') }}">Berita</a>
+                    <a class="nav-link @if(Route::is('user.berita') || Route::is('user.detail-berita') || Route::is('user.search-berita')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.berita') }}">Berita</a>
                 </li>
                 <li class="nav-item px-2">
                     <a class="nav-link @if(Route::is('user.loker') || Route::is('user.detail-loker') ||Route::is('user.ajukan-loker') || Route::is('user.search-loker')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.loker') }}">Info Loker</a>
@@ -85,7 +85,7 @@
                 </div>
                 @else
                 <li class="nav-item px-2">
-                    <a class="nav-link btn btn-primary" aria-current="page" href="{{ route('login') }}">
+                    <a class="nav-link btn btn-secondary text-light" aria-current="page" href="{{ route('login') }}">
                         <i class="fas fa-sign-in-alt"></i> Masuk</a>
                 </li>
                 <li class="nav-item px-2">

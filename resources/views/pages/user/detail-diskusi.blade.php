@@ -42,12 +42,14 @@
                                 <p>{!! $diskusi->isi !!}
                                 </p>
                                 <div class="col text-end mt-4">
+                                    @if (Auth::user())
                                     <a href="#jawab-diskusi">
                                         <button class="btn btn-primary fs-lg-1">
                                             <i class="fas fa-reply"></i>
                                             Jawab
                                         </button>
                                     </a>
+                                    @endif
                                 </div>
                     </div>
                 </div>

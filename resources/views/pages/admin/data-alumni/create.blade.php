@@ -68,7 +68,14 @@
                             </div>
                             <div class="form-group">
                                 <label for='agama'>Agama</label>
-                                <input class='form-control @error('agama') is-invalid @enderror' type='text' name='agama' id='agama' placeholder='Masukkan Agama' value='{{ old('agama') }}' required />
+                                <select class="form-control" name="agama" id="agama" required>
+                                    <option hidden>-- Pilih Agama --</option>
+                                    <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
+                                    <option value="Kristen" @if(old('agama') == 'Kristen') selected @endif>Kristen</option>
+                                    <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
+                                    <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Budha</option>
+                                    <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
+                                </select>
                                 @error('agama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -459,6 +466,24 @@
                                 <label for='foto'>Foto</label>
                                 <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' required />
                                 @error('foto')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for='pekerjaan'>Pekerjaan</label>
+                                <input class='form-control @error('pekerjaan') is-invalid @enderror' type='text' name='pekerjaan' id='pekerjaan' placeholder='Masukkan Pekerjaan' value='{{ old('pekerjaan') }}' required />
+                                @error('pekerjaan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for='tempat_pekerjaan'>Tempat Pekerjaan</label>
+                                <input class='form-control @error('tempat_pekerjaan') is-invalid @enderror' type='text' name='tempat_pekerjaan' id='tempat_pekerjaan' placeholder='Masukkan Tempat Pekerjaan' value='{{ old('tempat_pekerjaan') }}' required />
+                                @error('tempat_pekerjaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

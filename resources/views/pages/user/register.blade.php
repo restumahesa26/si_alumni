@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('content')
-<section class="pt-5 bg-600 pb-6 h-100" id="home">
+<section class="pt-5 pb-6 h-100" id="home">
     <div class="container h-100">
         <div class="row align-items-center justify-content-center">
             <h3 class="text-center">Daftar</h3>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="d-flex justify-content-center mt-2">
                                 <button type="reset" class="btn btn-info mx-3">Reset</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-secondary">Simpan</button>
                             </div>
                         </div>
                     </div>

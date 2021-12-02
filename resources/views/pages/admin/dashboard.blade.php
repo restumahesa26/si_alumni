@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-face-smile text-primary border-primary"></i>
+                            <i class="ti-user text-primary border-primary"></i>
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Mahasiswa</div>
@@ -48,11 +48,11 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-headphone-alt text-pink border-pink"></i>
+                            <i class="ti-world text-pink border-pink"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">---</div>
-                            <div class="stat-digit">---</div>
+                            <div class="stat-text">Diskusi</div>
+                            <div class="stat-digit">{{ $diskusi }}</div>
                         </div>
                     </div>
                 </div>
@@ -61,11 +61,11 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-id-badge text-danger border-danger"></i>
+                            <i class="ti-email text-danger border-danger"></i>
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Loker</div>
-                            <div class="stat-digit">{{ $loker }} Orang</div>
+                            <div class="stat-digit">{{ $loker }}</div>
                         </div>
                     </div>
                 </div>

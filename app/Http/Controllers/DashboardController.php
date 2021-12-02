@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumni;
+use App\Models\Diskusi;
 use App\Models\Dosen;
 use App\Models\Loker;
 use App\Models\Mahasiswa;
@@ -14,12 +15,14 @@ class DashboardController extends Controller
     {
         $mahasiswa = Mahasiswa::count();
         $alumni = Alumni::count();
-        $loker = Loker::count();
+        $loker = Loker::where('status', '1')->count();
+        $diskusi = Diskusi::where('status', '1')->count();
 
         return view('pages.admin.dashboard', [
             'mahasiswa' => $mahasiswa,
             'alumni' => $alumni,
             'loker' => $loker,
+            'diskusi' => $diskusi,
         ]);
     }
 }

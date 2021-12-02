@@ -68,7 +68,14 @@
                             </div>
                             <div class="form-group">
                                 <label for='agama'>Agama</label>
-                                <input class='form-control @error('agama') is-invalid @enderror' type='text' name='agama' id='agama' placeholder='Masukkan Agama' value='{{ old('agama') }}' required />
+                                <select class="form-control" name="agama" id="agama" required>
+                                    <option hidden>-- Pilih Agama --</option>
+                                    <option value="Islam" @if(old('agama') == 'Islam') selected @endif>Islam</option>
+                                    <option value="Kristen" @if(old('agama') == 'Kristen') selected @endif>Kristen</option>
+                                    <option value="Hindu" @if(old('agama') == 'Hindu') selected @endif>Hindu</option>
+                                    <option value="Buddha" @if(old('agama') == 'Buddha') selected @endif>Budha</option>
+                                    <option value="Konghucu" @if(old('agama') == 'Konghucu') selected @endif>Konghucu</option>
+                                </select>
                                 @error('agama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -41,7 +41,7 @@
         ***********************************-->
         <div class="nav-header">
             <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="{{ url('backend/images/logo.png') }}" alt="">
+                <img class="logo-abbr" src="{{ url('logo-unib.png') }}" alt="">
                 <img class="logo-compact" src="{{ url('backend/images/logo-text.png') }}" alt="">
                 <img class="brand-title" src="{{ url('backend/images/logo-text.png') }}" alt="">
             </a>

@@ -34,7 +34,7 @@
                             <input type="checkbox" name="remember" id="remember" value="Remember Me" class="mt-3">
                             <label for="remember">Remember Me</label>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary mt-2">Masuk</button>
+                                <button type="submit" class="btn btn-secondary mt-2">Masuk</button>
                             </div>
                             <div class="text-center mt-2">
                                 <a href="{{ route('register') }}" class="text-primary">Belum punya akun? Daftar</a>
