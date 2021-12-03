@@ -63,7 +63,8 @@ class MahasiswaController extends Controller
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'angkatan' => 'required|string|max:255',
         ]);
 
         $user = User::create([
@@ -90,6 +91,7 @@ class MahasiswaController extends Controller
             'golongan_darah' => $request->golongan_darah,
             'tinggi_badan' => $request->tinggi_badan,
             'berat_badan' => $request->berat_badan,
+            'angkatan' => $request->angkatan,
         ]);
 
         return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Menambah Data Mahasiswa ' . $request->nama]);
@@ -146,6 +148,7 @@ class MahasiswaController extends Controller
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
+            'angkatan' => 'required|string|max:255',
         ]);
 
         if ($request->password) {
@@ -156,10 +159,15 @@ class MahasiswaController extends Controller
 
         $item = Mahasiswa::findOrFail($id);
 
-        if ($request->email != $item->users->email && $request->npm != $item->npm) {
+        if ($request->email != $item->users->email) {
             $request->validate([
-                'email' => 'required|string|max:255|email|unique:users',
-                'npm' => 'required|string|max:255|unique:mahasiswas'
+                'email' => 'required|string|max:255|email|unique:users'
+            ]);
+        }
+
+        if ($request->npm != $item->users->npm) {
+            $request->validate([
+                'npm' => 'required|string|max:255|unique:users'
             ]);
         }
 
@@ -188,6 +196,7 @@ class MahasiswaController extends Controller
             'golongan_darah' => $request->golongan_darah,
             'tinggi_badan' => $request->tinggi_badan,
             'berat_badan' => $request->berat_badan,
+            'angkatan' => $request->angkatan,
         ]);
 
         return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Mengubah Data Mahasiswa ' . $request->nama]);;
@@ -233,7 +242,8 @@ class MahasiswaController extends Controller
             'no_hp' => $item->no_hp,
             'golongan_darah' => $item->golongan_darah,
             'tinggi_badan' => $item->tinggi_badan,
-            'berat_badan' => $item->berat_badan
+            'berat_badan' => $item->berat_badan,
+            'angkatan' => $item->angkatan,
         ]);
 
         $user = User::where('id', $item->user_id)->first();

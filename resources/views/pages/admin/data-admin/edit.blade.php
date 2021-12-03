@@ -68,7 +68,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <button type='submit' class='btn btn-primary btn-block py-2'>Simpan</button>
+                            <button type='submit' class='btn btn-primary btn-block py-2 btn-edit'>Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -77,3 +77,41 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+<script>
+    $('.btn-edit').on('click', function (e) {
+        e.preventDefault(); // prevent form submit
+        var form = event.target.form;
+        Swal.fire({
+        title: 'Yakin Menyimpan Perubahan?',
+        text: "Data Akan Tersimpan",
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Simpan',
+        cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }else {
+                Swal.fire('Data Batal Disimpan');
+            }
+        });
+    });
+</script>
+
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Perhatikan Lagi Field Yang Diisi'
+        })
+    </script>
+@endif
+@endpush

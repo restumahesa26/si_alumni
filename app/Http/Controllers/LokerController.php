@@ -53,7 +53,8 @@ class LokerController extends Controller
             'nama_kerja' => $request->nama_kerja,
             'tempat_kerja' => $request->tempat_kerja,
             'lokasi_kerja' => $request->lokasi_kerja,
-            'isi' => $request->isi
+            'isi' => $request->isi,
+            'status' => '1',
         ]);
 
         return redirect()->route('loker.index')->with(['success' => 'Berhasil Menambah Lowongan Pekerjaan']);

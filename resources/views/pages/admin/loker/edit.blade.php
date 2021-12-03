@@ -63,7 +63,7 @@
                                 <label for='isi'>Isi</label>
                                 <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja'>{!! $item->isi !!}</textarea>
                             </div>
-                            <button type='submit' class='btn btn-primary btn-block py-2'>Simpan</button>
+                            <button type='submit' class='btn btn-primary btn-block py-2 btn-edit'>Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -83,66 +83,40 @@
             filebrowserUploadMethod: 'form'
         });
     </script>
-@endpush
 
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Loker') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-8 py-8">
-                <form action="{{ route('loker.update', $item->id) }}" class="w-full" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="judul" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Judul
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="judul" value="{{ $item->judul }}" placeholder="Masukkan Judul" name="judul">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="tempat_kerja" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Tempat Kerja
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="tempat_kerja" value="{{ $item->tempat_kerja }}" placeholder="Masukkan Tempat Kerja" name="tempat_kerja">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="isi" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Isi Loker
-                            </label>
-                            <textarea name="isi" id="isi" cols="30" rows="10" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{!! $item->isi !!}</textarea>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3 text-center">
-                            <button type="submit" class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full">
-                                Simpan Data
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-@push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
 
     <script>
-        CKEDITOR.replace('isi', {
-            height: 500
+        $('.btn-edit').on('click', function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form;
+            Swal.fire({
+            title: 'Yakin Menyimpan Perubahan?',
+            text: "Data Akan Tersimpan",
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Simpan',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }else {
+                    Swal.fire('Data Batal Disimpan');
+                }
+            });
         });
     </script>
-@endpush
-</x-app-layout>
 
- --}}
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Perhatikan Lagi Field Yang Diisi'
+        })
+    </script>
+    @endif
+@endpush

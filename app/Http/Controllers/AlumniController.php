@@ -47,7 +47,7 @@ class AlumniController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'npm' => 'required|string|max:255|unique:alumnis',
+            'npm' => 'required|string|max:255|unique:users',
             'nama' => 'required|string|max:255',
             'agama' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
@@ -77,7 +77,11 @@ class AlumniController extends Controller
             'dosen_penguji_1' => 'required|string|max:255',
             'dosen_penguji_2' => 'required|string|max:255',
             'jumlah_sks' => 'required|numeric',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'ipk' => 'required|numeric',
+            'angkatan' => 'required|numeric',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'pekerjaan' => 'required|string|max:255',
+            'tempat_pekerjaan' => 'required|string|max:255',
         ]);
 
         $user = User::create([
@@ -90,8 +94,6 @@ class AlumniController extends Controller
 
         Alumni::create([
             'user_id' => $user->id,
-            'npm' => $request->npm,
-            'nama' => $request->nama,
             'agama' => $request->agama,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
@@ -118,7 +120,11 @@ class AlumniController extends Controller
             'dosen_pembimbing_2' => $request->dosen_pembimbing_2,
             'dosen_penguji_1' => $request->dosen_penguji_1,
             'dosen_penguji_2' => $request->dosen_penguji_2,
-            'jumlah_sks' => $request->jumlah_sks
+            'jumlah_sks' => $request->jumlah_sks,
+            'ipk' => $request->ipk,
+            'angkatan' => $request->angkatan,
+            'pekerjaan' => $request->pekerjaan,
+            'tempat_pekerjaan' => $request->tempat_pekerjaan,
         ]);
 
         return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Menambah Data Alumni ' . $request->nama]);
@@ -190,6 +196,8 @@ class AlumniController extends Controller
             'pekerjaan' => 'required|string|max:255',
             'tempat_pekerjaan' => 'required|string|max:255',
             'jumlah_sks' => 'required|numeric',
+            'ipk' => 'required|numeric',
+            'angkatan' => 'required|numeric',
         ]);
 
         if ($request->password) {
@@ -200,10 +208,15 @@ class AlumniController extends Controller
 
         $item = Alumni::findOrFail($id);
 
-        if ($request->email != $item->users->email && $request->npm != $item->npm) {
+        if ($request->email != $item->users->email) {
             $request->validate([
-                'email' => 'required|string|max:255|email|unique:users',
-                'npm' => 'required|string|max:255|unique:alumnis',
+                'email' => 'required|string|max:255|email|unique:users'
+            ]);
+        }
+
+        if ($request->npm != $item->users->npm) {
+            $request->validate([
+                'npm' => 'required|string|max:255|unique:users'
             ]);
         }
 
@@ -244,6 +257,8 @@ class AlumniController extends Controller
             'dosen_penguji_1' => $request->dosen_penguji_1,
             'dosen_penguji_2' => $request->dosen_penguji_2,
             'jumlah_sks' => $request->jumlah_sks,
+            'ipk' => $request->ipk,
+            'angkatan' => $request->angkatan,
             'pekerjaan' => $request->pekerjaan,
             'tempat_pekerjaan' => $request->tempat_pekerjaan,
         ]);
@@ -291,7 +306,8 @@ class AlumniController extends Controller
             'no_hp' => $item->no_hp,
             'golongan_darah' => $item->golongan_darah,
             'tinggi_badan' => $item->tinggi_badan,
-            'berat_badan' => $item->berat_badan
+            'berat_badan' => $item->berat_badan,
+            'angkatan' => $item->angkatan
         ]);
 
         $user = User::where('id', $item->user_id)->first();

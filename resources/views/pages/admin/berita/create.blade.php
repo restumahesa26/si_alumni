@@ -77,63 +77,16 @@
             filebrowserUploadMethod: 'form'
         });
     </script>
-@endpush
 
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Berita') }}
-        </h2>
-    </x-slot>
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-8 py-8">
-                <form action="{{ route('berita.store') }}" class="w-full" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="judul" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Judul
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="judul" value="{{ old('judul') }}" placeholder="Masukkan Judul" name="judul">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="isi" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Isi Loker
-                            </label>
-                            <textarea name="isi" id="isi" cols="30" rows="10" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{{ old('isi') }}</textarea>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="thumbnail" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Thumbnail
-                            </label>
-                            <input type="file" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="thumbnail" value="{{ old('thumbnail') }}" placeholder="Masukkan Thumbnail" name="thumbnail">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3 text-center">
-                            <button type="submit" class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full">
-                                Simpan Data
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-@push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
-
+@if ($errors->any())
     <script>
-        CKEDITOR.replace('isi', {
-            height: 500
-        });
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Perhatikan Lagi Field Yang Diisi'
+        })
     </script>
+@endif
 @endpush
-</x-app-layout> --}}

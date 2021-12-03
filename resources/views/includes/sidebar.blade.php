@@ -12,13 +12,6 @@
             </li>
 
             <li class="nav-label">MENU</li>
-            @if (Auth::user()->role === 'ALUMNI' || Auth::user()->role === 'MAHASISWA')
-            <li class="@if(Route::is('profile.*'))mm-active @endif">
-                <a href="{{ route('profile.edit') }}" class="@if(Route::is('profile.*'))mm-active @endif">
-                    <i class="ti-user"></i><span class="nav-text">Profile</span>
-                </a>
-            </li>
-            @endif
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
                         class="ti-agenda"></i><span class="nav-text">Data</span></a>
                 <ul aria-expanded="false">
@@ -53,6 +46,21 @@
                 <a href="{{ route('berita.index') }}" class="@if(Route::is('berita.*'))mm-active @endif">
                     <i class="ti-image"></i><span class="nav-text">Berita</span>
                 </a>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                class="ti-agenda"></i><span class="nav-text">Laporan</span></a>
+                <ul aria-expanded="false">
+                    <li class="@if(Route::is('laporan.index-mahasiswa'))mm-active @endif">
+                        <a href="{{ route('laporan.index-mahasiswa') }}" class="@if(Route::is('laporan.index-mahasiswa'))mm-active @endif">
+                            Mahasiswa
+                        </a>
+                    </li>
+                    <li class="@if(Route::is('laporan.index-alumni'))mm-active @endif">
+                        <a href="{{ route('laporan.index-alumni') }}" class="@if(Route::is('laporan.index-alumni'))mm-active @endif">
+                            Alumni
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

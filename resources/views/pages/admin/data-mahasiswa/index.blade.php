@@ -84,7 +84,7 @@
                                         <td>{{ $item->users->email }}</td>
                                         <td>{{ $item->no_hp }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-success text-white" data-toggle="modal"
+                                            <button type="button" class="btn btn-success text-white btn-sm" data-toggle="modal"
                                                 data-target="#modal-mahasiswa{{ $item->id }}">
                                                 Lihat
                                             </button>
@@ -94,7 +94,7 @@
                                                 method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                                <button type="submit" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
                                             </form>
 
                                         </td>
@@ -281,13 +281,49 @@
 @endpush
 
 @push('addon-script')
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('#table').DataTable({
-            ordering: false
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                ordering: false
+            });
         });
-    });
-</script>
+    </script>
+
+    @if ($message = Session::get('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
+
+    <script>
+        $('.btn-hapus').on('click', function (e) {
+            e.preventDefault(); // prevent form submit
+            var form = event.target.form;
+            Swal.fire({
+            title: 'Yakin Menghapus Data?',
+            text: "Data Akan Terhapus Permanen",
+            icon: 'warning',
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Hapus',
+            cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }else {
+                    Swal.fire('Data Batal Dihapus');
+                }
+            });
+        });
+    </script>
 @endpush

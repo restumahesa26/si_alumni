@@ -94,7 +94,7 @@
                                             -
                                             @endif</td>
                                         <td>
-                                            <button type="button" class="btn btn-success text-white" data-toggle="modal"
+                                            <button type="button" class="btn btn-success text-white btn-sm" data-toggle="modal"
                                                 data-target="#modal-alumni{{ $item->id }}">
                                                 Lihat
                                             </button>
@@ -104,7 +104,7 @@
                                                 class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                                <button type="submit" class="btn btn-danger btn-sm btn-hapus">Hapus</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -292,6 +292,8 @@
 @push('addon-script')
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
 <script>
     $(document).ready(function () {
         $('#table').DataTable({
@@ -299,61 +301,38 @@
         });
     });
 </script>
+
+<script>
+    $('.btn-hapus').on('click', function (e) {
+        e.preventDefault(); // prevent form submit
+        var form = event.target.form;
+        Swal.fire({
+        title: 'Yakin Menghapus Data?',
+        text: "Data Akan Terhapus Permanen",
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus',
+        cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }else {
+                Swal.fire('Data Batal Dihapus');
+            }
+        });
+    });
+</script>
+
+@if ($message = Session::get('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ $message }}'
+        })
+    </script>
+@endif
 @endpush
-
-{{--
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Data Alumni') }}
-</h2>
-</x-slot>
-
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-8 py-8">
-            <a href="{{ route('data-alumni.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Tambah Data Alumni</a>
-            <table class="table-auto w-full mt-5">
-                <thead>
-                    <tr>
-                        <th class="border px-6 py-4">No</th>
-                        <th class="border px-6 py-4">NPM</th>
-                        <th class="border px-6 py-4">Nama</th>
-                        <th class="border px-6 py-4">Tahun Wisuda</th>
-                        <th class="border px-6 py-4">No Ijazah</th>
-                        <th class="border px-6 py-4">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($items as $item)
-                    <tr>
-                        <td class="border text-center px-6 py-4">{{ $loop->iteration }}</td>
-                        <td class="border text-center px-6 py-4">{{ $item->npm }}</td>
-                        <td class="border text-center px-6 py-4">{{ $item->nama }}</td>
-                        <td class="border text-center px-6 py-4">{{ $item->tahun_wisuda }}</td>
-                        <td class="border text-center px-6 py-4">{{ $item->no_ijazah }}</td>
-                        <td class="border text-center px-6 py-4">
-                            <a href="{{ route('data-alumni.edit', $item->id) }}"
-                                class="inline-block bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded font-bold mx-1 text-sm">Edit</a>
-                            <form action="{{ route('data-alumni.destroy', $item->id) }}" method="POST"
-                                class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded font-bold mx-1 text-sm">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @empty
-                    <tr>
-                        <td class="border text-center px-6 py-4" colspan="5">Data Kosong</td>
-                    </tr>
-                    @endforelse
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</x-app-layout> --}}

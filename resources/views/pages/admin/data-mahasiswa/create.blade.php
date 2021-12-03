@@ -49,6 +49,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for='angkatan'>Angkatan</label>
+                                <input class='form-control @error('angkatan') is-invalid @enderror' type='number' name='angkatan' id='angkatan' placeholder='Masukkan Angkatan' value='{{ old('angkatan') }}' required />
+                                @error('angkatan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for='password'>Password</label>
                                 <input class='form-control @error('password') is-invalid @enderror' type='password' name='password' id='password' placeholder='Masukkan Password' value='{{ old('password') }}' required />
                                 @error('password')
@@ -263,3 +272,17 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Perhatikan Lagi Field Yang Diisi'
+        })
+    </script>
+@endif
+@endpush

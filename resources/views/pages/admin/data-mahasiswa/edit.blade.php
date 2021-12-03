@@ -51,6 +51,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for='angkatan'>Angkatan</label>
+                                <input class='form-control @error('angkatan') is-invalid @enderror' type='number' name='angkatan' id='angkatan' placeholder='Masukkan Angkatan' value='{{ $item->angkatan }}' required />
+                                @error('angkatan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for='password'>Password</label>
                                 <input class='form-control @error('password') is-invalid @enderror' type='password' name='password' id='password' placeholder='Masukkan Password' value='{{ old('password') }}' />
                                 @error('password')
@@ -256,137 +265,50 @@
                                     </span>
                                 @enderror
                             </div>
-                            <button type='submit' class='btn btn-primary btn-block py-2'>Simpan</button>
+                            <button type='submit' class='btn btn-primary btn-block py-2 btn-edit'>Simpan</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 @endsection
 
-{{-- <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Data Mahasiswa') }} {{ $item->nama }}
-        </h2>
-    </x-slot>
+@push('addon-script')
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg px-8 py-8">
-                @if ($errors->any())
-                    <div class="mb-5" role="alert">
-                        <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-                            There's something wrong
-                        </div>
-                        <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-                            <p>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </p>
-                        </div>
-                    </div>
-                @endif
-                <form action="{{ route('data-mahasiswa.update', $item->id) }}" class="w-full" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="npm" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                NPM
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="npm" value="{{ $item->npm }}" placeholder="Masukkan NPM" name="npm">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="username" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Username
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="username" value="{{ $item->users->username }}" placeholder="Masukkan Username" name="username">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="password" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Password
-                            </label>
-                            <input type="password" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" value="{{ old('password') }}" placeholder="Masukkan Password" name="password">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="password_confirmation" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Konfirmasi Password
-                            </label>
-                            <input type="password" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="Masukkan Konfirmasi Password" name="password_confirmation">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="nama" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Nama Lengkap
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="nama" value="{{ $item->nama }}" placeholder="Masukkan Nama Lengkap" name="nama">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="jenis_kelamin" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Jenis Kelamin
-                            </label>
-                            <select name="jenis_kelamin" id="jenis_kelamin" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                <option value="">--Pilih Jenis Kelamin--</option>
-                                <option value="L" @if ($item->jenis_kelamin === 'L')
-                                    selected
-                                @endif>Laki-Laki</option>
-                                <option value="P" @if ($item->jenis_kelamin === 'P')
-                                    selected
-                                @endif>Perempuan</option>
-                            </select>
-                        </div>
-                    </div>
+<script>
+    $('.btn-edit').on('click', function (e) {
+        e.preventDefault(); // prevent form submit
+        var form = event.target.form;
+        Swal.fire({
+        title: 'Yakin Menyimpan Perubahan?',
+        text: "Data Akan Tersimpan",
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Simpan',
+        cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }else {
+                Swal.fire('Data Batal Disimpan');
+            }
+        });
+    });
+</script>
 
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="alamat" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Alamat
-                            </label>
-                            <input type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="alamat" value="{{ $item->alamat }}" placeholder="Masukkan Alamat" name="alamat">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="no_hp" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                No HP
-                            </label>
-                            <input type="number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="no_hp" value="{{ $item->no_hp }}" placeholder="Masukkan No HP" name="no_hp">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label for="email" class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                                Email
-                            </label>
-                            <input type="email" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" value="{{ $item->users->email }}" placeholder="Masukkan Email" name="email">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3 text-center">
-                            <button type="submit" class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded w-full">
-                                Simpan Data
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Perhatikan Lagi Field Yang Diisi'
+        })
+    </script>
+@endif
+@endpush

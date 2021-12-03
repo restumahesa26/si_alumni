@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiskusiController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProfileController;
@@ -118,6 +119,18 @@ Route::prefix('admin')
         Route::post('/berita/{id}/komentar/', [TanyaJawabController::class, 'komentar_berita'])->name('komentar_berita');
 
         Route::delete('/berita/{id}/komentar/hapus', [TanyaJawabController::class, 'hapus_komentar_berita'])->name('hapus_komentar_berita');
+
+        Route::get('/laporan/mahasiswa', [LaporanController::class, 'index_mahasiswa'])->name('laporan.index-mahasiswa');
+
+        Route::get('/laporan/alumni', [LaporanController::class, 'index_alumni'])->name('laporan.index-alumni');
+
+        Route::get('/laporan/mahasiswa/cetak', [LaporanController::class, 'pdf_mahasiswa'])->name('laporan.pdf-mahasiswa');
+
+        Route::get('/laporan/alumni/cetak/keseluruhan', [LaporanController::class, 'pdf_keseluruhan_alumni'])->name('laporan.pdf-keseluruhan-alumni');
+
+        Route::get('/laporan/alumni/cetak/angkatan', [LaporanController::class, 'pdf_angkatan_alumni'])->name('laporan.pdf-angkatan-alumni');
+
+        Route::get('/laporan/alumni/cetak/tahun-lulus', [LaporanController::class, 'pdf_tahun_lulus_alumni'])->name('laporan.pdf-tahun-lulus-alumni');
     });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');

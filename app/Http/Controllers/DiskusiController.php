@@ -49,7 +49,8 @@ class DiskusiController extends Controller
         Diskusi::create([
             'user_id' => Auth::user()->id,
             'judul' => $request->judul,
-            'isi' => $request->isi
+            'isi' => $request->isi,
+            'status' => '1',
         ]);
 
         return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Menambah Diskusi']);

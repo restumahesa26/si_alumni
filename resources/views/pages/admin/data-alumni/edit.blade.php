@@ -51,6 +51,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for='angkatan'>Angkatan</label>
+                                <input class='form-control @error('angkatan') is-invalid @enderror' type='number' name='angkatan' id='angkatan' placeholder='Masukkan Angkatan' value='{{ $item->angkatan }}' required />
+                                @error('angkatan')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for='password'>Password</label>
                                 <input class='form-control @error('password') is-invalid @enderror' type='password' name='password' id='password' placeholder='Masukkan Password' value='{{ old('password') }}' />
                                 @error('password')
@@ -465,6 +474,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for='ipk'>IPK</label>
+                                <input class='form-control @error('ipk') is-invalid @enderror' type='number' name='ipk' id='ipk' placeholder='Masukkan IPK' value='{{ $item->ipk }}' step="0.01" required />
+                                @error('ipk')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for='foto'>Foto</label>
                                 <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' />
                                 @error('foto')
@@ -491,7 +509,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            <button type='submit' class='btn btn-primary btn-block py-2'>Simpan</button>
+                            <button type='submit' class='btn btn-primary btn-block py-2 btn-edit'>Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -500,3 +518,41 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+<script>
+    $('.btn-edit').on('click', function (e) {
+        e.preventDefault(); // prevent form submit
+        var form = event.target.form;
+        Swal.fire({
+        title: 'Yakin Menyimpan Perubahan?',
+        text: "Data Akan Tersimpan",
+        icon: 'warning',
+        allowOutsideClick: false,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Simpan',
+        cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }else {
+                Swal.fire('Data Batal Disimpan');
+            }
+        });
+    });
+</script>
+
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Perhatikan Lagi Field Yang Diisi'
+        })
+    </script>
+@endif
+@endpush

@@ -6,8 +6,8 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Profile @if (Auth::user()->role == 'ALUMNI') Alumni @else Mahasiswa @endif</h4>
-                    <p>Biodata Data @if (Auth::user()->role == 'ALUMNI') Alumni @else Mahasiswa @endif</p>
+                    <h4>Profile</h4>
+                    <p>Biodata Data</p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -23,7 +23,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header justify-content-start">
-                        <a href="" class="btn btn-warning btn-sm mr-2 text-white">
+                        <a href="{{ route('dashboard') }}" class="btn btn-warning btn-sm mr-2 text-white">
                             <i class="ti-angle-double-left"></i> Back
                         </a>
                     </div>
