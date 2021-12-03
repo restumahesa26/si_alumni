@@ -32,15 +32,6 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for='npm'>NPM</label>
-                                <input class='form-control @error('npm') is-invalid @enderror' type='text' name='npm' id='npm' placeholder='Masukkan NPM' value='{{ $item->npm }}' />
-                                @error('npm')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
                                 <label for='nama'>Nama</label>
                                 <input class='form-control @error('nama') is-invalid @enderror' type='text' name='nama' id='nama' placeholder='Masukkan Nama' value='{{ $item->nama }}' />
                                 @error('nama')

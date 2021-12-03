@@ -4,16 +4,15 @@
 <section class="pt-4 bg-600 pb-6" id="home">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end">
+            <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end d-none d-md-block">
                 <img class="pt-7 pt-md-0 w-80" src="{{ url('frontend/public/assets/img/gallery/hero-header.png') }}" width="470"
                     alt="hero-header" />
             </div>
             <div class="col-md-7 col-lg-6 text-md-start text-center py-6">
-                <h1 class="fw-bold font-sans-serif">SI ATI</h1>
-                <h5 class="fs-6 fs-xl-5 mb-5">
+                <h3 class="fs-6 fs-xl-5 mb-5">
                     Sistem Informasi Alumni Teknik Informatika Universitas Bengkulu
-                </h5>
-                <a class="btn btn-secondary me-2" href="{{ route('daftar-alumni') }}" role="button">Selengkapnya</a>
+                </h3>
+                <a class="btn btn-secondary me-2" href="{{ route('daftar-alumni') }}" role="button">Lihat Daftar Alumni</a>
             </div>
         </div>
     </div>
@@ -25,7 +24,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center mb-5">Berita Populer</h1>
+                <h1 class="text-center mb-5">Berita</h1>
             </div>
             @foreach ($beritas as $item)
             <div class="col-md-4 mb-4">
@@ -44,6 +43,47 @@
                 </a>
             </div>
             @endforeach
+            <div class="col-md-12 text-center mb-5">
+                <a href="{{ route('user.berita') }}" class="btn btn-secondary">Lihat Lebih Banyak</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center mb-5">Lowongan Kerja</h1>
+            </div>
+            @foreach ($lokers as $item2)
+            <div class="col-sm-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $item2->nama_kerja }}</h5>
+                        <p class="card-text">{{ $item2->tempat_kerja }} | {{ $item2->lokasi_kerja }}</p>
+                        <a href="{{ route('user.detail-loker', $item2->id) }}" class="btn btn-info">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <div class="col-md-12 text-center mb-5">
+                <a href="{{ route('user.loker') }}" class="btn btn-secondary">Lihat Lebih Banyak</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center mb-5">Diskusi</h1>
+            </div>
+            @foreach ($diskusis as $item3)
+            <div class="col-sm-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $item3->judul }}</h5>
+                        <p class="card-text">{{ $item3->users->nama }}<br> <span style="font-size: 12px;">{{ \Carbon\Carbon::parse($item3->created_at)->translatedFormat('l, d F Y') }}</span></p>
+                        <a href="{{ route('user.detail-diskusi', $item3->id) }}" class="btn btn-info">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <div class="col-md-12 text-center">
+                <a href="{{ route('user.diskusi') }}" class="btn btn-secondary">Lihat Lebih Banyak</a>
+            </div>
         </div>
     </div>
     <!-- end of .container-->
@@ -73,3 +113,17 @@
     </div>
 </section>
 @endsection
+
+@push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    @if ($message = Session::get('success-login'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat Datang',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
+@endpush

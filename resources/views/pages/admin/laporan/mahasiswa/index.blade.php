@@ -22,7 +22,8 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('laporan.cetak-mahasiswa') }}" class="btn btn-primary btn-block mb-3" target="_blank">Cetak Laporan</a>
+                        <a href="{{ route('laporan.excel-mahasiswa') }}" class="btn btn-success btn-block text-white">Cetak Laporan Excel</a>
+                        <a href="{{ route('laporan.pdf-mahasiswa') }}" class="btn btn-primary btn-block mb-3">Cetak Laporan PDF</a>
                         <div class="table-responsive mt-2">
                             <table id="table" class="table table-bordered text-nowrap">
                                 <thead>

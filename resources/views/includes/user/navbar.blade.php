@@ -38,7 +38,7 @@
                         href="{{ route('home') }}">Beranda</a>
                 </li>
                 <li class="nav-item px-2">
-                    <a class="nav-link @if(Route::is('daftar-alumni') || Route::is('detail-alumni')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('daftar-alumni') }}">Daftar Alumni</a>
+                    <a class="nav-link @if(Route::is('daftar-alumni') || Route::is('detail-alumni') || Route::is('user.search-alumni')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('daftar-alumni') }}">Daftar Alumni</a>
                 </li>
                 <li class="nav-item px-2">
                     <a class="nav-link @if(Route::is('user.berita') || Route::is('user.detail-berita') || Route::is('user.search-berita')) border-bottom border-3 border-primary @endif" aria-current="page" href="{{ route('user.berita') }}">Berita</a>

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12 col-lg-7 mb-4 order-0 order-sm-0">
-                <h3 class="text-white"><a class="text-decoration-none" href="#"><img src="{{ url('logo-unib.png') }}" alt="logo" width="120" /></a>SI Alumni Informatika UNIB</h3>
+                <h3 class="text-white"><a class="text-decoration-none" href="#"><img src="{{ url('logo-unib.png') }}" alt="logo" width="120" /></a>Program Studi Informatika FT UNIB</h3>
                 <p class="text-light my-4">
                     <i class="fas fa-map-marker-alt me-3"></i><span class="text-light">Jl. W.R. Supratman
                         Kandang Limun Bengkulu 38371 A Sumatera -
@@ -43,7 +43,10 @@
                 </ul>
                 <ul class="list-unstyled mb-md-4 mb-lg-0">
                     <a href=""><i class="fab fa-facebook text-light" style="font-size: 40px; margin: 10px"></i></a>
-                    <a href=""><i class="fab fa-pinterest text-light" style="font-size: 40px; margin: 10px"></i></a>
+                    <a href=""><i class="fab fa-youtube text-light" style="font-size: 40px; margin: 10px"></i></a>
+                </ul>
+                <ul class="list-unstyled mb-md-4 mb-lg-0">
+                    <a href=""><i class="fab fa-google-plus text-light" style="font-size: 40px; margin: 10px"></i></a>
                 </ul>
             </div>
         </div>

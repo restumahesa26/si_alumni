@@ -340,25 +340,25 @@
                                         <label for='dosen_pembimbing_1'>Dosen Pembimbing 1</label>
                                         <select name="dosen_pembimbing_1" id="dosen_pembimbing_1" class="form-control @error('dosen_pembimbing_1') is-invalid @enderror" required>
                                             <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
-                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
-                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
-                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
-                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
-                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
-                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
-                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
-                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
-                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
-                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
-                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
-                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
-                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
-                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
-                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
-                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
-                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
-                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
-                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                            <option value="Drs. Boko Susilo, M.Kom." @if(old('dosen_pembimbing_1') == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom." @if(old('dosen_pembimbing_1') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs."  @if(old('dosen_pembimbing_1') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs."  @if(old('dosen_pembimbing_1') == "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D"  @if(old('dosen_pembimbing_1') == "Arie Vatresia, S.T., M.T.I.,Ph.D") selected @endif>Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T."  @if(old('dosen_pembimbing_1') == "Funny Farady Coastera, S.Kom., M.T.") selected @endif>Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom."  @if(old('dosen_pembimbing_1') == "Mochammad Yusa, S.Kom.,M.Kom.") selected @endif>Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng."  @if(old('dosen_pembimbing_1') == "Ruvita Faurina, S.T., M.Eng.") selected @endif>Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng."  @if(old('dosen_pembimbing_1') == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected @endif>Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom."  @if(old('dosen_pembimbing_1') == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom."  @if(old('dosen_pembimbing_1') == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") @endif>Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng."  @if(old('dosen_pembimbing_1') == "Aan Erlansari, S.T., M.Eng.") selected @endif>Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom."  @if(old('dosen_pembimbing_1') == "Endina Putri Purwandari, S.T., M.Kom.") @endif>Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng."  @if(old('dosen_pembimbing_1') == "Yudi Setiawan, S.T., M.Eng.") selected @endif>Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T."  @if(old('dosen_pembimbing_1') == "Kurnia Anggriani, S.T., M.T.") selected @endif>Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng."  @if(old('dosen_pembimbing_1') == "Ferzha Putra Utama, S.T., M.Eng.") selected @endif>Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom."  @if(old('dosen_pembimbing_1') == "Andang Wijanarko, S.Kom., M.Kom.") selected @endif>Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom."  @if(old('dosen_pembimbing_1') == "Julia Purnama Sari, S.T., M.Kom.") selected @endif>Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom."  @if(old('dosen_pembimbing_1') == "Nurul Renaningtias, S.T., M.Kom.") selected @endif>Nurul Renaningtias, S.T., M.Kom.</option>
                                         </select>
                                         @error('dosen_pembimbing_1')
                                             <span class="invalid-feedback" role="alert">
@@ -370,25 +370,25 @@
                                         <label for='dosen_pembimbing_2'>Dosen Pembimbing 2</label>
                                         <select name="dosen_pembimbing_2" id="dosen_pembimbing_2" class="form-control @error('dosen_pembimbing_2') is-invalid @enderror" required>
                                             <option hidden>-- Pilih Dosen Pembimbing 2 --</option>
-                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
-                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
-                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
-                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
-                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
-                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
-                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
-                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
-                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
-                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
-                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
-                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
-                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
-                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
-                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
-                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
-                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
-                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
-                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                            <option value="Drs. Boko Susilo, M.Kom." @if(old('dosen_pembimbing_2') == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom." @if(old('dosen_pembimbing_2') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs."  @if(old('dosen_pembimbing_2') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs."  @if(old('dosen_pembimbing_2') == "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D"  @if(old('dosen_pembimbing_2') == "Arie Vatresia, S.T., M.T.I.,Ph.D") selected @endif>Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T."  @if(old('dosen_pembimbing_2') == "Funny Farady Coastera, S.Kom., M.T.") selected @endif>Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom."  @if(old('dosen_pembimbing_2') == "Mochammad Yusa, S.Kom.,M.Kom.") selected @endif>Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng."  @if(old('dosen_pembimbing_2') == "Ruvita Faurina, S.T., M.Eng.") selected @endif>Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng."  @if(old('dosen_pembimbing_2') == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected @endif>Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom."  @if(old('dosen_pembimbing_2') == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom."  @if(old('dosen_pembimbing_2') == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") @endif>Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng."  @if(old('dosen_pembimbing_2') == "Aan Erlansari, S.T., M.Eng.") selected @endif>Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom."  @if(old('dosen_pembimbing_2') == "Endina Putri Purwandari, S.T., M.Kom.") @endif>Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng."  @if(old('dosen_pembimbing_2') == "Yudi Setiawan, S.T., M.Eng.") selected @endif>Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T."  @if(old('dosen_pembimbing_2') == "Kurnia Anggriani, S.T., M.T.") selected @endif>Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng."  @if(old('dosen_pembimbing_2') == "Ferzha Putra Utama, S.T., M.Eng.") selected @endif>Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom."  @if(old('dosen_pembimbing_2') == "Andang Wijanarko, S.Kom., M.Kom.") selected @endif>Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom."  @if(old('dosen_pembimbing_2') == "Julia Purnama Sari, S.T., M.Kom.") selected @endif>Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom."  @if(old('dosen_pembimbing_2') == "Nurul Renaningtias, S.T., M.Kom.") selected @endif>Nurul Renaningtias, S.T., M.Kom.</option>
                                         </select>
                                         @error('dosen_pembimbing_2')
                                             <span class="invalid-feedback" role="alert">
@@ -403,26 +403,26 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_penguji_1'>Dosen Penguji 1</label>
                                         <select name="dosen_penguji_1" id="dosen_penguji_1" class="form-control @error('dosen_penguji_1') is-invalid @enderror" required>
-                                            <option hidden>-- Pilih Dosen Penguji 1 --</option>
-                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
-                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
-                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
-                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
-                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
-                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
-                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
-                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
-                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
-                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
-                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
-                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
-                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
-                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
-                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
-                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
-                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
-                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
-                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                            <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
+                                            <option value="Drs. Boko Susilo, M.Kom." @if(old('dosen_penguji_1') == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom." @if($item->dosen_pembimbing_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs."  @if(old('dosen_penguji_1') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs."  @if(old('dosen_penguji_1') == "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D"  @if(old('dosen_penguji_1') == "Arie Vatresia, S.T., M.T.I.,Ph.D") selected @endif>Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T."  @if(old('dosen_penguji_1') == "Funny Farady Coastera, S.Kom., M.T.") selected @endif>Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom."  @if(old('dosen_penguji_1') == "Mochammad Yusa, S.Kom.,M.Kom.") selected @endif>Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng."  @if(old('dosen_penguji_1') == "Ruvita Faurina, S.T., M.Eng.") selected @endif>Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng."  @if(old('dosen_penguji_1') == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected @endif>Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom."  @if(old('dosen_penguji_1') == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom."  @if(old('dosen_penguji_1') == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") selected @endif>Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng."  @if(old('dosen_penguji_1') == "Aan Erlansari, S.T., M.Eng.") selected @endif>Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom."  @if(old('dosen_penguji_1') == "Endina Putri Purwandari, S.T., M.Kom.") selected @endif>Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng."  @if(old('dosen_penguji_1') == "Yudi Setiawan, S.T., M.Eng.") selected @endif>Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T."  @if(old('dosen_penguji_1') == "Kurnia Anggriani, S.T., M.T.") selected @endif>Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng."  @if(old('dosen_penguji_1') == "Ferzha Putra Utama, S.T., M.Eng.") selected @endif>Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom."  @if(old('dosen_penguji_1') == "Andang Wijanarko, S.Kom., M.Kom.") selected @endif>Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom."  @if(old('dosen_penguji_1') == "Julia Purnama Sari, S.T., M.Kom.") selected @endif>Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom."  @if(old('dosen_penguji_1') == "Nurul Renaningtias, S.T., M.Kom.") selected @endif>Nurul Renaningtias, S.T., M.Kom.</option>
                                         </select>
                                         @error('dosen_penguji_1')
                                             <span class="invalid-feedback" role="alert">
@@ -433,26 +433,26 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_penguji_2'>Dosen Penguji 2</label>
                                         <select name="dosen_penguji_2" id="dosen_penguji_2" class="form-control @error('dosen_penguji_2') is-invalid @enderror" required>
-                                            <option hidden>-- Pilih Dosen Penguji 2 --</option>
-                                            <option value="Drs. Boko Susilo, M.Kom.">Drs. Boko Susilo, M.Kom.</option>
-                                            <option value="Rusdi Efendi, S.T., M.Kom.">Rusdi Efendi, S.T., M.Kom.</option>
-                                            <option value="Desi Andreswari, S.T., M.Cs.">Desi Andreswari, S.T., M.Cs.</option>
-                                            <option value="Ernawati, S.T., M.Cs.">Ernawati, S.T., M.Cs.</option>
-                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D">Arie Vatresia, S.T., M.T.I.,Ph.D</option>
-                                            <option value="Funny Farady Coastera, S.Kom., M.T.">Funny Farady Coastera, S.Kom., M.T.</option>
-                                            <option value="Mochammad Yusa, S.Kom.,M.Kom">Mochammad Yusa, S.Kom.,M.Kom</option>
-                                            <option value="Ruvita Faurina, S.T., M.Eng.">Ruvita Faurina, S.T., M.Eng.</option>
-                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng">Widhia Oktoberza, Kz,. S.T., M.Eng</option>
-                                            <option value="Drs. Asahar Johar, M.Kom.">Drs. Asahar Johar, M.Kom.</option>
-                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom.">Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
-                                            <option value="Aan Erlansari, S.T., M.Eng.">Aan Erlansari, S.T., M.Eng.</option>
-                                            <option value="Endina Putri Purwandari, S.T., M.Kom.">Endina Putri Purwandari, S.T., M.Kom.</option>
-                                            <option value="Yudi Setiawan, S.T., M.Eng.">Yudi Setiawan, S.T., M.Eng.</option>
-                                            <option value="Kurnia Anggriani, S.T., M.T.">Kurnia Anggriani, S.T., M.T.</option>
-                                            <option value="Ferzha Putra Utama, S.T., M.Eng.">Ferzha Putra Utama, S.T., M.Eng.</option>
-                                            <option value="Andang Wijanarko, S.Kom., M.Kom.">Andang Wijanarko, S.Kom., M.Kom.</option>
-                                            <option value="Julia Purnama Sari, S.T., M.Kom.">Julia Purnama Sari, S.T., M.Kom.</option>
-                                            <option value="Nurul Renaningtias, S.T., M.Kom.">Nurul Renaningtias, S.T., M.Kom.</option>
+                                            <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
+                                            <option value="Drs. Boko Susilo, M.Kom." @if(old('dosen_penguji_2') == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom." @if(old('dosen_penguji_2') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Desi Andreswari, S.T., M.Cs."  @if(old('dosen_penguji_2') == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
+                                            <option value="Ernawati, S.T., M.Cs."  @if(old('dosen_penguji_2') == "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
+                                            <option value="Arie Vatresia, S.T., M.T.I.,Ph.D"  @if(old('dosen_penguji_2') == "Arie Vatresia, S.T., M.T.I.,Ph.D") selected @endif>Arie Vatresia, S.T., M.T.I.,Ph.D</option>
+                                            <option value="Funny Farady Coastera, S.Kom., M.T."  @if(old('dosen_penguji_2') == "Funny Farady Coastera, S.Kom., M.T.") selected @endif>Funny Farady Coastera, S.Kom., M.T.</option>
+                                            <option value="Mochammad Yusa, S.Kom.,M.Kom."  @if(old('dosen_penguji_2') == "Mochammad Yusa, S.Kom.,M.Kom.") selected @endif>Mochammad Yusa, S.Kom.,M.Kom</option>
+                                            <option value="Ruvita Faurina, S.T., M.Eng."  @if(old('dosen_penguji_2') == "Ruvita Faurina, S.T., M.Eng.") selected @endif>Ruvita Faurina, S.T., M.Eng.</option>
+                                            <option value="Widhia Oktoberza, Kz,. S.T., M.Eng."  @if(old('dosen_penguji_2') == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected @endif>Widhia Oktoberza, Kz,. S.T., M.Eng</option>
+                                            <option value="Drs. Asahar Johar, M.Kom."  @if(old('dosen_penguji_2') == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                            <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom."  @if(old('dosen_penguji_2') == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") selected @endif>Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
+                                            <option value="Aan Erlansari, S.T., M.Eng."  @if(old('dosen_penguji_2') == "Aan Erlansari, S.T., M.Eng.") selected @endif>Aan Erlansari, S.T., M.Eng.</option>
+                                            <option value="Endina Putri Purwandari, S.T., M.Kom."  @if(old('dosen_penguji_2') == "Endina Putri Purwandari, S.T., M.Kom.") selected @endif>Endina Putri Purwandari, S.T., M.Kom.</option>
+                                            <option value="Yudi Setiawan, S.T., M.Eng."  @if(old('dosen_penguji_2') == "Yudi Setiawan, S.T., M.Eng.") selected @endif>Yudi Setiawan, S.T., M.Eng.</option>
+                                            <option value="Kurnia Anggriani, S.T., M.T."  @if(old('dosen_penguji_2') == "Kurnia Anggriani, S.T., M.T.") selected @endif>Kurnia Anggriani, S.T., M.T.</option>
+                                            <option value="Ferzha Putra Utama, S.T., M.Eng."  @if(old('dosen_penguji_2') == "Ferzha Putra Utama, S.T., M.Eng.") selected @endif>Ferzha Putra Utama, S.T., M.Eng.</option>
+                                            <option value="Andang Wijanarko, S.Kom., M.Kom."  @if(old('dosen_penguji_2') == "Andang Wijanarko, S.Kom., M.Kom.") selected @endif>Andang Wijanarko, S.Kom., M.Kom.</option>
+                                            <option value="Julia Purnama Sari, S.T., M.Kom."  @if(old('dosen_penguji_2') == "Julia Purnama Sari, S.T., M.Kom.") selected @endif>Julia Purnama Sari, S.T., M.Kom.</option>
+                                            <option value="Nurul Renaningtias, S.T., M.Kom."  @if(old('dosen_penguji_2') == "Nurul Renaningtias, S.T., M.Kom.") selected @endif>Nurul Renaningtias, S.T., M.Kom.</option>
                                         </select>
                                         @error('dosen_penguji_2')
                                             <span class="invalid-feedback" role="alert">

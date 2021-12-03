@@ -5,20 +5,19 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <h1 class="mb-6">Daftar Alumni</h1>
             </div>
 
-            <div class="col-md-6">
-                <div class="d-flex justify-content-end">
-                    <form>
-                        <input class="form-control" type="search" placeholder="Cari Alumni" aria-label="Search" />
-                    </form>
-                    <button class="btn btn-outline-light ms-2" id="dropdownMenuButton1" type="submit"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-search text-800"></i>
-                    </button>
-                </div>
+            <div class="col-md-5">
+                <form action="{{ route('user.search-alumni') }}">
+                    <div class="d-flex justify-content-end">
+                        <input class="form-control" name="search" type="search" placeholder="Masukkan pekerjaan, perusahaan, tahun lulus" aria-label="Search" />
+                        <button class="btn btn-outline-light ms-2" type="submit">
+                            <i class="fas fa-search text-800"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <div class="col-md-12">
@@ -55,6 +54,9 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center">
+            {!! $alumnis->links() !!}
+        </div>
     </div>
     <!-- end of .container-->
 </section>
@@ -88,4 +90,16 @@
             $('#table').DataTable();
         });
     </script>
+
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    @if ($message = Session::get('data-kosong'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Data Kosong',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
 @endpush

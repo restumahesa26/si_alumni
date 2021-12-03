@@ -15,18 +15,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        $berita = Berita::all();
+        $berita = Berita::inRandomOrder()->limit(6)->get();
+        $loker = Loker::inRandomOrder()->limit(6)->orderBy('created_at', 'DESC')->get();
+        $diskusi = Diskusi::inRandomOrder()->limit(6)->orderBy('created_at', 'DESC')->get();
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
 
         return view('pages.user.home', [
-            'beritas' => $berita, 'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan
+            'beritas' => $berita, 'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'lokers' => $loker, 'diskusis' => $diskusi
         ]);
     }
 
@@ -34,7 +35,7 @@ class HomeController extends Controller
     {
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
-        $alumni = Alumni::all();
+        $alumni = Alumni::paginate(1);
 
         return view('pages.user.daftar-alumni', [
             'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'alumnis' => $alumni
@@ -54,12 +55,24 @@ class HomeController extends Controller
 
     public function search_alumni(Request $request)
     {
-        //
+        $cari = $request->search;
+
+        $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
+        $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
+        $alumni = Alumni::where('pekerjaan','like',"%".$cari."%")->orWhere('tempat_pekerjaan','like',"%".$cari."%")->orWhereYear('tanggal_wisuda','like',"%".$cari."%")->paginate(1);
+
+        if ($alumni->count() >= 1) {
+            return view('pages.user.daftar-alumni', [
+                'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'alumnis' => $alumni
+            ]);
+        } else {
+            return redirect()->route('daftar-alumni')->with(['data-kosong' => 'Masukkan Kata Kunci Dengan Benar']);
+        }
     }
 
     public function berita()
     {
-        $berita = Berita::all();
+        $berita = Berita::inRandomOrder()->paginate(1);
         $berita2 = Berita::where('is_populer', '1')->get();
 
         return view('pages.user.berita', [
@@ -116,8 +129,8 @@ class HomeController extends Controller
 
     public function loker()
     {
-        $loker = Loker::where('status', '1')->get();
-        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->get();
+        $loker = Loker::where('status', '1')->paginate(2);
+        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(6);
 
         return view('pages.user.loker', [
             'lokers' => $loker, 'loker2' => $loker2
@@ -127,7 +140,7 @@ class HomeController extends Controller
     public function detail_loker($id)
     {
         $loker = Loker::findOrFail($id);
-        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->get();
+        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(6);
 
         return view('pages.user.detail-loker', [
             'loker' => $loker, 'loker2' => $loker2
@@ -198,14 +211,14 @@ class HomeController extends Controller
     {
         $cari = $request->search;
 
-        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->get();
+        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(2);
 
         if ($tipe == 'pekerjaan') {
-            $items = Loker::where('nama_kerja','like',"%".$cari."%")->get();
+            $items = Loker::where('nama_kerja','like',"%".$cari."%")->paginate(2);
         }elseif ($tipe == 'perusahaan') {
-            $items = Loker::where('tempat_kerja','like',"%".$cari."%")->get();
+            $items = Loker::where('tempat_kerja','like',"%".$cari."%")->paginate(2);
         }elseif ($tipe == 'lokasi') {
-            $items = Loker::where('lokasi_kerja','like',"%".$cari."%")->get();
+            $items = Loker::where('lokasi_kerja','like',"%".$cari."%")->paginate(2);
         }
 
         return view('pages.user.loker', [
@@ -215,7 +228,7 @@ class HomeController extends Controller
 
     public function diskusi()
     {
-        $diskusi = Diskusi::where('status', '1')->orderBy('created_at', 'DESC')->get();
+        $diskusi = Diskusi::where('status', '1')->orderBy('created_at', 'DESC')->paginate(2);
 
         return view('pages.user.diskusi', [
             'diskusis' => $diskusi

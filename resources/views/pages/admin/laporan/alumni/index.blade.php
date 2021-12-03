@@ -22,6 +22,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
+                        <a href="{{ route('laporan.excel-alumni') }}" class="btn btn-success btn-block text-white">Cetak Laporan Excel</a>
                         <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal"
                             data-target="#modal-laporan">
                             Cetak Laporan

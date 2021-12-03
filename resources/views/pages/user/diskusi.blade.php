@@ -11,7 +11,7 @@
                 <div class="col-auto">
                     <div class="d-flex">
                         <form>
-                            <input class="form-control" type="search" placeholder="Cari Pertanyaan"
+                            <input class="form-control" type="search" placeholder="Cari Diskusi"
                                 aria-label="Search" />
                         </form>
                         <button class="btn btn-outline-light ms-2" type="submit" aria-expanded="false">
@@ -25,7 +25,7 @@
         <div class="row" style="margin-top: 2rem">
             <div class="col">
                 <a href="{{ route('user.diskusi-saya') }}">
-                    <button class="btn btn-primary" type="button" aria-expanded="false">
+                    <button class="btn btn-lg btn-secondary" type="button" aria-expanded="false">
                         Pertanyaan Saya
                         <i class="fas fa-comment text-secondary"></i>
                     </button>
@@ -34,7 +34,7 @@
             <div class="col">
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('user.ajukan-diskusi') }}">
-                        <button class="btn btn-primary" type="button" aria-expanded="false">
+                        <button class="btn btn-lg btn-secondary" type="button" aria-expanded="false">
                             Ajukan Pertanyaan
                             <i class="fas fa-plus-circle text-secondary"></i>
                         </button>
@@ -82,6 +82,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            {!! $diskusis->links() !!}
         </div>
     </div>
     <!-- end of .container-->

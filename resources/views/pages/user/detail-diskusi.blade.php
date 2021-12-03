@@ -44,7 +44,7 @@
                                 <div class="col text-end mt-4">
                                     @if (Auth::user())
                                     <a href="#jawab-diskusi">
-                                        <button class="btn btn-primary fs-lg-1">
+                                        <button class="btn btn-secondary fs-lg-1">
                                             <i class="fas fa-reply"></i>
                                             Jawab
                                         </button>
@@ -108,7 +108,7 @@
                     <textarea class="ckeditor" id="ckeditor" placeholder="Ketikkan teks disini..." cols="30" rows="10" name="tanya_jawab"></textarea>
                 </div>
                 <div class="col-md-12 mt-5 mb-3 text-end">
-                    <button class="btn btn-lg btn-primary fs-lg-1" type="submit" aria-expanded="false">
+                    <button class="btn btn-lg btn-secondary fs-lg-1" type="submit" aria-expanded="false">
                         Kirim
                     </button>
                 </div>

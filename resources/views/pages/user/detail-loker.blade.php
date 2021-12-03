@@ -94,7 +94,7 @@
                                         <textarea class="form-control" name="tanya_jawab" id="tanya_jawab"
                                             placeholder="Tambahkan tanya jawab disini..."></textarea>
                                         <div class="col-md-12 d-flex justify-content-end">
-                                            <button class="btn btn-primary mt-3" type="submit">
+                                            <button class="btn btn-secondary mt-3" type="submit">
                                                 Kirim
                                             </button>
                                         </div>

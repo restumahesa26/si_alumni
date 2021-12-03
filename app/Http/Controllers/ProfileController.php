@@ -37,15 +37,13 @@ class ProfileController extends Controller
             ]);
         }
 
-        if ($request->email != $user->email || $request->npm != $user->npm) {
+        if ($request->email != $user->email) {
             $request->validate([
-                'email' => 'required|string|max:255|email|unique:users',
-                'npm' => 'required|string|max:255|unique:users'
+                'email' => 'required|string|max:255|email|unique:users'
             ]);
         }
 
         $user->nama = $request->nama;
-        $user->npm = $request->npm;
         $user->email = $request->email;
         if ($request->password) {
             $user->password = Hash::make($request->password);
@@ -130,6 +128,7 @@ class ProfileController extends Controller
             $request->validate([
                 'status' => 'required|in:Kawin,Belum Kawin',
                 'asal_slta' => 'required|string|max:255',
+                'ipk' => 'required|numeric|between:0.01,4.00',
             ]);
         }
 
@@ -165,6 +164,7 @@ class ProfileController extends Controller
             $item->berat_badan = $request->berat_badan;
             $item->status = $request->status;
             $item->asal_slta = $request->asal_slta;
+            $item->ipk = $request->ipk;
             $item->save();
             $user->save();
         }
@@ -215,6 +215,30 @@ class ProfileController extends Controller
         $item->tanggal_seminar_proposal = $request->tanggal_seminar_proposal;
         $item->tanggal_sidang = $request->tanggal_sidang;
         $item->tanggal_wisuda = $request->tanggal_wisuda;
+        $item->save();
+
+        return redirect()->route('user.data-saya');
+    }
+
+    public function data_bimbingan_skripsi(Request $request)
+    {
+        $request->validate([
+            'tanggal_mulai_bimbingan' => 'required|date',
+            'dosen_pembimbing_1' => 'required|string|max:255',
+            'dosen_pembimbing_2' => 'required|string|max:255',
+            'dosen_penguji_1' => 'required|string|max:255',
+            'dosen_penguji_2' => 'required|string|max:255',
+            'jumlah_sks' => 'required|numeric',
+        ]);
+
+        $item = Alumni::where('user_id', Auth::user()->id)->first();
+
+        $item->tanggal_mulai_bimbingan = $request->tanggal_mulai_bimbingan;
+        $item->dosen_pembimbing_1 = $request->dosen_pembimbing_1;
+        $item->dosen_pembimbing_2 = $request->dosen_pembimbing_2;
+        $item->dosen_penguji_1 = $request->dosen_penguji_1;
+        $item->dosen_penguji_2 = $request->dosen_penguji_2;
+        $item->jumlah_sks = $request->jumlah_sks;
         $item->save();
 
         return redirect()->route('user.data-saya');

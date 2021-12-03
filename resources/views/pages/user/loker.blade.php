@@ -14,7 +14,7 @@
                 <div class="col-auto">
                     <div class="">
                         <a href="{{ route('user.ajukan-loker') }}">
-                            <button class="btn btn-primary ms-2" type="submit" aria-expanded="false">
+                            <button class="btn btn-lg btn-secondary ms-2" type="submit" aria-expanded="false">
                                 Ajukan Loker
                                 <i class="fas fa-plus-circle text-secondary"></i>
                             </button>
@@ -79,7 +79,7 @@
                                 <p>{{ $item->tempat_kerja }} | {{ $item->lokasi_kerja }}</p>
                                 <p>{!! $item->isi !!}</p>
                             </td>
-                            <td><a href="{{ route('user.detail-loker', $item->id) }}"><button class="btn btn-info btn-lg">Detail</button></a></td>
+                            <td><a href="{{ route('user.detail-loker', $item->id) }}"><button class="btn btn-secondary btn-lg">Detail</button></a></td>
                         </tr>
                         @empty
                         <tr>
@@ -89,6 +89,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            {!! $lokers->links() !!}
         </div>
     </div>
     <!-- end of .container-->

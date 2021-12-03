@@ -14,7 +14,7 @@ class AddFieldIpkAngkatanToAlumniTable extends Migration
     public function up()
     {
         Schema::table('alumnis', function (Blueprint $table) {
-            $table->float('ipk', 3,2);
+            $table->float('ipk', 3,2)->nullable();
             $table->integer('angkatan');
         });
     }

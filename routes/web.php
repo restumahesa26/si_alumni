@@ -44,6 +44,8 @@ Route::middleware(['auth'])
 
         Route::get('/daftar-alumni/detail/{id}', [HomeController::class, 'detail_alumni'])->name('detail-alumni');
 
+        Route::get('/daftar-alumni/pencarian/', [HomeController::class, 'search_alumni'])->name('user.search-alumni');
+
         Route::post('/berita/kirim-komentar/store/{id}', [HomeController::class, 'store_komentar'])->name('user.komentar-store');
 
         Route::delete('/berita/hapus-komentar/delete/{id}', [HomeController::class, 'delete_komentar'])->name('user.komentar-delete');
@@ -59,6 +61,8 @@ Route::middleware(['auth'])
         Route::post('/data-saya/update-data-orang-tua', [ProfileController::class, 'data_orang_tua'])->name('user.data-saya-data-orang-tua');
 
         Route::post('/data-saya/update-data-skripsi', [ProfileController::class, 'data_skripsi'])->name('user.data-saya-data-skripsi');
+
+        Route::post('/data-saya/update-data-bimbingan-skripsi', [ProfileController::class, 'data_bimbingan_skripsi'])->name('user.data-saya-data-bimbingan-skripsi');
     });
 
 Route::middleware(['auth','alumni'])
@@ -131,6 +135,10 @@ Route::prefix('admin')
         Route::get('/laporan/alumni/cetak/angkatan', [LaporanController::class, 'pdf_angkatan_alumni'])->name('laporan.pdf-angkatan-alumni');
 
         Route::get('/laporan/alumni/cetak/tahun-lulus', [LaporanController::class, 'pdf_tahun_lulus_alumni'])->name('laporan.pdf-tahun-lulus-alumni');
+
+        Route::get('/laporan/mahasiswa/cetak/excel', [LaporanController::class, 'excel_mahasiswa'])->name('laporan.excel-mahasiswa');
+
+        Route::get('/laporan/alumni/cetak/excel', [LaporanController::class, 'excel_alumni'])->name('laporan.excel-alumni');
     });
 
 Route::get('/', [HomeController::class, 'home'])->name('home');

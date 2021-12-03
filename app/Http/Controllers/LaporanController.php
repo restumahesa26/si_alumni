@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AlumniExport;
+use App\Exports\MahasiswaExport;
 use App\Models\Alumni;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanController extends Controller
 {
@@ -21,7 +24,7 @@ class LaporanController extends Controller
     {
         $items = Mahasiswa::all();
 
-        if ($items >= 1) {
+        if ($items->count() >= 1) {
             return view('pages.admin.laporan.mahasiswa.pdf', [
                 'items' => $items
             ]);
@@ -78,5 +81,15 @@ class LaporanController extends Controller
         } else {
             return redirect()->back()->with(['error-pdf' => 'Data Kosong, Tidak Ada Yang Perlu Dicetak']);
         }
+    }
+
+    public function excel_mahasiswa()
+    {
+        return Excel::download(new MahasiswaExport, 'mahasiswa.xlsx');
+    }
+
+    public function excel_alumni()
+    {
+        return Excel::download(new AlumniExport, 'alumni.xlsx');
     }
 }
