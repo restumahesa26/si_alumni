@@ -1,11 +1,15 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Beranda</title>
+@endsection
+
 @section('content')
 <section class="pt-4 bg-600 pb-6" id="home">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end d-none d-md-block">
-                <img class="pt-7 pt-md-0 w-80" src="{{ url('frontend/public/assets/img/gallery/hero-header.png') }}" width="470"
+                <img class="pt-7 pt-md-0 w-80" src="{{ url('bg.png') }}" width="700"
                     alt="hero-header" />
             </div>
             <div class="col-md-7 col-lg-6 text-md-start text-center py-6">
@@ -100,12 +104,12 @@
         <div class="row justify-content-center">
             <h1 class="text-center mb-5">Jumlah Alumni Tahun 2021</h1>
             <div class="col-sm-6 col-lg-3 text-center mb-5">
-                <img src="{{ url('frontend/public/assets/img/gallery/published.png') }}" height="100" alt="..." />
+                <img src="{{ url('cewek.png') }}" height="100" alt="..." />
                 <h1 class="my-2">{{ $perempuan }}</h1>
                 <p class="text-info fw-bold">PEREMPUAN</p>
             </div>
             <div class="col-sm-6 col-lg-3 text-center mb-5">
-                <img src="{{ url('frontend/public/assets/img/gallery/awards.png') }}" height="100" alt="..." />
+                <img src="{{ url('cowok.png') }}" height="100" alt="..." />
                 <h1 class="my-2">{{ $laki }}</h1>
                 <p class="text-info fw-bold">LAKI-LAKI</p>
             </div>

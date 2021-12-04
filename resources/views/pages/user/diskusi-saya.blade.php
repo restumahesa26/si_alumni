@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Pertanyaan Saya</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">
@@ -33,9 +37,9 @@
             <div class="col">
                 <div class="d-flex justify-content-end">
                     <a href="{{ route('user.ajukan-diskusi') }}">
-                        <button class="btn btn-primary" type="button" aria-expanded="false">
+                        <button class="btn btn-secondary" type="button" aria-expanded="false">
                             Ajukan Pertanyaan
-                            <i class="fas fa-plus-circle text-secondary"></i>
+                            <i class="fas fa-plus-circle text-white"></i>
                         </button>
                     </a>
                 </div>

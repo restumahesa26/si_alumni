@@ -14,7 +14,7 @@ class AddFieldAngkatanToMahasiswaTable extends Migration
     public function up()
     {
         Schema::table('mahasiswas', function (Blueprint $table) {
-            $table->integer('angkatan');
+            $table->integer('angkatan')->nullable();
         });
     }
 

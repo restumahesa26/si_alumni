@@ -17,9 +17,9 @@
 
             <!-- Email Address -->
             <div>
-                <x-label for="npm" :value="__('NPM')" />
+                <x-label for="login" :value="__('NPM')" />
 
-                <x-input id="npm" class="block mt-1 w-full" type="text" name="npm" :value="old('npm')" required autofocus />
+                <x-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required autofocus />
             </div>
 
             <!-- Password -->

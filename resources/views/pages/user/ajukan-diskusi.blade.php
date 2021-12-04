@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Ajukan Diskusi</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">
@@ -44,7 +48,7 @@
                                     placeholder="Ketikkan teks disini..." cols="30" rows="10">{{ old('isi') }}</textarea>
                             </div>
                             <div class="col-md-12 mt-5 text-end">
-                                <button class="btn btn-lg btn-primary fs-lg-1" type="submit" aria-expanded="false">
+                                <button class="btn btn-lg btn-secondary fs-lg-1" type="submit" aria-expanded="false">
                                     Kirim
                                 </button>
                             </div>

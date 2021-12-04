@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Loker</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">
@@ -10,13 +14,13 @@
                 </div>
                 @if (Auth::user() && Auth::user()->role === 'ADMIN')
 
-                @elseif (Auth::user() && Auth::user()->role !== 'ADMIN')
+                @elseif (Auth::user() && Auth::user()->role === 'ALUMNI')
                 <div class="col-auto">
                     <div class="">
                         <a href="{{ route('user.ajukan-loker') }}">
                             <button class="btn btn-lg btn-secondary ms-2" type="submit" aria-expanded="false">
                                 Ajukan Loker
-                                <i class="fas fa-plus-circle text-secondary"></i>
+                                <i class="fas fa-plus-circle text-white"></i>
                             </button>
                         </a>
                     </div>

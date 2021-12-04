@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Detail Berita</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">

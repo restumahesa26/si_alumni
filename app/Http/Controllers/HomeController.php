@@ -20,9 +20,9 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $berita = Berita::inRandomOrder()->limit(6)->get();
-        $loker = Loker::inRandomOrder()->limit(6)->orderBy('created_at', 'DESC')->get();
-        $diskusi = Diskusi::inRandomOrder()->limit(6)->orderBy('created_at', 'DESC')->get();
+        $berita = Berita::inRandomOrder()->limit(3)->get();
+        $loker = Loker::inRandomOrder()->limit(3)->orderBy('created_at', 'DESC')->get();
+        $diskusi = Diskusi::inRandomOrder()->limit(3)->orderBy('created_at', 'DESC')->get();
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
 
@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
-        $alumni = Alumni::paginate(1);
+        $alumni = Alumni::paginate(10);
 
         return view('pages.user.daftar-alumni', [
             'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'alumnis' => $alumni
@@ -59,7 +59,7 @@ class HomeController extends Controller
 
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
-        $alumni = Alumni::where('pekerjaan','like',"%".$cari."%")->orWhere('tempat_pekerjaan','like',"%".$cari."%")->orWhereYear('tanggal_wisuda','like',"%".$cari."%")->paginate(1);
+        $alumni = Alumni::where('pekerjaan','like',"%".$cari."%")->orWhere('tempat_pekerjaan','like',"%".$cari."%")->orWhereYear('tanggal_wisuda','like',"%".$cari."%")->paginate(10);
 
         if ($alumni->count() >= 1) {
             return view('pages.user.daftar-alumni', [
@@ -72,7 +72,7 @@ class HomeController extends Controller
 
     public function berita()
     {
-        $berita = Berita::inRandomOrder()->paginate(1);
+        $berita = Berita::inRandomOrder()->paginate(9);
         $berita2 = Berita::where('is_populer', '1')->get();
 
         return view('pages.user.berita', [
@@ -119,7 +119,7 @@ class HomeController extends Controller
     {
         $cari = $request->search;
 
-        $berita = Berita::orderBy('created_at', 'DESC')->where('judul','like',"%".$cari."%")->get();
+        $berita = Berita::orderBy('created_at', 'DESC')->where('judul','like',"%".$cari."%")->paginate(9);
         $berita2 = Berita::where('is_populer', '1')->get();
 
         return view('pages.user.berita', [
@@ -129,7 +129,7 @@ class HomeController extends Controller
 
     public function loker()
     {
-        $loker = Loker::where('status', '1')->paginate(2);
+        $loker = Loker::where('status', '1')->paginate(8);
         $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(6);
 
         return view('pages.user.loker', [
@@ -211,7 +211,7 @@ class HomeController extends Controller
     {
         $cari = $request->search;
 
-        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(2);
+        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(8);
 
         if ($tipe == 'pekerjaan') {
             $items = Loker::where('nama_kerja','like',"%".$cari."%")->paginate(2);
@@ -228,7 +228,7 @@ class HomeController extends Controller
 
     public function diskusi()
     {
-        $diskusi = Diskusi::where('status', '1')->orderBy('created_at', 'DESC')->paginate(2);
+        $diskusi = Diskusi::where('status', '1')->orderBy('created_at', 'DESC')->paginate(8);
 
         return view('pages.user.diskusi', [
             'diskusis' => $diskusi
@@ -305,7 +305,13 @@ class HomeController extends Controller
 
     public function search_diskusi(Request $request)
     {
-        //
+        $cari = $request->search;
+
+        $diskusi = Diskusi::orderBy('created_at', 'DESC')->where('judul','like',"%".$cari."%")->paginate(8);
+
+        return view('pages.user.diskusi', [
+            'diskusis' => $diskusi
+        ]);
     }
 
     public function data_saya()

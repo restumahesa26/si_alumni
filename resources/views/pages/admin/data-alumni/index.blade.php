@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Admin | Data Alumni</title>
+@endsection
+
 @section('content')
 <div class="content-body">
     <div class="container-fluid">
@@ -99,7 +103,7 @@
                                                 Lihat
                                             </button>
                                             <a href="{{ route('data-alumni.edit', $item->id) }}"
-                                                class="btn btn-primary btn-sm mr-1">Edit</a>
+                                                class="btn btn-primary btn-sm mr-1">Ubah</a>
                                             <form action="{{ route('data-alumni.destroy', $item->id) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf

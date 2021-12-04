@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Deatil Alumni</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">
@@ -78,12 +82,12 @@
         <div class="row justify-content-center">
             <h1 class="text-center mb-5">Jumlah Alumni Tahun 2021</h1>
             <div class="col-sm-6 col-lg-3 text-center mb-5">
-                <img src="{{ url('frontend/public/assets/img/gallery/published.png') }}" height="100" alt="..." />
+                <img src="{{ url('cewek.png') }}" height="100" alt="..." />
                 <h1 class="my-2">{{ $perempuan }}</h1>
                 <p class="text-info fw-bold">PEREMPUAN</p>
             </div>
             <div class="col-sm-6 col-lg-3 text-center mb-5">
-                <img src="{{ url('frontend/public/assets/img/gallery/awards.png') }}" height="100" alt="..." />
+                <img src="{{ url('cowok.png') }}" height="100" alt="..." />
                 <h1 class="my-2">{{ $laki }}</h1>
                 <p class="text-info fw-bold">LAKI-LAKI</p>
             </div>

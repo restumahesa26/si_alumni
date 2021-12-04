@@ -26,7 +26,10 @@
 <!-- ============================================-->
 <nav class="navbar navbar-expand-lg navbar-light sticky-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ url('logo-unib.png') }}" alt="" style="width: 80px" />SI Alumni</a>
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{ url('logo-unib.png') }}" alt="" style="width: 70px" />
+            <span class="mt-3">SI Alumni</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"> </span>

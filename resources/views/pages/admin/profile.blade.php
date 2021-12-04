@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Admin | Profile</title>
+@endsection
+
 @section('content')
 <div class="content-body">
     <div class="container-fluid">

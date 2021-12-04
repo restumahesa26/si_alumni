@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Diskusi</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">
@@ -10,8 +14,8 @@
                 </div>
                 <div class="col-auto">
                     <div class="d-flex">
-                        <form>
-                            <input class="form-control" type="search" placeholder="Cari Diskusi"
+                        <form action="{{ route('user.search-diskusi') }}">
+                            <input class="form-control" name="search" type="search" placeholder="Cari Diskusi"
                                 aria-label="Search" />
                         </form>
                         <button class="btn btn-outline-light ms-2" type="submit" aria-expanded="false">
@@ -27,7 +31,7 @@
                 <a href="{{ route('user.diskusi-saya') }}">
                     <button class="btn btn-lg btn-secondary" type="button" aria-expanded="false">
                         Pertanyaan Saya
-                        <i class="fas fa-comment text-secondary"></i>
+                        <i class="fas fa-comment text-white"></i>
                     </button>
                 </a>
             </div>
@@ -36,7 +40,7 @@
                     <a href="{{ route('user.ajukan-diskusi') }}">
                         <button class="btn btn-lg btn-secondary" type="button" aria-expanded="false">
                             Ajukan Pertanyaan
-                            <i class="fas fa-plus-circle text-secondary"></i>
+                            <i class="fas fa-plus-circle text-white"></i>
                         </button>
                     </a>
                 </div>

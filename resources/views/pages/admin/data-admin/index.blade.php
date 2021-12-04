@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Admin | Data Admin</title>
+@endsection
+
 @section('content')
     <div class="content-body">
         <div class="container-fluid">
@@ -47,7 +51,7 @@
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>
-                                                <a href="{{ route('data-admin.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Edit</a>
+                                                <a href="{{ route('data-admin.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Ubah</a>
                                                 <form action="{{ route('data-admin.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

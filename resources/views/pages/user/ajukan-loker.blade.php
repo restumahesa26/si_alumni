@@ -1,5 +1,9 @@
 @extends('layouts.user')
 
+@section('title')
+    <title>SI ATI | Ajukan Loker</title>
+@endsection
+
 @section('content')
 <section class="pb-0">
     <div class="container">
@@ -34,7 +38,7 @@
                                             alt="alumni-profile" width="100px" class="btn" id="logo_url" />
                                     </label>
                                     <label for="logo">
-                                        <a class="btn btn-warning" rel="nofollow">Upload Logo</a>
+                                        <a class="btn btn-secondary" rel="nofollow">Upload Logo</a>
                                     </label>
                                     <input class="d-none" type="file" name="logo" id="logo" />
                                 </p>
@@ -66,7 +70,7 @@
                                     cols="30" rows="10">{{ old('isi') }}</textarea>
                             </div>
                             <div class="col-md-12 mt-5 text-end">
-                                <button class="btn btn-lg btn-primary" type="submit" aria-expanded="false">
+                                <button class="btn btn-lg btn-secondary" type="submit" aria-expanded="false">
                                     Ajukan Loker
                                 </button>
                             </div>

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Admin | Loker</title>
+@endsection
+
 @section('content')
     <div class="content-body">
         <div class="container-fluid">
@@ -56,7 +60,7 @@
                                                 @elseif ($item->status == '1')
                                                 <a href="{{ route('loker.set-non-aktif', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white">Set Non Aktif</a>
                                                 @endif
-                                                <a href="{{ route('loker.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Edit</a>
+                                                <a href="{{ route('loker.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Ubah</a>
                                                 <form action="{{ route('loker.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

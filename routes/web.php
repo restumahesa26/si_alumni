@@ -159,6 +159,8 @@ Route::get('/diskusi', [HomeController::class, 'diskusi'])->name('user.diskusi')
 
 Route::get('/diskusi/detail/{id}', [HomeController::class, 'detail_diskusi'])->name('user.detail-diskusi');
 
+Route::get('/diskusi/pencarian/', [HomeController::class, 'search_diskusi'])->name('user.search-diskusi');
+
 Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
 
 require __DIR__.'/auth.php';
