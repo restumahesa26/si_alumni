@@ -18,7 +18,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route('home') }}" class="dropdown-item">
-                                <i class="icon-envelope-open"></i>
+                                <i class="icon-book-open"></i>
                                 <span class="ml-2">Home </span>
                             </a>
                             <a href="{{ route('profile.edit') }}" class="dropdown-item">

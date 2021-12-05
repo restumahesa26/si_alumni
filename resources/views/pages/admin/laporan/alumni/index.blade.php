@@ -29,7 +29,7 @@
                         <a href="{{ route('laporan.excel-alumni') }}" class="btn btn-success btn-block text-white">Cetak Laporan Excel</a>
                         <button type="button" class="btn btn-primary btn-block mb-3" data-toggle="modal"
                             data-target="#modal-laporan">
-                            Cetak Laporan
+                            Cetak Laporan PDF
                         </button>
                         <div class="modal fade" id="modal-laporan" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">

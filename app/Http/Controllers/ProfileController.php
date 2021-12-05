@@ -116,6 +116,7 @@ class ProfileController extends Controller
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
+            'angkatan' => 'required|numeric',
         ]);
 
         if ($request->email !== Auth::user()->email) {
@@ -146,6 +147,7 @@ class ProfileController extends Controller
             $item->golongan_darah = $request->golongan_darah;
             $item->tinggi_badan = $request->tinggi_badan;
             $item->berat_badan = $request->berat_badan;
+            $item->angkatan = $request->angkatan;
             $item->save();
             $user->save();
         }elseif (Auth::user()->role == 'ALUMNI') {
@@ -165,6 +167,7 @@ class ProfileController extends Controller
             $item->status = $request->status;
             $item->asal_slta = $request->asal_slta;
             $item->ipk = $request->ipk;
+            $item->angkatan = $request->angkatan;
             $item->save();
             $user->save();
         }

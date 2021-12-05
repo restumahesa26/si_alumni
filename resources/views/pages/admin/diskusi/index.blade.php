@@ -39,7 +39,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Judul</th>
+                                            <th>Judul Diskusi</th>
                                             <th>Nama Pembagi</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -57,7 +57,7 @@
                                                 @elseif ($item->status == '1')
                                                 <a href="{{ route('diskusi.set-non-aktif', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white">Set Non Aktif</a>
                                                 @endif
-                                                <a href="{{ route('diskusi.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">ubah</a>
+                                                <a href="{{ route('diskusi.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Ubah</a>
                                                 <form action="{{ route('diskusi.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

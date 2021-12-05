@@ -12,6 +12,16 @@
                 <div class="col">
                     <h1 class="fs-lg-6">Data Saya</h1>
                 </div>
+                @if (Auth::user()->role === 'ALUMNI')
+                <div class="col">
+                    <div class="d-flex justify-content-end">
+                        <a href="{{ route('user.cetak-form-data') }}" class="btn btn-lg btn-secondary" target="_blank">Cetak Form Data</a>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        <a href="{{ route('user.cetak-biodata-wisudawan') }}" class="btn btn-lg btn-secondary" target="_blank">Cetak Biodata Wisudawan</a>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -99,16 +109,22 @@
                                 <h1>Data Pribadi</h1>
                             </div>
                             <div class="col d-grid gap-3 pt-3 pb-4">
-                                <div class="d-grid">
-                                    <label for="agama">Agama</label>
-                                    <select class="form-select" name="agama" id="agama">
-                                        <option hidden>Agama Anda...</option>
-                                        <option value="Islam" @if($user->agama == 'Islam') selected @endif>Islam</option>
-                                        <option value="Kristen" @if($user->agama == 'Kristen') selected @endif>Kristen</option>
-                                        <option value="Hindu" @if($user->agama == 'Hindu') selected @endif>Hindu</option>
-                                        <option value="Buddha" @if($user->agama == 'Buddha') selected @endif>Buddha</option>
-                                        <option value="Konghucu" @if($user->agama == 'Konghucu') selected @endif>Konghucu</option>
-                                    </select>
+                                <div class="d-flex">
+                                    <div class="col-md-6 pe-3">
+                                        <label for="agama">Agama</label>
+                                        <select class="form-select" name="agama" id="agama">
+                                            <option hidden>Agama Anda...</option>
+                                            <option value="Islam" @if($user->agama == 'Islam') selected @endif>Islam</option>
+                                            <option value="Kristen" @if($user->agama == 'Kristen') selected @endif>Kristen</option>
+                                            <option value="Hindu" @if($user->agama == 'Hindu') selected @endif>Hindu</option>
+                                            <option value="Buddha" @if($user->agama == 'Buddha') selected @endif>Buddha</option>
+                                            <option value="Konghucu" @if($user->agama == 'Konghucu') selected @endif>Konghucu</option>
+                                        </select>
+                                        </div>
+                                    <div class="col-md-6">
+                                        <label for="angkatan">Angkatan</label>
+                                            <input class="form-control" name="angkatan" id="angkatan" type="number" placeholder="Angkatan...." value="{{ $user->angkatan }}">
+                                    </div>
                                 </div>
                                 <div class="d-flex">
                                     <div class="col-md-6 pe-3">
@@ -174,7 +190,7 @@
                                         <div class="input-group">
                                             <input class="form-control" name="tinggi_badan" id="tinggi_badan"
                                                 type="number" placeholder="Tinggi Badan Anda...." value="{{ $user->tinggi_badan }}">
-                                            <span class="input-group-text" id="basic-addon2">Meter</span>
+                                            <span class="input-group-text" id="basic-addon2">CM</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -469,6 +485,7 @@
 @endsection
 
 @push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
     <script>
         function bacaGambar(input) {
             if (input.files && input.files[0]) {
@@ -484,6 +501,18 @@
 
         $("#foto").change(function(){
             bacaGambar(this);
+        });
+    </script>
+
+    <script>
+        $('input[type="text"], input[type="email"], input[type="number"], select option').each(function() {
+            if ($(this).val() != "") {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Perhatian',
+                    text: 'Mohon Lengkapi Data'
+                })
+            }
         });
     </script>
 @endpush

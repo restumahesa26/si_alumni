@@ -70,6 +70,11 @@ Route::middleware(['auth','alumni'])
         Route::get('/user/loker/ajukan-loker', [HomeController::class, 'ajukan_loker'])->name('user.ajukan-loker');
 
         Route::post('/user/loker/ajukan-loker/store', [HomeController::class, 'ajukan_loker_store'])->name('user.ajukan-loker-store');
+
+        Route::get('/cetak-form-data', [HomeController::class, 'cetak_form_data'])->name('user.cetak-form-data');
+
+        Route::get('/cetak-biodata-wisudawan', [HomeController::class, 'cetak_biodata_wisudawan'])->name('user.cetak-biodata-wisudawan');
+
     });
 
 Route::prefix('admin')

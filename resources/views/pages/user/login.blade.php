@@ -22,7 +22,7 @@
                                 <div class="col-md-8 mt-1 text-center">
                                     <input type="text" name="login" id="login" class="form-control @error('login')
                                     is-invalid
-                                @enderror" placeholder="NPM">
+                                @enderror" placeholder="NPM atau Email">
                                 </div>
                             </div>
                             <div class="form-group row mt-3 justify-content-center">

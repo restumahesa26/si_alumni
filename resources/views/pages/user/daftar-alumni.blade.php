@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-md-12">
-                <div class="table-responsive">
+                <div class="table-responsive d-none d-md-block">
                     <table class="table table-striped table-hover display nowrap align-middle" id="table">
                         <thead>
                             <tr>
@@ -45,6 +45,31 @@
                                 <td>{{ $item->users->npm }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_wisuda)->translatedFormat('Y') }}</td>
                                 <td>{{ $item->pekerjaan }}</td>
+                                <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-info">Detail</button></a></td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-5">-- Data Alumni Kosong --</td>
+                            </tr>
+                            @endforelse
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-sm-block d-md-none">
+                    <table class="table table-striped table-hover display nowrap align-middle" id="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($alumnis as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->users->nama }}</td>
                                 <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-info">Detail</button></a></td>
                             </tr>
                             @empty

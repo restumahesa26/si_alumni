@@ -32,7 +32,7 @@
     <div class="container border-bottom border-2 border-secondary" style="margin-top: 2rem">
         <div class="row">
             <div class="text-center">
-                <img src="{{ asset('storage/assets/berita-thumbnail/' . $berita->thumbnail) }}" alt="gambar-berita" />
+                <img src="{{ asset('storage/assets/berita-thumbnail/' . $berita->thumbnail) }}" alt="gambar-berita" style="width: 80%; height: auto;" />
                 <p class="pt-2">Ket: Gambar Thumbnail Berita</p>
             </div>
         </div>

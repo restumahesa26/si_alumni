@@ -46,11 +46,11 @@
                         <div class="col">
                             <p>
                                 <h4>Deskripsi Pekerjaan</h1>
-                                    {!! $loker->isi !!}
+                                <p>{!! $loker->isi !!}</p>
                             </p>
                         </div>
                     </div>
-                    <div class="border-bottom border-2 border-secondary">
+                    <div class="">
                         <div class="row mt-5 ms-4 me-4">
                             <h2>Tanya Jawab</h2>
                         </div>

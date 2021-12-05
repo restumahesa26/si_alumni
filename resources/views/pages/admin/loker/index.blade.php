@@ -39,9 +39,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Nama Kerja</th>
-                                            <th>Tempat Kerja</th>
-                                            <th>Lokasi Kerja</th>
+                                            <th>Nama Pekerjaan</th>
+                                            <th>Nama Perusahaan</th>
+                                            <th>Lokasi Perusahaan</th>
                                             <th>Nama Pembagi</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -66,7 +66,7 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm mr-1 btn-hapus">Hapus</button>
                                                 </form>
-                                                <a href="{{ route('loker.show', $item->id) }}" class="btn btn-info btn-sm mr-1 text-white">Lihat Diskusi</a>
+                                                <a href="{{ route('loker.show', $item->id) }}" class="btn btn-info btn-sm mr-1 text-white">Lihat Loker</a>
                                             </td>
                                         </tr>
                                         @empty

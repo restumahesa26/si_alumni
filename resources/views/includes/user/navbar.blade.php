@@ -28,7 +28,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ url('logo-unib.png') }}" alt="" style="width: 70px" />
-            <span class="mt-3">SI Alumni</span>
+            <span>SI Alumni</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,13 +59,16 @@
                 @endif
                 @if (Auth::user())
                 <div class="nav-item px-2 btn-group">
-                    <a class="d-flex align-items-center" href="">
+                    <a class="d-flex align-items-center" href="{{ route('user.data-saya') }}">
                         <img class="img-profile rounded-circle border-secondary" alt="image"
                             src="{{ url('frontend/public/assets/img/favicons/logo-bulat1.png') }}" height="30" />
                     </a>
+                    @php
+                        $list = explode(' ', Auth::user()->nama, 2);
+                    @endphp
                     <a role="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" id="userDropdown" class="text-lowercase">
-                        {{ Auth::user()->role }}
+                        {{ $list[0] }}
                     </a>
                     <ul class="
                     dropdown-menu dropdown-menu-end

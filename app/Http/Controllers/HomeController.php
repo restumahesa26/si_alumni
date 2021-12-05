@@ -328,4 +328,20 @@ class HomeController extends Controller
             'user' => $user
         ]);
     }
+
+    public function cetak_form_data(){
+        $item = Alumni::where('user_id', Auth::user()->id)->first();
+
+        return view('pages.user.form-data', [
+            'item' => $item
+        ]);
+    }
+
+    public function cetak_biodata_wisudawan(){
+        $item = Alumni::where('user_id', Auth::user()->id)->first();
+
+        return view('pages.user.biodata-wisudawan', [
+            'item' => $item
+        ]);
+    }
 }
