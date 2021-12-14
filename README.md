@@ -1,3 +1,5 @@
+![Screenshot 2021-12-14 154743](https://user-images.githubusercontent.com/58359912/145964419-3639e0f9-9351-4600-a6a3-da9c99fafb73.png)
+
 <h1>Sistem Informasi Alumni Informatika UNIB</h1>
 
 <h3>Cara Instal Program</h3>
