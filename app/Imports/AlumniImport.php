@@ -7,9 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class AlumniImport implements ToCollection, WithStartRow
+class AlumniImport implements ToCollection
 {
     /**
     * @param array $row
@@ -19,6 +18,7 @@ class AlumniImport implements ToCollection, WithStartRow
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
+
             $user = User::create([
                 'npm' => $row[1],
                 'nama' => $row[2],
@@ -54,7 +54,8 @@ class AlumniImport implements ToCollection, WithStartRow
                 'dosen_pembimbing_2' => $row[27],
                 'dosen_penguji_1' => $row[28],
                 'dosen_penguji_2' => $row[29],
-                'jumlah_sks' => $row[30]
+                'jumlah_sks' => $row[30],
+                'angkatan' => $row[34]
             ]);
         }
     }
@@ -66,10 +67,5 @@ class AlumniImport implements ToCollection, WithStartRow
         } catch (\ErrorException $e) {
             return \Carbon\Carbon::createFromFormat($format, $value);
         }
-    }
-
-    public function startRow(): int
-    {
-        return 2;
     }
 }

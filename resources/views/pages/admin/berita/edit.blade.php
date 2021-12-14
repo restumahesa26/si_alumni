@@ -108,7 +108,7 @@
                 if (result.isConfirmed) {
                     form.submit();
                 }else {
-                    Swal.fire('Data Batal Disimpan');
+                    //
                 }
             });
         });

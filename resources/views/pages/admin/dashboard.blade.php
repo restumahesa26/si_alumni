@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-world text-pink border-pink"></i>
+                            <i class="ti-world text-warning border-warning"></i>
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Diskusi</div>

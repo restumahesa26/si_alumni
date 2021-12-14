@@ -7,18 +7,19 @@ use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class MahasiswaImport implements ToCollection, WithStartRow
+class MahasiswaImport implements ToCollection
 {
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) {
+
             $user = User::create([
                 'npm' => $row[1],
                 'nama' => $row[2],
@@ -41,7 +42,21 @@ class MahasiswaImport implements ToCollection, WithStartRow
                 'no_hp' => $row[13],
                 'golongan_darah' => $row[15],
                 'tinggi_badan' => $row[16],
-                'berat_badan' => $row[17]
+                'berat_badan' => $row[17],
+                'status' => $row[18],
+                'judul_skripsi' => $row[19],
+                'asal_slta' => $row[20],
+                'tanggal_wisuda' => $this->transformDate($row[21]),
+                'tanggal_sidang' => $this->transformDate($row[22]),
+                'bobot_sks' => $row[23],
+                'tanggal_seminar_proposal' => $this->transformDate($row[24]),
+                'tanggal_mulai_bimbingan' => $this->transformDate($row[25]),
+                'dosen_pembimbing_1' => $row[26],
+                'dosen_pembimbing_2' => $row[27],
+                'dosen_penguji_1' => $row[28],
+                'dosen_penguji_2' => $row[29],
+                'jumlah_sks' => $row[30],
+                'angkatan' => $row[34]
             ]);
         }
     }
@@ -53,10 +68,5 @@ class MahasiswaImport implements ToCollection, WithStartRow
         } catch (\ErrorException $e) {
             return \Carbon\Carbon::createFromFormat($format, $value);
         }
-    }
-
-    public function startRow(): int
-    {
-        return 2;
     }
 }

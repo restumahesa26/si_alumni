@@ -53,9 +53,9 @@
                                             </td>
                                             <td>
                                                 @if ($item->status == '0')
-                                                <a href="{{ route('diskusi.set-aktif', $item->id) }}" class="btn btn-success btn-sm mr-1 text-white">Set Aktif</a>
+                                                <a href="{{ route('diskusi.set-aktif', $item->id) }}" class="btn btn-success btn-sm mr-1 text-white btn-set-aktif">Set Aktif</a>
                                                 @elseif ($item->status == '1')
-                                                <a href="{{ route('diskusi.set-non-aktif', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white">Set Non Aktif</a>
+                                                <a href="{{ route('diskusi.set-non-aktif', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white btn-set-non-aktif">Set Non Aktif</a>
                                                 @endif
                                                 <a href="{{ route('diskusi.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Ubah</a>
                                                 <form action="{{ route('diskusi.destroy', $item->id) }}" method="POST" class="d-inline">
@@ -108,15 +108,57 @@
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Hapus',
             cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();
                 }else {
-                    Swal.fire('Data Batal Dihapus');
+                    //
+                }
+            });
+        });
+
+        $('.btn-set-aktif').on('click', function (event) {
+            event.preventDefault(); // prevent form submit
+            var form = $(this).attr('href');
+            Swal.fire({
+                title: 'Set Aktif?',
+                text: "Jadikan Status Aktif",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = form;
+                }else {
+                    //
+                }
+            });
+        });
+
+        $('.btn-set-non-aktif').on('click', function (event) {
+            event.preventDefault(); // prevent form submit
+            var form = $(this).attr('href');
+            Swal.fire({
+                title: 'Set Tidak Aktif?',
+                text: "Jadikan Status Non Aktif",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = form;
+                }else {
+                    //
                 }
             });
         });

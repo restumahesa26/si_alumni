@@ -263,11 +263,7 @@ class MahasiswaController extends Controller
 
         $file = $request->file('file');
 
-        $nama_file = rand().$file->getClientOriginalName();
-
-        $file->move('file-import', $nama_file);
-
-        Excel::import(new MahasiswaImport, public_path('file-import/'. $nama_file));
+        Excel::import(new MahasiswaImport, $file);
 
         return redirect()->route('data-mahasiswa.index')->with(['success' => 'Berhasil Mengimport Data Mahasiswa']);
     }

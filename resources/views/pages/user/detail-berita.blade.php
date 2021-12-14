@@ -86,7 +86,7 @@
                             <textarea class="form-control" name="komentar" id="komentar"
                                 placeholder="Tambahkan komentar disini..."></textarea>
                             <div class="col-md-12 d-flex justify-content-end">
-                                <button class="btn btn-primary mt-3" type="submit">
+                                <button class="btn btn-secondary mt-3" type="submit">
                                     Kirim
                                 </button>
                             </div>

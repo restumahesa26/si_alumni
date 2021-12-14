@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <a href="{{ route('data-mahasiswa.create') }}"
                             class="btn btn-primary px-4 text-white mb-2">Tambah Data Mahasiswa</a>
-                        <button type="button" class="btn btn-primary px-4 mb-2" data-toggle="modal"
+                        <button type="button" class="btn btn-info px-4 mb-2 text-white" data-toggle="modal"
                             data-target="#modal-import">
                             Import Database
                         </button>
@@ -51,18 +51,18 @@
                                         </button>
                                     </div>
                                     <form action="{{ route('import-mahasiswa-excel') }}" method="POST" enctype="multipart/form-data">
-                                    <div class="modal-body">
                                         {{ csrf_field() }}
-                                        <div class="form-group">
-                                            <label for="file">Pilih file yang ingin diimport</label>
-                                            <input type="file" class="form-control" name="file" id="file">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="file">Pilih file yang ingin diimport</label>
+                                                <input type="file" class="form-control" name="file" id="file">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger"
-                                            data-dismiss="modal">Batal</button>
-                                        <button type='submit' class='btn btn-primary'>Import</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Batal</button>
+                                            <button type='submit' class='btn btn-primary'>Import</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                             <h5>Tempat, Tanggal Lahir</h5>
                         </div>
                         <div class="col-lg-8">
-                            <h5>{{ $item->tempat_lahir }}, @if ($item->tanggal_lahir)
+                            <h5>{{ $item2->tempat_lahir }}, @if ($item2->tanggal_lahir)
                                 {{ Carbon\Carbon::parse($item->tanggal_lahir)->translatedFormat('d F Y') }}
                             @endif </h5>
                         </div>
@@ -317,15 +317,15 @@
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Hapus',
             cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();
                 }else {
-                    Swal.fire('Data Batal Dihapus');
+                    //
                 }
             });
         });

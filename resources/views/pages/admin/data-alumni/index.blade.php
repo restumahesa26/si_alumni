@@ -35,7 +35,7 @@
                     <div class="card-body">
                         <a href="{{ route('data-alumni.create') }}" class="btn btn-primary px-4 text-white mb-2">Tambah
                             Data Alumni</a>
-                        <button type="button" class="btn btn-primary px-4 mb-2" data-toggle="modal"
+                        <button type="button" class="btn btn-info px-4 mb-2 text-white" data-toggle="modal"
                             data-target="#modal-import">
                             Import Database
                         </button>
@@ -316,15 +316,15 @@
         icon: 'warning',
         allowOutsideClick: false,
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
         confirmButtonText: 'Hapus',
         cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 form.submit();
             }else {
-                Swal.fire('Data Batal Dihapus');
+                //
             }
         });
     });

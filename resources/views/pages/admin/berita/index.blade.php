@@ -61,9 +61,9 @@
                                             </td>
                                             <td>
                                                 @if ($item->is_populer == 0)
-                                                <a href="{{ route('berita.set-populer', $item->id) }}" class="btn btn-info btn-sm mr-1 text-white">Set Populer</a>
+                                                <a href="{{ route('berita.set-populer', $item->id) }}" class="btn btn-info btn-sm mr-1 text-white btn-set-populer">Set Populer</a>
                                                 @else
-                                                <a href="{{ route('berita.set-not-populer', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white">Set Non Populer</a>
+                                                <a href="{{ route('berita.set-not-populer', $item->id) }}" class="btn btn-warning btn-sm mr-1 text-white btn-set-non-populer">Set Non Populer</a>
                                                 @endif
                                                 <a href="{{ route('berita.edit', $item->id) }}" class="btn btn-primary btn-sm mr-1">Ubah</a>
                                                 <form action="{{ route('berita.destroy', $item->id) }}" method="POST" class="d-inline">
@@ -116,15 +116,57 @@
             icon: 'warning',
             allowOutsideClick: false,
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Hapus',
             cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     form.submit();
                 }else {
-                    Swal.fire('Data Batal Dihapus');
+                    //
+                }
+            });
+        });
+
+        $('.btn-set-populer').on('click', function (event) {
+            event.preventDefault(); // prevent form submit
+            var form = $(this).attr('href');
+            Swal.fire({
+                title: 'Set Sebagai Berita Populer?',
+                text: "Jadikan Sebagai Berita Populer",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = form;
+                }else {
+                    //
+                }
+            });
+        });
+
+        $('.btn-set-non-populer').on('click', function (event) {
+            event.preventDefault(); // prevent form submit
+            var form = $(this).attr('href');
+            Swal.fire({
+                title: 'Set Sebagai Berita Non Populer?',
+                text: "Jadikan Sebagai Berita Non Populer",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = form;
+                }else {
+                    //
                 }
             });
         });

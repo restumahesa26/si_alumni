@@ -503,16 +503,4 @@
             bacaGambar(this);
         });
     </script>
-
-    <script>
-        $('input[type="text"], input[type="email"], input[type="number"], select option').each(function() {
-            if ($(this).val() != "") {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Perhatian',
-                    text: 'Mohon Lengkapi Data'
-                })
-            }
-        });
-    </script>
 @endpush

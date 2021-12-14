@@ -327,11 +327,7 @@ class AlumniController extends Controller
 
         $file = $request->file('file');
 
-        $nama_file = rand().$file->getClientOriginalName();
-
-        $file->move('file-import', $nama_file);
-
-        Excel::import(new AlumniImport, public_path('file-import/'. $nama_file));
+        Excel::import(new AlumniImport, $file);
 
         return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Mengimport Data Alumni']);
     }
