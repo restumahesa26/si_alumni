@@ -16,10 +16,10 @@
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Diskusi</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Detail Data</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $item->judul }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('diskusi.index') }}">Diskusi</a></li>
+                    <li class="breadcrumb-item"><a href="#">Detail Data</a></li>
+                    <li class="breadcrumb-item active"><a href="#">{{ $item->judul }}</a></li>
                 </ol>
             </div>
         </div>

@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $user = User::where('id', Auth::user()->id)->first();
 
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:40',
         ]);
 
         if ($request->password) {
@@ -39,7 +39,7 @@ class ProfileController extends Controller
 
         if ($request->email != $user->email) {
             $request->validate([
-                'email' => 'required|string|max:255|email|unique:users'
+                'email' => 'required|string|max:50|email|unique:users'
             ]);
         }
 
@@ -63,12 +63,12 @@ class ProfileController extends Controller
         }
 
         $request->validate([
-            'nama' => 'required|string|max:255'
+            'nama' => 'required|string|max:40'
         ]);
 
         if (Auth::user()->role !== 'ADMIN') {
             $request->validate([
-                'npm' => 'required|string|max:255'
+                'npm' => 'required|string|max:9'
             ]);
         }
 
@@ -87,6 +87,9 @@ class ProfileController extends Controller
             $img = Image::make($thumbnailpath)->resize(600, 800)->save($thumbnailpath);
         }
 
+        if (Auth::user()->role == 'ADMIN') {
+            $user->email = $request->email;
+        }
         $user->nama = $request->nama;
         if (Auth::user()->role !== 'ADMIN') {
             $user->npm = $request->npm;
@@ -96,27 +99,29 @@ class ProfileController extends Controller
         }
         $user->save();
 
-        if ($request->foto) {
-            $item->foto = $imageNames;
+        if (Auth::user()->role !== 'ADMIN') {
+            if ($request->foto) {
+                $item->foto = $imageNames;
+            }
+            $item->save();
         }
-        $item->save();
 
-        return redirect()->route('user.data-saya');
+        return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Akun']);
     }
 
     public function data_pribadi(Request $request)
     {
         $request->validate([
-            'agama' => 'required|string|max:255|in:Islam,Kristen,Hindu,Buddha,Konghucu',
-            'tempat_lahir' => 'required|string|max:255',
+            'agama' => 'required|string|max:10',
+            'tempat_lahir' => 'required|string|max:20',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'alamat' => 'required|string|max:255',
-            'no_hp' => 'required|string|max:255',
+            'alamat' => 'required|string|max:50',
+            'no_hp' => 'required|string',
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
-            'angkatan' => 'required|numeric',
+            'angkatan' => 'required|numeric|digits:4',
         ]);
 
         if ($request->email !== Auth::user()->email) {
@@ -128,7 +133,7 @@ class ProfileController extends Controller
         if (Auth::user()->role === 'ALUMNI') {
             $request->validate([
                 'status' => 'required|in:Kawin,Belum Kawin',
-                'asal_slta' => 'required|string|max:255',
+                'asal_slta' => 'required|string|max:30',
                 'ipk' => 'required|numeric|between:0.01,4.00',
             ]);
         }
@@ -172,17 +177,17 @@ class ProfileController extends Controller
             $user->save();
         }
 
-        return redirect()->route('user.data-saya');
+        return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Pribadi']);
     }
 
     public function data_orang_tua(Request $request)
     {
         $request->validate([
-            'nama_ayah' => 'required|string|max:255',
-            'nama_ibu' => 'required|string|max:255',
-            'alamat_orang_tua' => 'required|string|max:255',
-            'pekerjaan_ayah' => 'required|string|max:255',
-            'pekerjaan_ibu' => 'required|string|max:255',
+            'nama_ayah' => 'required|string|max:40',
+            'nama_ibu' => 'required|string|max:40',
+            'alamat_orang_tua' => 'required|string|max:50',
+            'pekerjaan_ayah' => 'required|string|max:20',
+            'pekerjaan_ibu' => 'required|string|max:20',
         ]);
 
         if (Auth::user()->role === 'ALUMNI') {
@@ -198,7 +203,7 @@ class ProfileController extends Controller
         $item->pekerjaan_ibu = $request->pekerjaan_ibu;
         $item->save();
 
-        return redirect()->route('user.data-saya');
+        return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Orang Tua']);
     }
 
     public function data_skripsi(Request $request)
@@ -220,18 +225,18 @@ class ProfileController extends Controller
         $item->tanggal_wisuda = $request->tanggal_wisuda;
         $item->save();
 
-        return redirect()->route('user.data-saya');
+        return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Skripsi']);
     }
 
     public function data_bimbingan_skripsi(Request $request)
     {
         $request->validate([
             'tanggal_mulai_bimbingan' => 'required|date',
-            'dosen_pembimbing_1' => 'required|string|max:255',
-            'dosen_pembimbing_2' => 'required|string|max:255',
-            'dosen_penguji_1' => 'required|string|max:255',
-            'dosen_penguji_2' => 'required|string|max:255',
-            'jumlah_sks' => 'required|numeric',
+            'dosen_pembimbing_1' => 'required|string|max:40',
+            'dosen_pembimbing_2' => 'required|string|max:40',
+            'dosen_penguji_1' => 'required|string|max:40',
+            'dosen_penguji_2' => 'required|string|max:40',
+            'jumlah_sks' => 'required|numeric|digits:3',
         ]);
 
         $item = Alumni::where('user_id', Auth::user()->id)->first();
@@ -244,6 +249,6 @@ class ProfileController extends Controller
         $item->jumlah_sks = $request->jumlah_sks;
         $item->save();
 
-        return redirect()->route('user.data-saya');
+        return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Bimbingan Skripsi']);
     }
 }

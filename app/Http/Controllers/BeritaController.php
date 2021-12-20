@@ -43,7 +43,7 @@ class BeritaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'judul' => 'required|string|max:50',
             'isi' => 'required|string',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg',
         ]);
@@ -105,7 +105,7 @@ class BeritaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'judul' => 'required|string|max:50',
             'isi' => 'required|string'
         ]);
 

@@ -13,6 +13,12 @@
 
     @stack('addon-style')
 
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif !important;
+        }
+    </style>
+
 </head>
 
 <body>

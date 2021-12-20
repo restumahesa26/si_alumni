@@ -17,7 +17,7 @@ class CreateBeritaKomentarsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('berita_id')->references('id')->on('beritas');
-            $table->string('komentar');
+            $table->text('komentar');
             $table->timestamps();
         });
     }

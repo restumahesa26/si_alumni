@@ -44,8 +44,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => 'required|string|max:255|email|unique:users',
-            'nama' => 'required|string|max:255',
+            'email' => 'required|string|max:50|email|unique:users',
+            'nama' => 'required|string|max:40',
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
@@ -95,7 +95,7 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:40',
         ]);
 
         if ($request->password) {
@@ -108,7 +108,7 @@ class AdminController extends Controller
 
         if ($request->email != $user->email) {
             $request->validate([
-                'email' => 'required|string|max:255|email|unique:users',
+                'email' => 'required|string|max:50|email|unique:users',
             ]);
         }
 

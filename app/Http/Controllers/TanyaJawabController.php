@@ -13,7 +13,7 @@ class TanyaJawabController extends Controller
     public function tanya_jawab_loker(Request $request, $id)
     {
         $request->validate([
-            'tanya_jawab' => 'required|string|max:255'
+            'tanya_jawab' => 'required|string'
         ]);
 
         LokerTanyaJawab::create([
@@ -41,7 +41,7 @@ class TanyaJawabController extends Controller
     public function tanya_jawab_diskusi(Request $request, $id)
     {
         $request->validate([
-            'tanya_jawab' => 'required|string|max:255'
+            'tanya_jawab' => 'required|string'
         ]);
 
         DiskusiTanyaJawab::create([
@@ -69,7 +69,7 @@ class TanyaJawabController extends Controller
     public function komentar_berita(Request $request, $id)
     {
         $request->validate([
-            'komentar' => 'required|string|max:255'
+            'komentar' => 'required|string'
         ]);
 
         BeritaKomentar::create([

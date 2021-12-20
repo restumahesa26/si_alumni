@@ -79,9 +79,11 @@
                                 @endif
                             </td>
                             <td>
-                                <h2>{{ $item->nama_kerja }}</h1>
-                                <p>{{ $item->tempat_kerja }} | {{ $item->lokasi_kerja }}</p>
-                                <p>{!! $item->isi !!}</p>
+                                <h2>{{ $item->jenis_pekerjaan }}</h1>
+                                <p>{{ $item->tempat_kerja }}</p>
+                            </td>
+                            <td>
+                                <p>{{ $item->lokasi_kerja }}</p>
                             </td>
                             <td><a href="{{ route('user.detail-loker', $item->id) }}"><button class="btn btn-secondary btn-lg">Detail</button></a></td>
                         </tr>

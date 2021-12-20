@@ -17,7 +17,7 @@ class CreateLokerTanyaJawabsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('loker_id')->references('id')->on('lokers');
-            $table->string('tanya_jawab');
+            $table->text('tanya_jawab');
             $table->timestamps();
         });
     }

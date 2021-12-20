@@ -16,7 +16,7 @@ class CreateDiskusisTable extends Migration
         Schema::create('diskusis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('judul');
+            $table->string('judul', 50);
             $table->text('isi');
             $table->timestamps();
         });

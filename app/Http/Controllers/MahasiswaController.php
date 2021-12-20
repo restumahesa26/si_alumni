@@ -46,25 +46,25 @@ class MahasiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'npm' => 'required|string|max:255',
-            'nama' => 'required|string|max:255',
-            'agama' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
+            'npm' => 'required|string|max:9',
+            'nama' => 'required|string|max:40',
+            'agama' => 'required|string|max:10',
+            'tempat_lahir' => 'required|string|max:20',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'alamat' => 'required|string|max:255',
-            'nama_ayah' => 'required|string|max:255',
-            'nama_ibu' => 'required|string|max:255',
-            'alamat_orang_tua' => 'required|string|max:255',
-            'pekerjaan_ayah' => 'required|string|max:255',
-            'pekerjaan_ibu' => 'required|string|max:255',
+            'alamat' => 'required|string|max:50',
+            'nama_ayah' => 'required|string|max:40',
+            'nama_ibu' => 'required|string|max:40',
+            'alamat_orang_tua' => 'required|string|max:50',
+            'pekerjaan_ayah' => 'required|string|max:20',
+            'pekerjaan_ibu' => 'required|string|max:20',
             'no_hp' => 'required|numeric',
-            'email' => 'required|string|max:255|email|unique:users',
+            'email' => 'required|string|max:50|email|unique:users',
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'angkatan' => 'required|string|max:255',
+            'angkatan' => 'required|string|digits:4',
         ]);
 
         $user = User::create([
@@ -133,22 +133,22 @@ class MahasiswaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'agama' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
+            'nama' => 'required|string|max:40',
+            'agama' => 'required|string|max:10',
+            'tempat_lahir' => 'required|string|max:20',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'alamat' => 'required|string|max:255',
-            'nama_ayah' => 'required|string|max:255',
-            'nama_ibu' => 'required|string|max:255',
-            'alamat_orang_tua' => 'required|string|max:255',
-            'pekerjaan_ayah' => 'required|string|max:255',
-            'pekerjaan_ibu' => 'required|string|max:255',
+            'alamat' => 'required|string|max:50',
+            'nama_ayah' => 'required|string|max:40',
+            'nama_ibu' => 'required|string|max:40',
+            'alamat_orang_tua' => 'required|string|max:50',
+            'pekerjaan_ayah' => 'required|string|max:20',
+            'pekerjaan_ibu' => 'required|string|max:20',
             'no_hp' => 'required|numeric',
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
-            'angkatan' => 'required|string|max:255',
+            'angkatan' => 'required|string|digits:4',
         ]);
 
         if ($request->password) {

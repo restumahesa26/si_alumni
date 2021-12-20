@@ -56,7 +56,7 @@
                             <h4>{{ $komentar->users->nama }}</h4>
                             <p class="fs--1">{{ \Carbon\Carbon::parse($komentar->created_at)->translatedFormat('l, d F Y - H:i') }}</p>
                             <p>
-                                {{ $komentar->komentar }}
+                                {!! $komentar->komentar !!}
                             </p>
                             @if (Auth::user() && $komentar->user_id === Auth::user()->id)
                             <form action="{{ route('user.komentar-delete', $komentar->id) }}" method="POST">
@@ -83,8 +83,8 @@
                         @csrf
                         <div class="col">
                             <label for="komentar" class="text-secondary fs-2 mb-3">Tambahkan Komentar</label>
-                            <textarea class="form-control" name="komentar" id="komentar"
-                                placeholder="Tambahkan komentar disini..."></textarea>
+                            <textarea class="ckeditor" name="komentar" id="ckeditor"
+                                placeholder="Tambahkan komentar disini..." required></textarea>
                             <div class="col-md-12 d-flex justify-content-end">
                                 <button class="btn btn-secondary mt-3" type="submit">
                                     Kirim
@@ -102,3 +102,7 @@
     </div>
 </section>
 @endsection
+
+@push('addon-script')
+<script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor/ckeditor.js') }}"></script>
+@endpush

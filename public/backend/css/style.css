@@ -389,6 +389,7 @@ th {
   text-align: inherit; }
 
 label {
+    color: #000;
   display: inline-block;
   margin-bottom: 0.5rem; }
 
@@ -15092,9 +15093,9 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       margin-top: 0;
       margin-bottom: 0; }
       .page-titles .breadcrumb li a {
-        color: #828690; }
+        color: #0F2C67 !important; }
       .page-titles .breadcrumb li.active {
-        color: #555555; }
+        color: #F3950D !important; }
     .page-titles .breadcrumb .breadcrumb-item + .breadcrumb-item:before {
       content: "\e606";
       font-family: 'simple-line-icons';

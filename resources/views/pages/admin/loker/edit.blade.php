@@ -16,10 +16,10 @@
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Lowongan Kerja</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Ubah Data</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $item->judul }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('loker.index') }}">Lowongan Kerja</a></li>
+                    <li class="breadcrumb-item"><a href="#">Ubah Data</a></li>
+                    <li class="breadcrumb-item active"><a href="#">{{ $item->judul }}</a></li>
                 </ol>
             </div>
         </div>
@@ -37,9 +37,9 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group">
-                                <label for='nama_kerja'>Nama Kerja</label>
-                                <input class='form-control @error('nama_kerja') is-invalid @enderror' type='text' name='nama_kerja' id='nama_kerja' placeholder='Masukkan Nama Kerja' value='{{ $item->nama_kerja }}' />
-                                @error('nama_kerja')
+                                <label for='jenis_pekerjaan'>Jenis Pekerjaan</label>
+                                <input class='form-control @error('jenis_pekerjaan') is-invalid @enderror' type='text' name='jenis_pekerjaan' id='jenis_pekerjaan' placeholder='Masukkan Jenis Pekerjaan' value='{{ $item->jenis_pekerjaan }}' />
+                                @error('jenis_pekerjaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -78,7 +78,7 @@
 @endsection
 
 @push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor/ckeditor.js') }}"></script>
 
     <script>
         CKEDITOR.replace('isi', {

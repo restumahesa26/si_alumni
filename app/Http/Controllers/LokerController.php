@@ -42,15 +42,15 @@ class LokerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kerja' => 'required|string|max:255',
-            'tempat_kerja' => 'required|string|max:255',
-            'lokasi_kerja' => 'required|string|max:255',
+            'jenis_pekerjaan' => 'required|string|max:30',
+            'tempat_kerja' => 'required|string|max:50',
+            'lokasi_kerja' => 'required|string|max:20',
             'isi' => 'required|string'
         ]);
 
         Loker::create([
             'user_id' => Auth::user()->id,
-            'nama_kerja' => $request->nama_kerja,
+            'jenis_pekerjaan' => $request->jenis_pekerjaan,
             'tempat_kerja' => $request->tempat_kerja,
             'lokasi_kerja' => $request->lokasi_kerja,
             'isi' => $request->isi,
@@ -101,16 +101,16 @@ class LokerController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_kerja' => 'required|string|max:255',
-            'tempat_kerja' => 'required|string|max:255',
-            'lokasi_kerja' => 'required|string|max:255',
+            'jenis_pekerjaan' => 'required|string|max:30',
+            'tempat_kerja' => 'required|string|max:50',
+            'lokasi_kerja' => 'required|string|max:20',
             'isi' => 'required|string'
         ]);
 
         $item = Loker::findOrFail($id);
 
         $item->update([
-            'nama_kerja' => $request->nama_kerja,
+            'jenis_pekerjaan' => $request->jenis_pekerjaan,
             'tempat_kerja' => $request->tempat_kerja,
             'lokasi_kerja' => $request->lokasi_kerja,
             'isi' => $request->isi

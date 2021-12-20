@@ -45,21 +45,36 @@
                             </div>
                             <div class="col-md-9 d-grid gap-3 pt-3 pb-4">
                                 <div>
-                                    <label for="nama_kerja">
-                                        Nama Pekerjaan
+                                    <label for="jenis_pekerjaan">
+                                        Jenis Pekerjaan
                                     </label>
-                                    <input class="form-control" name="nama_kerja" id="nama_kerja" type="text"
-                                        placeholder="Nama Pekerjaan" value="{{ old('nama_kerja') }}" />
+                                    <input class="form-control @error('jenis_pekerjaan') is-invalid @enderror" name="jenis_pekerjaan" id="jenis_pekerjaan" type="text"
+                                        placeholder="Jenis Pekerjaan" value="{{ old('jenis_pekerjaan') }}" required />
+                                    @error('jenis_pekerjaan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="tempat_kerja">Perusahaan/Instansi</label>
-                                    <input class="form-control" type="text" name="tempat_kerja" id="tempat_kerja"
-                                        placeholder="Perusahaan/Instansi" value="{{ old('tempat_kerja') }}" />
+                                    <input class="form-control @error('tempat_kerja') is-invalid @enderror" type="text" name="tempat_kerja" id="tempat_kerja"
+                                        placeholder="Perusahaan/Instansi" value="{{ old('tempat_kerja') }}" required />
+                                    @error('tempat_kerja')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label for="lokasi_kerja">Lokasi</label>
-                                    <input class="form-control" type="text" name="lokasi_kerja" id="lokasi_kerja"
-                                        placeholder="Lokasi" value="{{ old('lokasi_kerja') }}" />
+                                    <input class="form-control @error('lokasi_kerja') is-invalid @enderror" type="text" name="lokasi_kerja" id="lokasi_kerja"
+                                        placeholder="Lokasi" value="{{ old('lokasi_kerja') }}" required />
+                                    @error('lokasi_kerja')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>

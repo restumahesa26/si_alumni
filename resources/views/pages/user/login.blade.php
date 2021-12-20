@@ -23,6 +23,11 @@
                                     <input type="text" name="login" id="login" class="form-control @error('login')
                                     is-invalid
                                 @enderror" placeholder="NPM atau Email">
+                                @error('login')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="form-group row mt-3 justify-content-center">
@@ -33,6 +38,11 @@
                                     <input type="password" name="password" id="password" class="form-control @error('password')
                                         is-invalid
                                     @enderror" placeholder="Password">
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <input type="checkbox" name="remember" id="remember" value="Remember Me" class="mt-3">
@@ -41,7 +51,7 @@
                                 <button type="submit" class="btn btn-secondary mt-2">Masuk</button>
                             </div>
                             <div class="text-center mt-2">
-                                <a href="{{ route('register') }}" class="text-primary">Belum punya akun? Daftar</a>
+                                <a href="{{ route('register') }}" class="text-primary">Belum punya akun? Silahkan Daftar</a>
                             </div>
                         </div>
                     </div>

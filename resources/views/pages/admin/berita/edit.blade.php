@@ -16,10 +16,10 @@
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Berita</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Ubah Data</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">{{ $item->judul }}</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('berita.index') }}">Berita</a></li>
+                    <li class="breadcrumb-item"><a href="#">Ubah Data</a></li>
+                    <li class="breadcrumb-item active"><a href="#">{{ $item->judul }}</a></li>
                 </ol>
             </div>
         </div>
@@ -78,7 +78,7 @@
 @endsection
 
 @push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor/ckeditor.js') }}"></script>
 
     <script>
         CKEDITOR.replace('isi', {

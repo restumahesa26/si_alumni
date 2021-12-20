@@ -10,7 +10,7 @@ class Loker extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'nama_kerja', 'tempat_kerja', 'isi', 'lokasi_kerja', 'status', 'logo_perusahaan'
+        'user_id', 'jenis_pekerjaan', 'tempat_kerja', 'isi', 'lokasi_kerja', 'status', 'logo_perusahaan'
     ];
 
     public function users(){

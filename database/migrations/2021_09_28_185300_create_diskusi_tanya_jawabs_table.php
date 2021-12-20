@@ -17,7 +17,7 @@ class CreateDiskusiTanyaJawabsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('diskusi_id')->references('id')->on('diskusis');
-            $table->string('tanya_jawab');
+            $table->text('tanya_jawab');
             $table->timestamps();
         });
     }

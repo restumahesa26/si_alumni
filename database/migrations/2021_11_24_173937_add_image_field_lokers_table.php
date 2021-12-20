@@ -14,7 +14,7 @@ class AddImageFieldLokersTable extends Migration
     public function up()
     {
         Schema::table('lokers', function (Blueprint $table) {
-            $table->string('logo_perusahaan');
+            $table->string('logo_perusahaan')->nullable();
             $table->enum('status', ['0','1'])->default('0');
         });
     }

@@ -16,9 +16,9 @@ class CreateLokersTable extends Migration
         Schema::create('lokers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('nama_kerja');
-            $table->string('tempat_kerja');
-            $table->string('lokasi_kerja');
+            $table->string('jenis_pekerjaan', 30);
+            $table->string('tempat_kerja', 50);
+            $table->string('lokasi_kerja', 20);
             $table->text('isi');
             $table->timestamps();
         });

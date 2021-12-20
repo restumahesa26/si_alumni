@@ -196,7 +196,7 @@
             </div>
             <div class="row justify-content-end mt-3">
                 <div class="col-4">
-                    <p>Bengkulu, </p>
+                    <p>Bengkulu, {{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</p>
                     <p style="margin-top: 90px; font-weight: bold">{{ $item->users->nama }}</p>
                 </div>
             </div>

@@ -20,7 +20,12 @@
                                     <label for="npm">NPM</label>
                                 </div>
                                 <div class="col-8 text-center">
-                                    <input type="text" name="npm" id="npm" class="form-control" placeholder="NPM">
+                                    <input type="text" name="npm" id="npm" class="form-control @error('npm') is-invalid @enderror" placeholder="NPM">
+                                    @error('npm')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center align-items-center mt-3">
@@ -28,7 +33,12 @@
                                     <label for="nama">Nama</label>
                                 </div>
                                 <div class="col-8 text-center">
-                                    <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama">
+                                    <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="Nama">
+                                    @error('nama')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center align-items-center mt-3">
@@ -36,7 +46,12 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="col-8 text-center">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center align-items-center mt-3">
@@ -44,8 +59,13 @@
                                     <label for="password">Password</label>
                                 </div>
                                 <div class="col-8 text-center">
-                                    <input type="password" name="password" id="password" class="form-control"
+                                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror"
                                         placeholder="Password">
+                                        @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="form-group row justify-content-center align-items-center mt-3">
@@ -53,8 +73,13 @@
                                     <label for="password_confirmation">Konfirmasi Password</label>
                                 </div>
                                 <div class="col-8 text-center">
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control"
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror"
                                         placeholder="Konfirmasi Password">
+                                        @error('password_confirmation')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mt-2">

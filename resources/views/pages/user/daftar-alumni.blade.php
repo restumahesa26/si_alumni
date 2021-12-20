@@ -45,7 +45,7 @@
                                 <td>{{ $item->users->npm }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_wisuda)->translatedFormat('Y') }}</td>
                                 <td>{{ $item->pekerjaan }}</td>
-                                <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-info">Detail</button></a></td>
+                                <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-secondary">Detail</button></a></td>
                             </tr>
                             @empty
                             <tr>
@@ -70,7 +70,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->users->nama }}</td>
-                                <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-info">Detail</button></a></td>
+                                <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-secondary">Detail</button></a></td>
                             </tr>
                             @empty
                             <tr>

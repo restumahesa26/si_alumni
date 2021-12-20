@@ -16,17 +16,17 @@ class CreateMahasiswasTable extends Migration
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('agama')->nullable();
-            $table->string('tempat_lahir')->nullable();
+            $table->string('agama', 10)->nullable();
+            $table->string('tempat_lahir', 20)->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
             $table->string('alamat')->nullable();
-            $table->string('nama_ayah')->nullable();
-            $table->string('nama_ibu')->nullable();
+            $table->string('nama_ayah', 40)->nullable();
+            $table->string('nama_ibu', 40)->nullable();
             $table->string('alamat_orang_tua')->nullable();
-            $table->string('pekerjaan_ayah')->nullable();
-            $table->string('pekerjaan_ibu')->nullable();
-            $table->string('no_hp')->nullable();
+            $table->string('pekerjaan_ayah', 20)->nullable();
+            $table->string('pekerjaan_ibu', 20)->nullable();
+            $table->string('no_hp', 13)->nullable();
             $table->enum('golongan_darah', ['A', 'B', 'AB', 'O'])->nullable();
             $table->integer('tinggi_badan')->nullable();
             $table->integer('berat_badan')->nullable();

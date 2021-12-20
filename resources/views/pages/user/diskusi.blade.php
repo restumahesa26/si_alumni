@@ -60,7 +60,7 @@
             <div class="pt-3 table-responsive">
                 <table class="table table-striped table-hover display nowrap align-middle">
                     <tbody>
-                        @foreach ($diskusis as $item)
+                        @forelse ($diskusis as $item)
                         <tr>
                             <td>
                                 <div class="p-3">
@@ -82,7 +82,11 @@
                                 <p class="fs--1">Ditanyakan pada {{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y H:i') }}</p>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr class="text-center">
+                            <td colspan="4">Data Kosong</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

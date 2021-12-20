@@ -52,12 +52,12 @@
                 <ul aria-expanded="false">
                     <li class="@if(Route::is('laporan.index-mahasiswa'))mm-active @endif">
                         <a href="{{ route('laporan.index-mahasiswa') }}" class="@if(Route::is('laporan.index-mahasiswa'))mm-active @endif">
-                            Mahasiswa
+                            Laporan Mahasiswa
                         </a>
                     </li>
                     <li class="@if(Route::is('laporan.index-alumni'))mm-active @endif">
                         <a href="{{ route('laporan.index-alumni') }}" class="@if(Route::is('laporan.index-alumni'))mm-active @endif">
-                            Alumni
+                            Laporan Alumni
                         </a>
                     </li>
                 </ul>

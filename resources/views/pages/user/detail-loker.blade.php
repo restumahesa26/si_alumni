@@ -37,10 +37,11 @@
                         </div>
                         @endif
                         <div class="col-auto">
-                            <h1>{{ $loker->nama_kerja }}</h1>
+                            <h1>{{ $loker->jenis_pekerjaan }}</h1>
                             <h3>{{ $loker->tempat_kerja }}</h3>
                             <p>{{ $loker->lokasi_kerja }}</p>
                         </div>
+                        <p style="font-size: 14px">Diupload oleh : {{ $loker->users->nama }} pada {{ \Carbon\Carbon::parse($loker->created_at)->translatedFormat('l, d F Y') }}</p>
                     </div>
                     <div class="row mt-4">
                         <div class="col">
@@ -64,12 +65,12 @@
                                     </div>
                                     <div class="col">
                                         <h4>{{ $item->users->nama }}</h4>
-                                        <p class="fs--1">{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y - H:i') }}</p>
+                                        <p>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('l, d F Y - H:i') }}</p>
                                         <p>
-                                            {{ $item->tanya_jawab }}
+                                            {!! $item->tanya_jawab !!}
                                         </p>
                                         @if (Auth::user() && $item->user_id === Auth::user()->id)
-                                        <form action="{{ route('user.tanya-jawab-loker-hapus', $item->id) }}" method="POST">
+                                        <form action="{{ route('user.tanya-jawab-loker-hapus', $item->id) }}" method="POST" style="margin-top: -40px">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
@@ -95,7 +96,7 @@
                                     <div class="col">
                                         <label for="tanya_jawab" class="text-secondary fs-2 mb-3">Tambahkan
                                             Tanya jawab</label>
-                                        <textarea class="form-control" name="tanya_jawab" id="tanya_jawab"
+                                        <textarea class="ckeditor" name="tanya_jawab" id="ckeditor"
                                             placeholder="Tambahkan tanya jawab disini..."></textarea>
                                         <div class="col-md-12 d-flex justify-content-end">
                                             <button class="btn btn-secondary mt-3" type="submit">
@@ -142,3 +143,7 @@
     </div>
 </section>
 @endsection
+
+@push('addon-script')
+<script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor/ckeditor.js') }}"></script>
+@endpush
