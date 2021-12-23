@@ -35,10 +35,10 @@
                     <div class="card-body">
                         <a href="{{ route('data-mahasiswa.create') }}"
                             class="btn btn-primary px-4 text-white mb-2">Tambah Data Mahasiswa</a>
-                        <button type="button" class="btn btn-info px-4 mb-2 text-white" data-toggle="modal"
+                        {{-- <button type="button" class="btn btn-info px-4 mb-2 text-white" data-toggle="modal"
                             data-target="#modal-import">
                             Import Database
-                        </button>
+                        </button> --}}
                         <!-- Modal -->
                         <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">

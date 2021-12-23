@@ -50,8 +50,13 @@
                     </div>
                     <div class="card-body">
                         @forelse ($komentars as $komentar)
-                            <div class="mb-2">
-                                <h5 style="font-size: 18px;">{{ $komentar->komentar }}</h5>
+                            <div class="mb-2
+                            @if ($komentar->user_id == Auth::user()->id)
+                                text-right
+                            @else
+                                text-left
+                            @endif">
+                                <h5 style="font-size: 18px;">{!! $komentar->komentar !!}</h5>
                                 <p style="color: #000; margin-top: -8px; font-size: 14px;">dari {{ $komentar->users->nama }} pada {{ \Carbon\Carbon::parse($komentar->created_at)->format('d F Y H:i') }}</p>
                                 @if ($komentar->user_id === Auth::user()->id)
                                     <form action="{{ route('hapus_komentar_berita', $komentar->id) }}" method="POST" class="inline-block">

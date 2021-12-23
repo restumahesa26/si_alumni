@@ -14,7 +14,7 @@
             <div class="col-auto">
                 <p class="my-2 fs--1">
                     <i class="fas fa-envelope me-3"></i><a class="text-white"
-                        href="mailto:vctung@outlook.com">informatika@unib.ac.id
+                        href="mailto:informatika@unib.ac.id">informatika@unib.ac.id
                     </a>
                 </p>
             </div>

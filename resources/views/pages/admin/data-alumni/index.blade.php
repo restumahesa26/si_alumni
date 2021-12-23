@@ -35,10 +35,10 @@
                     <div class="card-body">
                         <a href="{{ route('data-alumni.create') }}" class="btn btn-primary px-4 text-white mb-2">Tambah
                             Data Alumni</a>
-                        <button type="button" class="btn btn-info px-4 mb-2 text-white" data-toggle="modal"
+                        {{-- <button type="button" class="btn btn-info px-4 mb-2 text-white" data-toggle="modal"
                             data-target="#modal-import">
                             Import Database
-                        </button>
+                        </button> --}}
                         <!-- Modal -->
                         <div class="modal fade" id="modal-import" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -277,7 +277,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                <form action="{{ route('data-mahasiswa.change-to-mahasiswa', $item->id) }}" method="POST">
+                <form action="{{ route('data-mahasiswa.change-to-mahasiswa', $item2->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn btn-primary">Pindah Ke Mahasiswa</button>

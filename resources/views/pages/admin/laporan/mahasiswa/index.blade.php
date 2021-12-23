@@ -29,7 +29,7 @@
                         <a href="{{ route('laporan.excel-mahasiswa') }}" class="btn btn-success btn-block text-white">Cetak Laporan Excel</a>
                         <a href="{{ route('laporan.pdf-mahasiswa') }}" class="btn btn-primary btn-block mb-3">Cetak Laporan PDF</a>
                         <div class="table-responsive mt-2">
-                            <table id="table" class="table table-bordered text-nowrap">
+                            <table id="table" class="table table-bordered text-nowrap" id="table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -68,8 +68,22 @@
 </div>
 @endsection
 
+@push('addon-style')
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+@endpush
+
 @push('addon-script')
     <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                ordering: false
+            });
+        });
+    </script>
 
     @if ($message = Session::get('error-pdf'))
     <script>
@@ -81,3 +95,4 @@
     </script>
     @endif
 @endpush
+

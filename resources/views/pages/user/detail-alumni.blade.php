@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-<title>SI ATI | Deatil Alumni</title>
+<title>SI Alumni | Deatil Alumni</title>
 @endsection
 
 @section('content')
@@ -51,8 +51,8 @@
                             <p>: {{ $alumni->users->nama }}</p>
                             <p>: {{ $alumni->users->npm }}</p>
                             <p>: {{ \Carbon\Carbon::parse($alumni->tanggal_wisuda)->translatedFormat('Y') }}</p>
-                            <p>: {{ $alumni->pekerjaan }}</p>
-                            <p>: {{ $alumni->tempat_pekerjaan }}</p>
+                            <p>: {{ $alumni->pekerjaan ?? '-' }}</p>
+                            <p>: {{ $alumni->tempat_pekerjaan ?? '-' }}</p>
                             <p>: {{ $alumni->users->email }}</p>
                         </div>
                     </div>

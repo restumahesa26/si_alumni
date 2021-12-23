@@ -25,6 +25,7 @@ class MahasiswaImport implements ToCollection
                 'nama' => $row[2],
                 'email' => $row[14],
                 'password' => Hash::make('password'),
+                'role' => 'MAHASISWA'
             ]);
 
             Mahasiswa::create([

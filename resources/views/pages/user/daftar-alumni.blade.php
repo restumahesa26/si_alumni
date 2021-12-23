@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI ATI | Daftar Alumni</title>
+    <title>SI Alumni | Daftar Alumni</title>
 @endsection
 
 @section('content')
@@ -44,7 +44,7 @@
                                 <td>{{ $item->users->nama }}</td>
                                 <td>{{ $item->users->npm }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_wisuda)->translatedFormat('Y') }}</td>
-                                <td>{{ $item->pekerjaan }}</td>
+                                <td>{{ $item->pekerjaan ?? '-' }}</td>
                                 <td><a href="{{ route('detail-alumni', $item->id) }}"><button class="btn btn-secondary">Detail</button></a></td>
                             </tr>
                             @empty

@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI ATI | Detail Loker</title>
+    <title>SI Alumni | Detail Loker</title>
 @endsection
 
 @section('content')
@@ -70,7 +70,7 @@
                                             {!! $item->tanya_jawab !!}
                                         </p>
                                         @if (Auth::user() && $item->user_id === Auth::user()->id)
-                                        <form action="{{ route('user.tanya-jawab-loker-hapus', $item->id) }}" method="POST" style="margin-top: -40px">
+                                        <form action="{{ route('user.tanya-jawab-loker-hapus', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>

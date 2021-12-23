@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI ATI | Pertanyaan Saya</title>
+    <title>SI Alumni | Pertanyaan Saya</title>
 @endsection
 
 @section('content')
@@ -85,7 +85,9 @@
                             </td>
                         </tr>
                         @empty
-
+                        <tr>
+                            <td colspan="4" class="text-center">Belum Ada Diskusi</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>

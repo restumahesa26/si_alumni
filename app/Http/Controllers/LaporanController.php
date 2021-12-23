@@ -46,7 +46,7 @@ class LaporanController extends Controller
     {
         $items = Alumni::all();
 
-        if ($items >= 1) {
+        if ($items->count() >= 1) {
             return view('pages.admin.laporan.alumni.pdf', [
                 'items' => $items
             ]);

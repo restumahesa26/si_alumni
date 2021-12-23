@@ -18,7 +18,7 @@ class BeritaKomentar extends Model
     }
 
     public function beritas(){
-        return $this->hasOne(Berita::class, 'id', 'diskusi_id');
+        return $this->hasOne(Berita::class, 'id', 'berita_id');
     }
 
     public function berita(){

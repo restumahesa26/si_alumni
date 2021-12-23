@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI ATI | Detail Diskusi</title>
+    <title>SI Alumni | Detail Diskusi</title>
 @endsection
 
 @section('content')
@@ -83,12 +83,14 @@
                         </p>
                     </div>
                 </div>
+                @if (Auth::user())
                 @if ($item2->user_id === Auth::user()->id)
                 <form action="{{ route('user.hapus-jawaban-diskusi', $item2->id) }}" method="POST" class="inline-block mt-3">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger px-4" style="margin-top: -20px; font-size: 10px">Hapus</button>
                 </form>
+                @endif
                 @endif
             </div>
         </div>

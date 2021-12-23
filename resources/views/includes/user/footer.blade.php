@@ -12,7 +12,7 @@
                 </p>
                 <p class="text-light">
                     <i class="fas fa-envelope me-3"> </i><a class="text-light"
-                        href="mailto:vctung@outlook.com">informatika@unib.ac.id
+                        href="mailto:informatika@unib.ac.id">informatika@unib.ac.id
                     </a>
                 </p>
             </div>
@@ -22,13 +22,13 @@
                 </h5>
                 <ul class="list-unstyled mb-md-4 mb-lg-0">
                     <li class="lh-lg">
-                        <a class="text-200" href="#!">Informatika</a>
+                        <a class="text-200" href="http://informatika.ft.unib.ac.id/" target="_blank">Informatika</a>
                     </li>
                     <li class="lh-lg">
-                        <a class="text-200" href="#!">Fakultas Teknik</a>
+                        <a class="text-200" href="https://ft.unib.ac.id/" target="_blank">Fakultas Teknik</a>
                     </li>
                     <li class="lh-lg">
-                        <a class="text-200" href="#!">HIMATIF</a>
+                        <a class="text-200" href="http://himatif.ft.unib.ac.id/" target="_blank">HIMATIF</a>
                     </li>
                 </ul>
             </div>

@@ -10,7 +10,7 @@ class Mahasiswa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'npm', 'nama', 'agama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'nama_ayah', 'nama_ibu', 'alamat_orang_tua', 'pekerjaan_ayah', 'pekerjaan_ibu', 'no_hp', 'golongan_darah', 'tinggi_badan', 'berat_badan', 'angkatan'
+        'user_id', 'npm', 'nama', 'agama', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'nama_ayah', 'nama_ibu', 'alamat_orang_tua', 'pekerjaan_ayah', 'pekerjaan_ibu', 'no_hp', 'golongan_darah', 'tinggi_badan', 'berat_badan', 'angkatan', 'foto'
     ];
 
     public function users(){

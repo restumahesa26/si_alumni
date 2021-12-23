@@ -24,6 +24,7 @@ class AlumniImport implements ToCollection
                 'nama' => $row[2],
                 'email' => $row[14],
                 'password' => Hash::make('password'),
+                'role' => 'ALUMNI'
             ]);
 
             Alumni::create([
