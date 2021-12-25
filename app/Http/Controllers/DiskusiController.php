@@ -41,10 +41,18 @@ class DiskusiController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'judul' => 'required|string|max:50',
             'isi' => 'required|string'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         Diskusi::create([
             'user_id' => Auth::user()->id,
@@ -96,10 +104,18 @@ class DiskusiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rules = [
             'judul' => 'required|string|max:50',
             'isi' => 'required|string'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $item = Diskusi::findOrFail($id);
 

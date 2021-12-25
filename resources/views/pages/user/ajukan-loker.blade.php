@@ -124,4 +124,12 @@
         bacaGambar(this);
     });
 </script>
+
+<script>
+    CKEDITOR.replace('isi', {
+            height: 500,
+            filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token() ]) }}",
+            filebrowserUploadMethod: 'form'
+        });
+</script>
 @endpush

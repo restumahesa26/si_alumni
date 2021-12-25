@@ -41,12 +41,20 @@ class LokerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'jenis_pekerjaan' => 'required|string|max:30',
             'tempat_kerja' => 'required|string|max:50',
             'lokasi_kerja' => 'required|string|max:20',
             'isi' => 'required|string'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         Loker::create([
             'user_id' => Auth::user()->id,
@@ -100,12 +108,20 @@ class LokerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rules = [
             'jenis_pekerjaan' => 'required|string|max:30',
             'tempat_kerja' => 'required|string|max:50',
             'lokasi_kerja' => 'required|string|max:20',
             'isi' => 'required|string'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $item = Loker::findOrFail($id);
 

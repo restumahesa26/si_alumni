@@ -27,20 +27,35 @@ class ProfileController extends Controller
     {
         $user = User::where('id', Auth::user()->id)->first();
 
-        $request->validate([
+        $rules1= [
             'nama' => 'required|string|max:40',
-        ]);
+        ];
+
+        $rules2= [
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ];
+
+        $rules3= [
+            'email' => 'required|string|max:50|email|unique:users'
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+            'confirmed' => 'Konfirmasi password tidak cocok',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
 
         if ($request->password) {
-            $request->validate([
-                'password' => ['required', 'confirmed', Rules\Password::defaults()]
-            ]);
+            $this->validate($request, $rules2, $customMessages);
         }
 
         if ($request->email != $user->email) {
-            $request->validate([
-                'email' => 'required|string|max:50|email|unique:users'
-            ]);
+            $this->validate($request, $rules3, $customMessages);
         }
 
         $user->nama = $request->nama;
@@ -62,20 +77,45 @@ class ProfileController extends Controller
             $item = Alumni::where('user_id', Auth::user()->id)->first();
         }
 
-        $request->validate([
+        $rules1 = [
             'nama' => 'required|string|max:40'
-        ]);
+        ];
+
+        $rules2 = [
+            'npm' => 'required|string|max:9'
+        ];
+
+        $rules3 = [
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ];
+
+        $rules4 = [
+            'email' => 'required|string|max:50|email|unique:users'
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+            'confirmed' => 'Konfirmasi password tidak cocok',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
 
         if (Auth::user()->role !== 'ADMIN') {
-            $request->validate([
-                'npm' => 'required|string|max:9'
-            ]);
+            $this->validate($request, $rules2, $customMessages);
         }
 
         if ($request->password) {
-            $request->validate([
-                'password' => ['required', 'confirmed', Rules\Password::defaults()]
-            ]);
+            $this->validate($request, $rules3, $customMessages);
+        }
+
+        if (Auth::user()->role == 'ADMIN') {
+            if ($request->email != Auth::user()->email) {
+                $this->validate($request, $rules4, $customMessages);
+            }
         }
 
         if ($request->foto) {
@@ -111,7 +151,7 @@ class ProfileController extends Controller
 
     public function data_pribadi(Request $request)
     {
-        $request->validate([
+        $rules1 = [
             'agama' => 'required|string|max:10',
             'tempat_lahir' => 'required|string|max:20',
             'tanggal_lahir' => 'required|date',
@@ -122,20 +162,37 @@ class ProfileController extends Controller
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
             'angkatan' => 'required|numeric|digits:4',
-        ]);
+        ];
+
+        $rules2 = [
+            'email' => 'required|string|max:255|email|unique:users'
+        ];
+
+        $rules3 = [
+            'status' => 'required|in:Kawin,Belum Kawin',
+            'asal_slta' => 'required|string|max:30',
+            'ipk' => 'required|numeric|between:0.01,4.00',
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'numeric' => 'Field :attribute harus berupa angka',
+            'max' => 'Field :attribute maksimal :size',
+            'digits' => 'Field :attribute maksimal :value digit',
+            'date' => 'Field :attribute harus berupa tanggal',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
 
         if ($request->email !== Auth::user()->email) {
-            $request->validate([
-                'email' => 'required|string|max:255|email|unique:users'
-            ]);
+            $this->validate($request, $rules2, $customMessages);
         }
 
         if (Auth::user()->role === 'ALUMNI') {
-            $request->validate([
-                'status' => 'required|in:Kawin,Belum Kawin',
-                'asal_slta' => 'required|string|max:30',
-                'ipk' => 'required|numeric|between:0.01,4.00',
-            ]);
+            $this->validate($request, $rules3, $customMessages);
         }
 
         if (Auth::user()->role == 'MAHASISWA') {
@@ -182,13 +239,21 @@ class ProfileController extends Controller
 
     public function data_orang_tua(Request $request)
     {
-        $request->validate([
+        $rules = [
             'nama_ayah' => 'required|string|max:40',
             'nama_ibu' => 'required|string|max:40',
             'alamat_orang_tua' => 'required|string|max:50',
             'pekerjaan_ayah' => 'required|string|max:20',
             'pekerjaan_ibu' => 'required|string|max:20',
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         if (Auth::user()->role === 'ALUMNI') {
             $item = Alumni::where('user_id', Auth::user()->id)->first();
@@ -208,13 +273,23 @@ class ProfileController extends Controller
 
     public function data_skripsi(Request $request)
     {
-        $request->validate([
+        $rules = [
             'judul_skripsi' => 'required|string|max:255',
             'bobot_sks' => 'required|numeric',
             'tanggal_seminar_proposal' => 'required|date',
             'tanggal_sidang' => 'required|date',
             'tanggal_wisuda' => 'required|date',
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'numeric' => 'Field :attribute harus berupa angka',
+            'max' => 'Field :attribute maksimal :size',
+            'date' => 'Field :attribute harus berupa tanggal',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $item = Alumni::where('user_id', Auth::user()->id)->first();
 
@@ -230,14 +305,24 @@ class ProfileController extends Controller
 
     public function data_bimbingan_skripsi(Request $request)
     {
-        $request->validate([
+        $rules = [
             'tanggal_mulai_bimbingan' => 'required|date',
             'dosen_pembimbing_1' => 'required|string|max:40',
             'dosen_pembimbing_2' => 'required|string|max:40',
             'dosen_penguji_1' => 'required|string|max:40',
             'dosen_penguji_2' => 'required|string|max:40',
             'jumlah_sks' => 'required|numeric|digits:3',
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'digits' => 'Field :attribute maksimal :value digit',
+            'date' => 'Field :attribute harus berupa tanggal',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $item = Alumni::where('user_id', Auth::user()->id)->first();
 

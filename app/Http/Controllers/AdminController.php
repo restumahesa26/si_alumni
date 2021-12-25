@@ -43,11 +43,22 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'email' => 'required|string|max:50|email|unique:users',
             'nama' => 'required|string|max:40',
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+            'confirmed' => 'Konfirmasi password tidak cocok',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         User::create([
             'nama' => $request->nama,
@@ -94,22 +105,36 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rules1 = [
             'nama' => 'required|string|max:40',
-        ]);
+        ];
+
+        $rules2 = [
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ];
+
+        $rules3 = [
+            'email' => 'required|string|max:50|email|unique:users',
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
 
         if ($request->password) {
-            $request->validate([
-                'password' => ['required', 'confirmed', Rules\Password::defaults()]
-            ]);
+            $this->validate($request, $rules2, $customMessages);
         }
 
         $user = User::findOrFail($id);
 
         if ($request->email != $user->email) {
-            $request->validate([
-                'email' => 'required|string|max:50|email|unique:users',
-            ]);
+            $this->validate($request, $rules3, $customMessages);
         }
 
         $user->nama = $request->nama;

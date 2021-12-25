@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
-        $alumni = Alumni::paginate(10);
+        $alumni = Alumni::latest()->paginate(10);
 
         return view('pages.user.daftar-alumni', [
             'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'alumnis' => $alumni
@@ -59,7 +59,7 @@ class HomeController extends Controller
 
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
-        $alumni = Alumni::where('pekerjaan','like',"%".$cari."%")->orWhere('tempat_pekerjaan','like',"%".$cari."%")->orWhereYear('tanggal_wisuda','like',"%".$cari."%")->paginate(10);
+        $alumni = Alumni::where('pekerjaan','like',"%".$cari."%")->orWhere('tempat_pekerjaan','like',"%".$cari."%")->orWhereYear('tanggal_wisuda','like',"%".$cari."%")->latest()->paginate(10);
 
         if ($alumni->count() >= 1) {
             return view('pages.user.daftar-alumni', [
@@ -91,9 +91,17 @@ class HomeController extends Controller
 
     public function store_komentar(Request $request, $id)
     {
-        $request->validate([
+        $rules = [
             'komentar' => 'required|string|max:255'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         BeritaKomentar::create([
             'user_id' => Auth::user()->id,
@@ -129,8 +137,8 @@ class HomeController extends Controller
 
     public function loker()
     {
-        $loker = Loker::where('status', '1')->paginate(8);
-        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(6);
+        $loker = Loker::inRandomOrder()->where('status', '1')->paginate(8);
+        $loker2 = Loker::latest()->where('status', '1')->paginate(6);
 
         return view('pages.user.loker', [
             'lokers' => $loker, 'loker2' => $loker2
@@ -140,7 +148,7 @@ class HomeController extends Controller
     public function detail_loker($id)
     {
         $loker = Loker::findOrFail($id);
-        $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(6);
+        $loker2 = Loker::latest()->where('status', '1')->paginate(6);
 
         return view('pages.user.detail-loker', [
             'loker' => $loker, 'loker2' => $loker2
@@ -154,38 +162,68 @@ class HomeController extends Controller
 
     public function ajukan_loker_store(Request $request)
     {
-        $request->validate([
-            'nama_kerja' => 'required|string|max:255',
+        $rules1 = [
+            'jenis_pekerjaan' => 'required|string|max:255',
             'tempat_kerja' => 'required|string|max:255',
             'lokasi_kerja' => 'required|string|max:255',
             'isi' => 'required|string',
-            'logo' => 'required|image|mimes:jpg,jpeg,png'
-        ]);
+        ];
 
-        $value = $request->file('logo');
-        $extension = $value->extension();
-        $imageNames = uniqid('img_', microtime()) . '.' . $extension;
-        Storage::putFileAs('public/assets/foto-loker', $value, $imageNames);
-        $thumbnailpath = storage_path('app/public/assets/foto-loker/' . $imageNames);
-        $img = Image::make($thumbnailpath)->resize(300, 300)->save($thumbnailpath);
+        $rules2 = [
+            'logo' => 'required|image|mimes:jpg,jpeg,png'
+        ];
+
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'image' => 'Field :attribute harus berupa gambar',
+            'mimes' => 'Field :attribute harus ekstensi jpeg / jpg / png',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
+
+        if ($request->logo) {
+            $this->validate($request, $rules2, $customMessages);
+        }
+
+        if ($request->logo) {
+            $value = $request->file('logo');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/foto-loker', $value, $imageNames);
+            $thumbnailpath = storage_path('app/public/assets/foto-loker/' . $imageNames);
+            $img = Image::make($thumbnailpath)->resize(300, 300)->save($thumbnailpath);
+        }else {
+            $imageNames = '';
+        }
 
         Loker::create([
             'user_id' => Auth::user()->id,
-            'nama_kerja' => $request->nama_kerja,
+            'jenis_pekerjaan' => $request->jenis_pekerjaan,
             'tempat_kerja' => $request->tempat_kerja,
             'lokasi_kerja' => $request->lokasi_kerja,
             'isi' => $request->isi,
             'logo_perusahaan' => $imageNames,
         ]);
 
-        return redirect()->route('user.loker');
+        return redirect()->route('user.loker')->with(['success' => 'Terima kasih telah mengajukan lowongan kerja']);
     }
 
     public function store_tanya_jawab_loker(Request $request, $id)
     {
-        $request->validate([
+        $rules = [
             'tanya_jawab' => 'required|string|max:255'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         LokerTanyaJawab::create([
             'user_id' => Auth::user()->id,
@@ -228,7 +266,7 @@ class HomeController extends Controller
 
     public function diskusi()
     {
-        $diskusi = Diskusi::where('status', '1')->orderBy('created_at', 'DESC')->paginate(8);
+        $diskusi = Diskusi::where('status', '1')->latest()->paginate(8);
 
         return view('pages.user.diskusi', [
             'diskusis' => $diskusi
@@ -247,9 +285,17 @@ class HomeController extends Controller
 
     public function kirim_jawaban_diskusi(Request $request, $id)
     {
-        $request->validate([
+        $rules = [
             'tanya_jawab' => 'required|string|max:255'
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         DiskusiTanyaJawab::create([
             'user_id' => Auth::user()->id,
@@ -289,10 +335,18 @@ class HomeController extends Controller
 
     public function ajukan_diskusi_store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'judul' => 'required|string|max:255',
             'isi' => 'required|string|max:255',
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         Diskusi::create([
             'user_id' => Auth::user()->id,
@@ -300,14 +354,14 @@ class HomeController extends Controller
             'isi' => $request->isi
         ]);
 
-        return redirect()->route('user.diskusi-saya');
+        return redirect()->route('user.diskusi-saya')->with(['success' => 'Terima kasih telah mengajukan diskusi']);
     }
 
     public function search_diskusi(Request $request)
     {
         $cari = $request->search;
 
-        $diskusi = Diskusi::orderBy('created_at', 'DESC')->where('judul','like',"%".$cari."%")->paginate(8);
+        $diskusi = Diskusi::latest()->where('judul','like',"%".$cari."%")->paginate(8);
 
         return view('pages.user.diskusi', [
             'diskusis' => $diskusi

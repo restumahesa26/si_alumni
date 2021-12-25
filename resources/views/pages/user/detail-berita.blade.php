@@ -104,5 +104,10 @@
 @endsection
 
 @push('addon-script')
-<script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{{ url('frontend/public/assets/js/ckeditor2/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace('ckeditor', {
+        height: 80,
+    });
+</script>
 @endpush

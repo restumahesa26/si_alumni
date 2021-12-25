@@ -63,7 +63,7 @@ class LoginRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'login' => __('auth.failed')
+                'login' => 'NPM / Email dan Password Tidak Cocok'
             ]);
         }
 

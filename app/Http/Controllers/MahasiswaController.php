@@ -45,7 +45,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'npm' => 'required|string|max:9',
             'nama' => 'required|string|max:40',
             'agama' => 'required|string|max:10',
@@ -65,7 +65,21 @@ class MahasiswaController extends Controller
             'berat_badan' => 'required|numeric',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'angkatan' => 'required|string|digits:4',
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'numeric' => 'Field :attribute harus berupa angka',
+            'max' => 'Field :attribute maksimal :size',
+            'digits' => 'Field :attribute maksimal :value digit',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+            'confirmed' => 'Konfirmasi password tidak cocok',
+            'date' => 'Field :attribute harus berupa tanggal',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $user = User::create([
             'nama' => $request->nama,
@@ -132,7 +146,7 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rules1 = [
             'nama' => 'required|string|max:40',
             'agama' => 'required|string|max:10',
             'tempat_lahir' => 'required|string|max:20',
@@ -149,26 +163,46 @@ class MahasiswaController extends Controller
             'tinggi_badan' => 'required|numeric',
             'berat_badan' => 'required|numeric',
             'angkatan' => 'required|string|digits:4',
-        ]);
+        ];
+
+        $rules2 = [
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+        ];
+
+        $rules3 = [
+            'email' => 'required|string|max:255|email|unique:users'
+        ];
+
+        $rules4 = [
+            'npm' => 'required|string|max:255|unique:users'
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'numeric' => 'Field :attribute harus berupa angka',
+            'max' => 'Field :attribute maksimal :size',
+            'digits' => 'Field :attribute maksimal :value digit',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+            'confirmed' => 'Konfirmasi password tidak cocok',
+            'date' => 'Field :attribute harus berupa tanggal',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
 
         if ($request->password) {
-            $request->validate([
-                'password' => ['required', 'confirmed', Rules\Password::defaults()]
-            ]);
+            $this->validate($request, $rules2, $customMessages);
         }
 
         $item = Mahasiswa::findOrFail($id);
 
         if ($request->email != $item->users->email) {
-            $request->validate([
-                'email' => 'required|string|max:255|email|unique:users'
-            ]);
+            $this->validate($request, $rules3, $customMessages);
         }
 
         if ($request->npm != $item->users->npm) {
-            $request->validate([
-                'npm' => 'required|string|max:255|unique:users'
-            ]);
+            $this->validate($request, $rules4, $customMessages);
         }
 
         $user = User::where('id', $item->user_id)->first();

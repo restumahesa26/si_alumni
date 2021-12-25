@@ -12,9 +12,17 @@ class TanyaJawabController extends Controller
 {
     public function tanya_jawab_loker(Request $request, $id)
     {
-        $request->validate([
-            'tanya_jawab' => 'required|string'
-        ]);
+        $rules = [
+            'tanya_jawab' => 'required|string|max:255'
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         LokerTanyaJawab::create([
             'user_id' => Auth::user()->id,
@@ -40,9 +48,17 @@ class TanyaJawabController extends Controller
 
     public function tanya_jawab_diskusi(Request $request, $id)
     {
-        $request->validate([
-            'tanya_jawab' => 'required|string'
-        ]);
+        $rules = [
+            'tanya_jawab' => 'required|string|max:255'
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         DiskusiTanyaJawab::create([
             'user_id' => Auth::user()->id,
@@ -68,9 +84,17 @@ class TanyaJawabController extends Controller
 
     public function komentar_berita(Request $request, $id)
     {
-        $request->validate([
-            'komentar' => 'required|string'
-        ]);
+        $rules = [
+            'komentar' => 'required|string|max:255'
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         BeritaKomentar::create([
             'user_id' => Auth::user()->id,

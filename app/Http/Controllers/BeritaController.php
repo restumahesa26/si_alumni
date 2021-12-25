@@ -42,11 +42,21 @@ class BeritaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'judul' => 'required|string|max:50',
             'isi' => 'required|string',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg',
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'image' => 'Field :attribute harus berupa gambar',
+            'mimes' => 'Field :attribute harus ekstensi jpeg / jpg / png',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $value = $request->file('thumbnail');
         $extension = $value->extension();
@@ -104,10 +114,28 @@ class BeritaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $rules1 = [
             'judul' => 'required|string|max:50',
             'isi' => 'required|string'
-        ]);
+        ];
+
+        $rules2 = [
+            'thumbnail' => 'image|mimes:jpeg,png,jpg',
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'image' => 'Field :attribute harus berupa gambar',
+            'mimes' => 'Field :attribute harus ekstensi jpeg / jpg / png',
+        ];
+
+        $this->validate($request, $rules1, $customMessages);
+
+        if ($request->thumbnail) {
+            $this->validate($request, $rules2, $customMessages);
+        }
 
         $item = Berita::findOrFail($id);
 
