@@ -61,7 +61,7 @@
         <div class="row justify-content-md-between justify-content-evenly py-4">
             <div>
                 <p class="fs--1 my-2 fw-bold text-center">
-                    All rights Reserved &copy; Informatika FT UNIB, 2021
+                    Copyright &copy; Design & Developed by Informatika FT UNIB, 2021
                 </p>
             </div>
         </div>

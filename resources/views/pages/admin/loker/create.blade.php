@@ -32,8 +32,22 @@
                         </a>
                     </div>
                     <div class="card-body px-4">
-                        <form action="{{ route('loker.store') }}" method="POST">
+                        <form action="{{ route('loker.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <div class="form-group row">
+                                <div class="col-2">
+                                    <img src="{{ url('frontend/public/assets/img/gallery/macrohard.png') }}" alt="alumni-profile" width="100px" class="btn" id="logo_url" />
+                                </div>
+                                <div class="col-md-10">
+                                    <label for='logo_perusahaan'>Logo Perusahaan</label>
+                                    <input class='form-control @error('logo_perusahaan') is-invalid @enderror' type='file' name='logo_perusahaan' id='logo_perusahaan' placeholder='Masukkan Logo Perusahaan'/>
+                                    @error('logo_perusahaan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for='jenis_pekerjaan'>Jenis Pekerjaan</label>
                                 <input class='form-control @error('jenis_pekerjaan') is-invalid @enderror' type='text' name='jenis_pekerjaan' id='jenis_pekerjaan' placeholder='Masukkan Jenis Pekerjaan' value='{{ old('jenis_pekerjaan') }}' />

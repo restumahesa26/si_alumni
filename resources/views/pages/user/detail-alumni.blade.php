@@ -71,15 +71,15 @@
 
     <div class="container" style="padding-top: 20px">
         <div class="row justify-content-center">
-            <h1 class="text-center mb-5">Jumlah Alumni Tahun 2021</h1>
+            <h1 class="text-center mb-5">Jumlah Alumni Tahun {{ \Carbon\Carbon::now()->format('Y') }}</h1>
             <div class="col-sm-6 col-lg-3 text-center mb-5">
                 <img src="{{ url('cewek.png') }}" height="100" alt="..." />
-                <h1 class="my-2">{{ $perempuan }}</h1>
+                <h1 class="my-2">{{ $perempuan ? $perempuan : '-' }}</h1>
                 <p class="text-info fw-bold">PEREMPUAN</p>
             </div>
             <div class="col-sm-6 col-lg-3 text-center mb-5">
                 <img src="{{ url('cowok.png') }}" height="100" alt="..." />
-                <h1 class="my-2">{{ $laki }}</h1>
+                <h1 class="my-2">{{ $laki ? $laki : '-' }}</h1>
                 <p class="text-info fw-bold">LAKI-LAKI</p>
             </div>
         </div>

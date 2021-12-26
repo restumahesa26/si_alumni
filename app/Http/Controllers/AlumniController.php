@@ -21,7 +21,7 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        $items = Alumni::orderBy('created_at', 'DESC')->get();
+        $items = Alumni::latest()->get();
 
         return view('pages.admin.data-alumni.index', [
             'items' => $items

@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $items = User::where('role', 'ADMIN')->get();
+        $items = User::where('role', 'ADMIN')->latest()->get();
 
         return view('pages.admin.data-admin.index', [
             'items' => $items

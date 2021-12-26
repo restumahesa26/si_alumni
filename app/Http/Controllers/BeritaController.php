@@ -17,7 +17,7 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $items = Berita::all();
+        $items = Berita::latest()->get();
 
         return view('pages.admin.berita.index', [
             'items' => $items

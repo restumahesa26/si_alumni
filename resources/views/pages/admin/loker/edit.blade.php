@@ -33,9 +33,23 @@
                         </a>
                     </div>
                     <div class="card-body px-4">
-                        <form action="{{ route('loker.update', $item->id) }}" method="POST">
+                        <form action="{{ route('loker.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            <div class="form-group row">
+                                <div class="col-2">
+                                    <img src="{{ $item->logo_perusahaan ? asset('storage/assets/foto-loker/' . $item->logo_perusahaan) : url('frontend/public/assets/img/gallery/macrohard.png') }}" alt="alumni-profile" width="100px" class="btn" id="logo_url" />
+                                </div>
+                                <div class="col-md-10">
+                                    <label for='logo_perusahaan'>Logo Perusahaan</label>
+                                    <input class='form-control @error('logo_perusahaan') is-invalid @enderror' type='file' name='logo_perusahaan' id='logo_perusahaan' placeholder='Masukkan Logo Perusahaan'/>
+                                    @error('logo_perusahaan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for='jenis_pekerjaan'>Jenis Pekerjaan</label>
                                 <input class='form-control @error('jenis_pekerjaan') is-invalid @enderror' type='text' name='jenis_pekerjaan' id='jenis_pekerjaan' placeholder='Masukkan Jenis Pekerjaan' value='{{ $item->jenis_pekerjaan }}' />
@@ -85,6 +99,24 @@
             height: 500,
             filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token() ]) }}",
             filebrowserUploadMethod: 'form'
+        });
+    </script>
+
+    <script>
+        function bacaGambar(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#logo_url').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#logo_perusahaan").change(function(){
+            bacaGambar(this);
         });
     </script>
 

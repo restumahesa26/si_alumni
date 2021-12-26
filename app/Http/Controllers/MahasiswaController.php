@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $items = Mahasiswa::orderBy('created_at', 'DESC')->get();
+        $items = Mahasiswa::latest()->get();
 
         return view('pages.admin.data-mahasiswa.index', [
             'items' => $items

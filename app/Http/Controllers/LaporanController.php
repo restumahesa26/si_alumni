@@ -13,7 +13,7 @@ class LaporanController extends Controller
 {
     public function index_mahasiswa()
     {
-        $items = Mahasiswa::all();
+        $items = Mahasiswa::oldest()->get();
 
         return view('pages.admin.laporan.mahasiswa.index', [
             'items' => $items
@@ -22,7 +22,7 @@ class LaporanController extends Controller
 
     public function pdf_mahasiswa()
     {
-        $items = Mahasiswa::all();
+        $items = Mahasiswa::oldest()->get();
 
         if ($items->count() >= 1) {
             return view('pages.admin.laporan.mahasiswa.pdf', [
@@ -35,7 +35,7 @@ class LaporanController extends Controller
 
     public function index_alumni()
     {
-        $items = Alumni::all();
+        $items = Alumni::oldest()->get();
 
         return view('pages.admin.laporan.alumni.index', [
             'items' => $items
@@ -44,7 +44,7 @@ class LaporanController extends Controller
 
     public function pdf_keseluruhan_alumni()
     {
-        $items = Alumni::all();
+        $items = Alumni::oldest()->get();
 
         if ($items->count() >= 1) {
             return view('pages.admin.laporan.alumni.pdf', [
@@ -58,7 +58,7 @@ class LaporanController extends Controller
     public function pdf_angkatan_alumni(Request $request)
     {
         $cari = $request->angkatan;
-        $items = Alumni::where('angkatan', $cari)->get();
+        $items = Alumni::where('angkatan', $cari)->oldest()->get();
 
         if ($items->count() >= 1) {
             return view('pages.admin.laporan.alumni.pdf', [
@@ -72,7 +72,7 @@ class LaporanController extends Controller
     public function pdf_tahun_lulus_alumni(Request $request)
     {
         $cari = $request->tahun_lulus;
-        $items = Alumni::whereYear('tanggal_wisuda', $cari)->get();
+        $items = Alumni::whereYear('tanggal_wisuda', $cari)->oldest()->get();
 
         if ($items->count() >= 1) {
             return view('pages.admin.laporan.alumni.pdf', [

@@ -6,6 +6,8 @@ use App\Models\Loker;
 use App\Models\LokerTanyaJawab;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class LokerController extends Controller
 {
@@ -16,7 +18,7 @@ class LokerController extends Controller
      */
     public function index()
     {
-        $items = Loker::all();
+        $items = Loker::latest()->get();
 
         return view('pages.admin.loker.index', [
             'items' => $items
@@ -56,12 +58,24 @@ class LokerController extends Controller
 
         $this->validate($request, $rules, $customMessages);
 
+        if ($request->logo_perusahaan) {
+            $value = $request->file('logo_perusahaan');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/foto-loker', $value, $imageNames);
+            $thumbnailpath = storage_path('app/public/assets/foto-loker/' . $imageNames);
+            $img = Image::make($thumbnailpath)->resize(300, 300)->save($thumbnailpath);
+        }else {
+            $imageNames = '';
+        }
+
         Loker::create([
             'user_id' => Auth::user()->id,
             'jenis_pekerjaan' => $request->jenis_pekerjaan,
             'tempat_kerja' => $request->tempat_kerja,
             'lokasi_kerja' => $request->lokasi_kerja,
             'isi' => $request->isi,
+            'logo_perusahaan' => $imageNames,
             'status' => '1',
         ]);
 
@@ -125,11 +139,23 @@ class LokerController extends Controller
 
         $item = Loker::findOrFail($id);
 
+        if ($request->logo_perusahaan) {
+            $value = $request->file('logo_perusahaan');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/foto-loker', $value, $imageNames);
+            $thumbnailpath = storage_path('app/public/assets/foto-loker/' . $imageNames);
+            $img = Image::make($thumbnailpath)->resize(300, 300)->save($thumbnailpath);
+        }else {
+            $imageNames = $item->logo_perusahaan;
+        }
+
         $item->update([
             'jenis_pekerjaan' => $request->jenis_pekerjaan,
             'tempat_kerja' => $request->tempat_kerja,
             'lokasi_kerja' => $request->lokasi_kerja,
-            'isi' => $request->isi
+            'isi' => $request->isi,
+            'logo_perusahaan' => $imageNames
         ]);
 
         return redirect()->route('loker.index')->with(['success' => 'Berhasil Mengubah Lowongan Pekerjaan']);

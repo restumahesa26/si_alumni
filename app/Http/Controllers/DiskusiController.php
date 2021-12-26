@@ -16,7 +16,7 @@ class DiskusiController extends Controller
      */
     public function index()
     {
-        $items = Diskusi::all();
+        $items = Diskusi::latest()->get();
 
         return view('pages.admin.diskusi.index', [
             'items' => $items

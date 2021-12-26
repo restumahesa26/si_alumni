@@ -28,7 +28,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ url('logo-unib.png') }}" alt="" style="width: 70px" />
-            <span>SI Alumni</span>
+            <span>SI Alumni Informatika</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

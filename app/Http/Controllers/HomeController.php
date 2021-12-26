@@ -11,6 +11,7 @@ use App\Models\Loker;
 use App\Models\LokerTanyaJawab;
 use App\Models\Mahasiswa;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -20,11 +21,13 @@ class HomeController extends Controller
 {
     public function home()
     {
+        $tahun = Carbon::now()->format('Y');
+
         $berita = Berita::inRandomOrder()->limit(3)->get();
         $loker = Loker::inRandomOrder()->limit(3)->orderBy('created_at', 'DESC')->get();
         $diskusi = Diskusi::inRandomOrder()->limit(3)->orderBy('created_at', 'DESC')->get();
-        $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
-        $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
+        $alumniLaki = Alumni::where('jenis_kelamin', 'L')->whereYear('tanggal_wisuda', $tahun)->count();
+        $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->whereYear('tanggal_wisuda', $tahun)->count();
 
         return view('pages.user.home', [
             'beritas' => $berita, 'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'lokers' => $loker, 'diskusis' => $diskusi
@@ -33,8 +36,10 @@ class HomeController extends Controller
 
     public function daftar_alumni()
     {
-        $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
-        $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
+        $tahun = Carbon::now()->format('Y');
+
+        $alumniLaki = Alumni::where('jenis_kelamin', 'L')->whereYear('tanggal_wisuda', $tahun)->count();
+        $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->whereYear('tanggal_wisuda', $tahun)->count();
         $alumni = Alumni::latest()->paginate(10);
 
         return view('pages.user.daftar-alumni', [
