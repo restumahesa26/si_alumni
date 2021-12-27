@@ -59,7 +59,7 @@
             <div class="col-sm-4 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $item2->nama_kerja }}</h5>
+                        <h5 class="card-title">{{ $item2->jenis_pekerjaan }}</h5>
                         <p class="card-text">{{ $item2->tempat_kerja }} | {{ $item2->lokasi_kerja }}</p>
                         <a href="{{ route('user.detail-loker', $item2->id) }}" class="btn btn-info">Selengkapnya</a>
                     </div>

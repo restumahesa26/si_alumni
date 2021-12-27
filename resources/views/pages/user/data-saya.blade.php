@@ -59,7 +59,7 @@
                                     </label>
                                     @if (Auth::user()->role !== 'ADMIN')
                                     <label for="foto">
-                                        <a class="btn btn-secondary" rel="nofollow">Upload Profil</a>
+                                        <a class="btn btn-secondary" rel="nofollow">Upload Foto</a>
                                     </label>
                                     <input class="d-none" type="file" name="foto" id="foto">
                                     @endif

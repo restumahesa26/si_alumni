@@ -10,7 +10,7 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Hi, Admin {{ Auth::user()->nama }}</h4>
+                    <h4>Hi, {{ Auth::user()->nama }}</h4>
                     <p class="mb-0">Selamat datang di Sistem Informasi Alumni Informatika UNIB</p>
                 </div>
             </div>

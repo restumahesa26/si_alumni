@@ -18,6 +18,6 @@ class Diskusi extends Model
     }
 
     public function tanya_jawab_diskusi(){
-        return $this->hasMany(DiskusiTanyaJawab::class, 'diskusi_id', 'id');
+        return $this->hasMany(DiskusiTanyaJawab::class, 'diskusi_id', 'id')->oldest();
     }
 }

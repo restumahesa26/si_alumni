@@ -71,7 +71,7 @@
                     </div>
                     <div class="col">
                         <h4>{{ $item2->users->nama }}</h4>
-                        <p class="fs--1">Dijawab pada {{ \Carbon\Carbon::parse($diskusi->created_at)->translatedFormat('l, d F Y H:i') }}</p>
+                        <p class="fs--1">Dijawab pada {{ \Carbon\Carbon::parse($item2->created_at)->translatedFormat('l, d F Y H:i') }}</p>
                     </div>
                 </div>
                 <div class="row mt-4">

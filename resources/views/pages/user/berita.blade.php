@@ -15,7 +15,7 @@
                 <div class="col-auto">
                     <div class="d-flex">
                         <form action="{{ route('user.search-berita') }}">
-                            <input class="form-control" type="search" placeholder="Cari Berita" aria-label="Search" />
+                            <input class="form-control" name="search" type="search" placeholder="Cari Berita" aria-label="Search" />
                         </form>
                         <button class="btn btn-outline-light ms-2" type="submit" aria-expanded="false">
                             <i class="fas fa-search text-800"></i>

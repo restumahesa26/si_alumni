@@ -257,11 +257,11 @@ class HomeController extends Controller
         $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(8);
 
         if ($tipe == 'pekerjaan') {
-            $items = Loker::where('nama_kerja','like',"%".$cari."%")->paginate(2);
+            $items = Loker::where('jenis_pekerjaan','like',"%".$cari."%")->where('status', '1')->paginate(8);
         }elseif ($tipe == 'perusahaan') {
-            $items = Loker::where('tempat_kerja','like',"%".$cari."%")->paginate(2);
+            $items = Loker::where('tempat_kerja','like',"%".$cari."%")->where('status', '1')->paginate(8);
         }elseif ($tipe == 'lokasi') {
-            $items = Loker::where('lokasi_kerja','like',"%".$cari."%")->paginate(2);
+            $items = Loker::where('lokasi_kerja','like',"%".$cari."%")->where('status', '1')->paginate(8);
         }
 
         return view('pages.user.loker', [
@@ -281,7 +281,7 @@ class HomeController extends Controller
     public function detail_diskusi($id)
     {
         $diskusi = Diskusi::findOrFail($id);
-        $tanya_jawab = DiskusiTanyaJawab::where('diskusi_id', $id)->orderBy('created_at', 'DESC')->get();
+        $tanya_jawab = DiskusiTanyaJawab::where('diskusi_id', $id)->oldest()->get();
 
         return view('pages.user.detail-diskusi', [
             'diskusi' => $diskusi, 'tanya_jawabs' => $tanya_jawab

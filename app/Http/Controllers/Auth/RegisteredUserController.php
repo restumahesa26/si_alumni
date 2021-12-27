@@ -36,12 +36,23 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'nama' => ['required', 'string', 'max:255'],
-            'npm' => ['required', 'string', 'max:255'],
+            'npm' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :size',
+            'email' => 'Field :attribute harus berupa email',
+            'unique' => 'Field :attribute harus unik',
+            'confirmed' => 'Konfirmasi password tidak cocok',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         $user = User::create([
             'role' => 'MAHASISWA',
