@@ -49,7 +49,7 @@ class DiskusiController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -112,7 +112,7 @@ class DiskusiController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -136,6 +136,8 @@ class DiskusiController extends Controller
     public function destroy($id)
     {
         $item = Diskusi::findOrFail($id);
+
+        DiskusiTanyaJawab::where('diskusi_id', $id)->delete();
 
         $item->delete();
 

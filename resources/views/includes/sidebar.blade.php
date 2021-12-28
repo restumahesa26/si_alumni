@@ -39,12 +39,12 @@
             </li>
             <li class="@if(Route::is('diskusi.*'))mm-active @endif">
                 <a href="{{ route('diskusi.index') }}" class="@if(Route::is('diskusi.*'))mm-active @endif">
-                    <i class="ti-email"></i><span class="nav-text">Diskusi</span>
+                    <i class="ti-comments-smiley"></i><span class="nav-text">Diskusi</span>
                 </a>
             </li>
             <li class="@if(Route::is('berita.*'))mm-active @endif">
                 <a href="{{ route('berita.index') }}" class="@if(Route::is('berita.*'))mm-active @endif">
-                    <i class="ti-image"></i><span class="nav-text">Berita</span>
+                    <i class="ti-gallery"></i><span class="nav-text">Berita</span>
                 </a>
             </li>
             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i

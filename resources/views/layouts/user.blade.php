@@ -8,9 +8,9 @@
 
     @yield('title')
 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url('frontend/public/assets/img/favicons/favicon.ico') }}" />
-    <link rel="manifest" href="{{ url('frontend/public/assets/img/favicons/manifest.json') }}" />
-    <meta name="msapplication-TileImage" content="{{ url('frontend/public/assets/img/favicons/mstile-150x150.png') }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('logo-unib.png') }}" />
+    <link rel="manifest" href="{{ url('logo-unib.png') }}" />
+    <meta name="msapplication-TileImage" content="{{ url('logo-unib.png') }}" />
     <meta name="theme-color" content="#ffffff" />
 
     @include('includes.user.style')

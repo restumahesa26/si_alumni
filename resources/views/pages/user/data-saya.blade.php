@@ -113,9 +113,9 @@
                                     @enderror
                                 </div>
                                 <div>
-                                    <label for="konfirPassword">Konfirmasi Password</label>
+                                    <label for="password_confirmation">Konfirmasi Password</label>
                                     <input class="form-control @error('password_confirmation') is-invalid @enderror"
-                                        name="konfirPassword" id="konfirPassword" type="password"
+                                        name="password_confirmation" id="password_confirmation" type="password"
                                         placeholder="Konfirmasi Password">
                                     @error('password_confirmation')
                                     <span class="invalid-feedback" role="alert">
@@ -154,7 +154,7 @@
                                         <label for="agama">Agama</label>
                                         <select class="form-select @error('agama') is-invalid @enderror" name="agama"
                                             id="agama">
-                                            <option hidden>Agama Anda...</option>
+                                            <option hidden value="">Agama Anda...</option>
                                             <option value="Islam" @if(old('agama', $user->agama) == 'Islam') selected
                                                 @endif>Islam</option>
                                             <option value="Kristen" @if(old('agama', $user->agama) == 'Kristen')
@@ -265,7 +265,7 @@
                                         <label for="golongan_darah">Golongan Darah</label>
                                         <select class="form-select @error('golongan_darah') is-invalid @enderror"
                                             name="golongan_darah" id="golongan_darah">
-                                            <option hidden>-- Pilih Golongan Darah --</option>
+                                            <option hidden value="">-- Pilih Golongan Darah --</option>
                                             <option value="A" @if(old('golongan_darah', $user->golongan_darah) == 'A')
                                                 selected @endif>A</option>
                                             <option value="B" @if(old('golongan_darah', $user->golongan_darah) == 'B')
@@ -286,7 +286,7 @@
                                         <label for="status">Status</label>
                                         <select class="form-select @error('status') is-invalid @enderror" name="status"
                                             id="status">
-                                            <option hidden>Status Anda...</option>
+                                            <option hidden value="">Status Anda...</option>
                                             <option value="Kawin" @if(old('status', $user->status) == 'Kawin') selected
                                                 @endif>Kawin</option>
                                             <option value="Belum Kawin" @if(old('status', $user->status) == 'Belum Kawin') selected @endif>Belum Kawin</option>
@@ -361,7 +361,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 @endif
                             </div>
                         </div>
@@ -377,6 +376,57 @@
                 </div>
             </div>
         </div>
+
+        @if (Auth::user()->role === 'ALUMNI')
+        <div class="row">
+            <div class="p-5 pt-0">
+                <div class="border rounded-3 border-3 border-primary p-4">
+                    <form action="{{ route('user.data-saya-data-pekerjaan') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>Data Pekerjaan</h1>
+                            </div>
+                            <div class="col d-grid gap-3 pt-3 pb-4">
+                                <div class="d-flex">
+                                    <div class="col-md-6 pe-3">
+                                        <label for="pekerjaan">Pekerjaan</label>
+                                        <input class="form-control @error('pekerjaan') is-invalid @enderror"
+                                            name="pekerjaan" id="pekerjaan" type="text" placeholder="Pekerjaan Anda...."
+                                            value="{{ old('pekerjaan', $user->pekerjaan) }}">
+                                        @error('pekerjaan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="tempat_pekerjaan">Tempat Pekerjaan</label>
+                                        <input class="form-control @error('tempat_pekerjaan') is-invalid @enderror"
+                                            name="tempat_pekerjaan" id="tempat_pekerjaan" type="text" placeholder="Tempat Pekerjaan Anda...."
+                                            value="{{ old('tempat_pekerjaan', $user->tempat_pekerjaan) }}">
+                                        @error('tempat_pekerjaan')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mt-2 text-end">
+                                <button class="btn btn-lg btn-secondary" name="simpan" value="Send" type="submit"
+                                    aria-expanded="false">
+                                    Simpan
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endif
 
         <div class="row">
             <div class="p-5 pt-0">
@@ -469,7 +519,7 @@
         <div class="row">
             <div class="p-5 pt-0">
                 <div class="border rounded-3 border-3 border-primary p-4">
-                    <form action="{{ route('user.data-saya-data-skripsi') }}" method="POST">
+                    <form action="{{ route('user.data-saya-data-skripsi') }}" method="POST" id="formDataSkripsi">
                         @csrf
                         <div class="row">
                             <div class="col-lg-12">
@@ -580,17 +630,13 @@
                                     <label for="dosen_pembimbing_1">Dosen Pembimbing 1</label>
                                     <select name="dosen_pembimbing_1" id="dosen_pembimbing_1"
                                         class="form-select @error('dosen_pembimbing_1') is-invalid @enderror" required>
-                                        <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
-                                        <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_pembimbing_1 == "Drs.
-                                            Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
-                                        <option value="Rusdi Efendi, S.T., M.Kom." @if($user->dosen_pembimbing_1 ==
-                                            "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.
+                                        <option hidden value="">-- Pilih Dosen Pembimbing 1 --</option>
+                                        <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_pembimbing_1 == "Drs.Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                        <option value="Rusdi Efendi, S.T., M.Kom." @if($user->dosen_pembimbing_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.
                                         </option>
-                                        <option value="Desi Andreswari, S.T., M.Cs." @if($user->dosen_pembimbing_1 ==
-                                            "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.
+                                        <option value="Desi Andreswari, S.T., M.Cs." @if($user->dosen_pembimbing_1 == "Desi Andreswari, S.T., M.Cs.") selected @endif>Desi Andreswari, S.T., M.Cs.
                                         </option>
-                                        <option value="Ernawati, S.T., M.Cs." @if($user->dosen_pembimbing_1 ==
-                                            "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
+                                        <option value="Ernawati, S.T., M.Cs." @if($user->dosen_pembimbing_1 == "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
                                         <option value="Arie Vatresia, S.T., M.T.I.,Ph.D" @if($user->dosen_pembimbing_1
                                             == "Arie Vatresia, S.T., M.T.I.,Ph.D") selected @endif>Arie Vatresia, S.T.,
                                             M.T.I.,Ph.D</option>
@@ -604,8 +650,7 @@
                                         </option>
                                         <option value="Widhia Oktoberza, Kz,. S.T., M.Eng." @if($user->dosen_pembimbing_1 == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected
                                             @endif>Widhia Oktoberza, Kz,. S.T., M.Eng</option>
-                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_pembimbing_1 == "Drs.
-                                            Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_pembimbing_1 == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
                                         <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom." @if($user->dosen_pembimbing_1 == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") @endif>Dr.
                                             Diyah Puspitaningrum, S.T., M.Kom.</option>
                                         <option value="Aan Erlansari, S.T., M.Eng." @if($user->dosen_pembimbing_1 ==
@@ -642,14 +687,14 @@
                                     <label for="dosen_pembimbing_2">Dosen Pembimbing 2</label>
                                     <select name="dosen_pembimbing_2" id="dosen_pembimbing_2"
                                         class="form-select @error('dosen_pembimbing_2') is-invalid @enderror" required>
-                                        <option hidden>-- Pilih Dosen Pembimbing 2 --</option>
+                                        <option hidden value="">-- Pilih Dosen Pembimbing 2 --</option>
                                         <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_pembimbing_2 == "Drs.
                                             Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
                                         <option value="Rusdi Efendi, S.T., M.Kom." @if($user->dosen_pembimbing_2 ==
                                             "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.
                                         </option>
                                         <option value="Desi Andreswari, S.T., M.Cs." @if($user->dosen_pembimbing_2 ==
-                                            "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.
+                                            "Desi Andreswari, S.T., M.Cs.") selected @endif>Desi Andreswari, S.T., M.Cs.
                                         </option>
                                         <option value="Ernawati, S.T., M.Cs." @if($user->dosen_pembimbing_2 ==
                                             "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
@@ -666,8 +711,7 @@
                                         </option>
                                         <option value="Widhia Oktoberza, Kz,. S.T., M.Eng." @if($user->dosen_pembimbing_2 == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected
                                             @endif>Widhia Oktoberza, Kz,. S.T., M.Eng</option>
-                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_pembimbing_2 == "Drs.
-                                            Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_pembimbing_2 == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
                                         <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom." @if($user->dosen_pembimbing_2 == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") @endif>Dr.
                                             Diyah Puspitaningrum, S.T., M.Kom.</option>
                                         <option value="Aan Erlansari, S.T., M.Eng." @if($user->dosen_pembimbing_2 ==
@@ -704,9 +748,8 @@
                                     <label for="dosen_penguji_1">Dosen Penguji 1</label>
                                     <select name="dosen_penguji_1" id="dosen_penguji_1"
                                         class="form-select @error('dosen_penguji_1') is-invalid @enderror" required>
-                                        <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
-                                        <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_penguji_1 == "Drs.
-                                            Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                        <option hidden value="">-- Pilih Dosen Pembimbing 1 --</option>
+                                        <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_penguji_1 == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
                                         <option value="Rusdi Efendi, S.T., M.Kom." @if($user->dosen_pembimbing_1 ==
                                             "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.
                                         </option>
@@ -730,8 +773,7 @@
                                         <option value="Widhia Oktoberza, Kz,. S.T., M.Eng." @if($user->dosen_penguji_1
                                             == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected @endif>Widhia Oktoberza,
                                             Kz,. S.T., M.Eng</option>
-                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_penguji_1 == "Drs.
-                                            Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_penguji_1 == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
                                         <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom." @if($user->dosen_penguji_1 == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") selected
                                             @endif>Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
                                         <option value="Aan Erlansari, S.T., M.Eng." @if($user->dosen_penguji_1 == "Aan
@@ -769,9 +811,8 @@
                                     <label for="dosen_penguji_2">Dosen Penguji 2</label>
                                     <select name="dosen_penguji_2" id="dosen_penguji_2"
                                         class="form-select @error('dosen_penguji_2') is-invalid @enderror" required>
-                                        <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
-                                        <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_penguji_2 == "Drs.
-                                            Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
+                                        <option hidden value="">-- Pilih Dosen Pembimbing 1 --</option>
+                                        <option value="Drs. Boko Susilo, M.Kom." @if($user->dosen_penguji_2 == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
                                         <option value="Rusdi Efendi, S.T., M.Kom." @if($user->dosen_penguji_2 == "Rusdi
                                             Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
                                         <option value="Desi Andreswari, S.T., M.Cs." @if($user->dosen_penguji_2 ==
@@ -794,8 +835,7 @@
                                         <option value="Widhia Oktoberza, Kz,. S.T., M.Eng." @if($user->dosen_penguji_2
                                             == "Widhia Oktoberza, Kz,. S.T., M.Eng.") selected @endif>Widhia Oktoberza,
                                             Kz,. S.T., M.Eng</option>
-                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_penguji_2 == "Drs.
-                                            Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
+                                        <option value="Drs. Asahar Johar, M.Kom." @if($user->dosen_penguji_2 == "Drs. Asahar Johar, M.Kom.") selected @endif>Drs. Asahar Johar, M.Kom.</option>
                                         <option value="Dr. Diyah Puspitaningrum, S.T., M.Kom." @if($user->dosen_penguji_2 == "Dr. Diyah Puspitaningrum, S.T., M.Kom.") selected
                                             @endif>Dr. Diyah Puspitaningrum, S.T., M.Kom.</option>
                                         <option value="Aan Erlansari, S.T., M.Eng." @if($user->dosen_penguji_2 == "Aan
@@ -810,8 +850,7 @@
                                         <option value="Kurnia Anggriani, S.T., M.T." @if($user->dosen_penguji_2 ==
                                             "Kurnia Anggriani, S.T., M.T.") selected @endif>Kurnia Anggriani, S.T., M.T.
                                         </option>
-                                        <option value="Ferzha Putra Utama, S.T., M.Eng." @if($user->dosen_penguji_2 ==
-                                            "Ferzha Putra Utama, S.T., M.Eng.") selected @endif>Ferzha Putra Utama,
+                                        <option value="Ferzha Putra Utama, S.T., M.Eng." @if($user->dosen_penguji_2 == "Ferzha Putra Utama, S.T., M.Eng.") selected @endif>Ferzha Putra Utama,
                                             S.T., M.Eng.</option>
                                         <option value="Andang Wijanarko, S.Kom., M.Kom." @if($user->dosen_penguji_2 ==
                                             "Andang Wijanarko, S.Kom., M.Kom.") selected @endif>Andang Wijanarko,
@@ -898,5 +937,16 @@
             text: '{{ $message }}'
         })
     </script>
-    @endif
+@endif
+
+<script>
+    $(document).ready(function(){
+        $('input:not(#password, #password_confirmation), select, textarea').each(function() {
+            if(!$(this).val()){
+                $(this).addClass('is-invalid');
+            }
+        });
+    });
+</script>
+
 @endpush

@@ -260,7 +260,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='foto'>Foto</label>
-                                <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' required />
+                                <input class='form-control @error('foto') is-invalid @enderror' type='file' name='foto' id='foto' placeholder='Masukkan Foto' value='{{ old('foto') }}' />
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

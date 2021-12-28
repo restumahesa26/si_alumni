@@ -46,6 +46,8 @@ Route::middleware(['auth'])
 
         Route::get('/daftar-alumni/pencarian/', [HomeController::class, 'search_alumni'])->name('user.search-alumni');
 
+        Route::get('/daftar-alumni/filter-berdasarkan-tahun/', [HomeController::class, 'filter_alumni'])->name('user.filter-alumni');
+
         Route::post('/berita/kirim-komentar/store/{id}', [HomeController::class, 'store_komentar'])->name('user.komentar-store');
 
         Route::delete('/berita/hapus-komentar/delete/{id}', [HomeController::class, 'delete_komentar'])->name('user.komentar-delete');
@@ -59,6 +61,8 @@ Route::middleware(['auth'])
         Route::post('/data-saya/update-data-pribadi', [ProfileController::class, 'data_pribadi'])->name('user.data-saya-data-pribadi');
 
         Route::post('/data-saya/update-data-orang-tua', [ProfileController::class, 'data_orang_tua'])->name('user.data-saya-data-orang-tua');
+
+        Route::post('/data-saya/update-data-pekerjaan', [ProfileController::class, 'data_pekerjaan'])->name('user.data-saya-data-pekerjaan');
 
         Route::post('/data-saya/update-data-skripsi', [ProfileController::class, 'data_skripsi'])->name('user.data-saya-data-skripsi');
 
@@ -158,7 +162,7 @@ Route::get('/loker', [HomeController::class, 'loker'])->name('user.loker');
 
 Route::get('/loker/detail/{id}', [HomeController::class, 'detail_loker'])->name('user.detail-loker');
 
-Route::get('/loker/pencarian/berdasarkan-{tipe}/', [HomeController::class, 'search_loker'])->name('user.search-loker');
+Route::get('/loker/pencarian/berdasarkan/', [HomeController::class, 'search_loker'])->name('user.search-loker');
 
 Route::get('/diskusi', [HomeController::class, 'diskusi'])->name('user.diskusi');
 

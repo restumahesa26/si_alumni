@@ -22,13 +22,6 @@
             </div>
         </div>
 
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success alert-block">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong class="text-primary">{{ $message }}</strong>
-        </div>
-        @endif
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -302,6 +295,26 @@
         Swal.fire({
             icon: 'success',
             title: 'Berhasil',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
+
+    @if ($message = Session::get('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
+
+    @if ($message = Session::get('error-pindah'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
             text: '{{ $message }}'
         })
     </script>

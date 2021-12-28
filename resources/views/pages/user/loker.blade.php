@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI Alumni | Loker</title>
+    <title>SI Alumni Informatika | Loker</title>
 @endsection
 
 @section('content')
@@ -28,28 +28,18 @@
                 @endif
             </div>
         </div>
-        <div class="row" style="margin-top: 2rem">
-            <div class="col-md-3">
-                <form action="{{ route('user.search-loker', 'pekerjaan') }}">
-                    <input class="form-control" type="search" placeholder="Cari Pekerjaan" aria-label="Search" name="search" />
-                </form>
+        <form action="{{ route('user.search-loker') }}">
+            <div class="row" style="margin-top: 2rem">
+                <div class="col-md-11">
+                    <input class="form-control" type="search" placeholder="Cari Pekerjaan berdasarkan jenis pekerjaan, nama perusahaan, atau lokasi perusahaan" aria-label="Search" name="search" />
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-outline-light ms-2" type="submit" aria-expanded="false">
+                        <i class="fas fa-search text-800"></i>
+                    </button>
+                </div>
             </div>
-            <div class="col-md-3">
-                <form action="{{ route('user.search-loker', 'perusahaan') }}">
-                    <input class="form-control" type="search" placeholder="Cari Perusahaan" aria-label="Search" name="search" />
-                </form>
-            </div>
-            <div class="col-md-3">
-                <form action="{{ route('user.search-loker', 'lokasi') }}">
-                    <input class="form-control" type="search" placeholder="Cari Lokasi" aria-label="Search" name="search" />
-                </form>
-            </div>
-            <div class="col-md-1">
-                <button class="btn btn-outline-light ms-2" type="submit" aria-expanded="false">
-                    <i class="fas fa-search text-800"></i>
-                </button>
-            </div>
-        </div>
+        </form>
     </div>
 </section>
 <!-- <section> close ============================-->

@@ -39,14 +39,16 @@ class RegisteredUserController extends Controller
         $rules = [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'nama' => ['required', 'string', 'max:255'],
-            'npm' => ['required', 'string', 'max:255', 'unique:users'],
+            'npm' => ['required', 'string', 'max:9', 'unique:users', 'min:9'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ];
 
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
+            'min' => 'Field :attribute maksimal :min',
+            'digits' => 'Field :attribute harus :digits digit',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
             'confirmed' => 'Konfirmasi password tidak cocok',

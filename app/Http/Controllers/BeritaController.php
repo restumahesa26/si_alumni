@@ -51,7 +51,7 @@ class BeritaController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'image' => 'Field :attribute harus berupa gambar',
             'mimes' => 'Field :attribute harus ekstensi jpeg / jpg / png',
         ];
@@ -126,7 +126,7 @@ class BeritaController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'image' => 'Field :attribute harus berupa gambar',
             'mimes' => 'Field :attribute harus ekstensi jpeg / jpg / png',
         ];
@@ -168,6 +168,8 @@ class BeritaController extends Controller
     public function destroy($id)
     {
         $item = Berita::findOrFail($id);
+
+        BeritaKomentar::where('berita_id', $id)->delete();
 
         $item->delete();
 

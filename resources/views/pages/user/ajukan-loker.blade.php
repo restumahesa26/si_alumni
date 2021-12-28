@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI Alumni | Ajukan Loker</title>
+    <title>SI Alumni Informatika | Ajukan Loker</title>
 @endsection
 
 @section('content')

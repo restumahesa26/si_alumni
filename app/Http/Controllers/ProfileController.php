@@ -42,7 +42,7 @@ class ProfileController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
             'confirmed' => 'Konfirmasi password tidak cocok',
@@ -82,7 +82,7 @@ class ProfileController extends Controller
         ];
 
         $rules2 = [
-            'npm' => 'required|string|max:9'
+            'npm' => 'required|string|max:9|min:9'
         ];
 
         $rules3 = [
@@ -96,10 +96,12 @@ class ProfileController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
+            'min' => 'Field :attribute maksimal :min',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
             'confirmed' => 'Konfirmasi password tidak cocok',
+            'digits' => 'Field :attribute harus :digits digit',
         ];
 
         $this->validate($request, $rules1, $customMessages);
@@ -156,7 +158,7 @@ class ProfileController extends Controller
             'tempat_lahir' => 'required|string|max:20',
             'tanggal_lahir' => 'required|date',
             'jenis_kelamin' => 'required|in:L,P',
-            'alamat' => 'required|string|max:50',
+            'alamat' => 'required|string|max:255',
             'no_hp' => 'required|string',
             'golongan_darah' => 'required|in:A,B,AB,O',
             'tinggi_badan' => 'required|numeric',
@@ -178,8 +180,8 @@ class ProfileController extends Controller
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
             'numeric' => 'Field :attribute harus berupa angka',
-            'max' => 'Field :attribute maksimal :size',
-            'digits' => 'Field :attribute maksimal :value digit',
+            'max' => 'Field :attribute maksimal :max',
+            'digits' => 'Field :attribute maksimal :digits digit',
             'date' => 'Field :attribute harus berupa tanggal',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
@@ -242,7 +244,7 @@ class ProfileController extends Controller
         $rules = [
             'nama_ayah' => 'required|string|max:40',
             'nama_ibu' => 'required|string|max:40',
-            'alamat_orang_tua' => 'required|string|max:50',
+            'alamat_orang_tua' => 'required|string|max:255',
             'pekerjaan_ayah' => 'required|string|max:20',
             'pekerjaan_ibu' => 'required|string|max:20',
         ];
@@ -250,7 +252,7 @@ class ProfileController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -271,6 +273,30 @@ class ProfileController extends Controller
         return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Orang Tua']);
     }
 
+    public function data_pekerjaan(Request $request)
+    {
+        $rules = [
+            'pekerjaan' => 'required|string|max:30',
+            'tempat_pekerjaan' => 'required|string|max:50',
+        ];
+
+        $customMessages = [
+            'required' => 'Field :attribute wajib diisi',
+            'string' => 'Field :attribute harus berupa string',
+            'max' => 'Field :attribute maksimal :max',
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        $item = Alumni::where('user_id', Auth::user()->id)->first();
+
+        $item->pekerjaan = $request->pekerjaan;
+        $item->tempat_pekerjaan = $request->tempat_pekerjaan;
+        $item->save();
+
+        return redirect()->route('user.data-saya')->with(['success' => 'Berhasil Mengupdate Data Pekerjaan']);
+    }
+
     public function data_skripsi(Request $request)
     {
         $rules = [
@@ -285,7 +311,7 @@ class ProfileController extends Controller
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
             'numeric' => 'Field :attribute harus berupa angka',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'date' => 'Field :attribute harus berupa tanggal',
         ];
 
@@ -317,8 +343,8 @@ class ProfileController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
-            'digits' => 'Field :attribute maksimal :value digit',
+            'max' => 'Field :attribute maksimal :max',
+            'digits' => 'Field :attribute maksimal :digits digit',
             'date' => 'Field :attribute harus berupa tanggal',
         ];
 

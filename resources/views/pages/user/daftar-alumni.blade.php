@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI Alumni | Daftar Alumni</title>
+    <title>SI Alumni Informatika | Daftar Alumni</title>
 @endsection
 
 @section('content')
@@ -25,6 +25,28 @@
             </div>
 
             <div class="col-md-12">
+                <form action="{{ route('user.filter-alumni') }}" method="GET" class="form-inline">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tahun">Filter Berdasarkan Tahun</label>
+                                <input type="number" name="tahun" id="tahun" class="form-control" placeholder="Masukkan Tahun..">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="limit">Jumlah Data</label>
+                                <input type="number" name="limit" id="limit" class="form-control" placeholder="Masukkan Jumlah Data..">
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-auto">
+                            <button type="submit" class="btn btn-secondary btn-block">Filter Data</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-12 mt-4">
                 <div class="table-responsive d-none d-md-block">
                     <table class="table table-striped table-hover display nowrap align-middle" id="table">
                         <thead>
@@ -40,7 +62,7 @@
                         <tbody>
                             @forelse ($alumnis as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $alumnis->firstItem() - 1 }}</td>
                                 <td>{{ $item->users->nama }}</td>
                                 <td>{{ $item->users->npm }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_wisuda)->translatedFormat('Y') }}</td>

@@ -65,6 +65,27 @@ class HomeController extends Controller
         $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
         $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
         $alumni = Alumni::where('pekerjaan','like',"%".$cari."%")->orWhere('tempat_pekerjaan','like',"%".$cari."%")->orWhereYear('tanggal_wisuda','like',"%".$cari."%")->latest()->paginate(10);
+        $alumni->appends(['search' => $cari]);
+
+        if ($alumni->count() >= 1) {
+            return view('pages.user.daftar-alumni', [
+                'laki' => $alumniLaki, 'perempuan' => $alumniPerempuan, 'alumnis' => $alumni
+            ]);
+        } else {
+            return redirect()->route('daftar-alumni')->with(['data-kosong' => 'Masukkan Kata Kunci Dengan Benar']);
+        }
+    }
+
+    public function filter_alumni(Request $request)
+    {
+        $tahun = $request->input('tahun');
+        $limit = $request->input('limit', 10);
+
+        $alumniLaki = Alumni::where('jenis_kelamin', 'L')->count();
+        $alumniPerempuan = Alumni::where('jenis_kelamin', 'P')->count();
+
+        $alumni = Alumni::where('tanggal_wisuda','like',"%".$tahun."%")->latest()->paginate($limit);
+        $alumni->appends(['tahun' => $tahun, 'limit' => $limit]);
 
         if ($alumni->count() >= 1) {
             return view('pages.user.daftar-alumni', [
@@ -168,9 +189,9 @@ class HomeController extends Controller
     public function ajukan_loker_store(Request $request)
     {
         $rules1 = [
-            'jenis_pekerjaan' => 'required|string|max:255',
-            'tempat_kerja' => 'required|string|max:255',
-            'lokasi_kerja' => 'required|string|max:255',
+            'jenis_pekerjaan' => 'required|string|max:30',
+            'tempat_kerja' => 'required|string|max:50',
+            'lokasi_kerja' => 'required|string|max:20',
             'isi' => 'required|string',
         ];
 
@@ -182,7 +203,7 @@ class HomeController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'image' => 'Field :attribute harus berupa gambar',
             'mimes' => 'Field :attribute harus ekstensi jpeg / jpg / png',
         ];
@@ -225,7 +246,7 @@ class HomeController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -250,19 +271,19 @@ class HomeController extends Controller
         return redirect()->route('user.detail-loker', $idd);
     }
 
-    public function search_loker(Request $request, $tipe)
+    public function search_loker(Request $request)
     {
         $cari = $request->search;
 
         $loker2 = Loker::orderBy('created_at', 'DESC')->where('status', '1')->paginate(8);
 
-        if ($tipe == 'pekerjaan') {
-            $items = Loker::where('jenis_pekerjaan','like',"%".$cari."%")->where('status', '1')->paginate(8);
-        }elseif ($tipe == 'perusahaan') {
-            $items = Loker::where('tempat_kerja','like',"%".$cari."%")->where('status', '1')->paginate(8);
-        }elseif ($tipe == 'lokasi') {
-            $items = Loker::where('lokasi_kerja','like',"%".$cari."%")->where('status', '1')->paginate(8);
-        }
+        $items = Loker::where('status', '1')
+        ->where(function($query) use ($cari){
+            $query->where('jenis_pekerjaan', 'LIKE', '%'.$cari.'%')
+                    ->orWhere('tempat_kerja', 'LIKE', '%'.$cari.'%')
+                    ->orWhere('lokasi_kerja', 'LIKE', '%'.$cari.'%');
+        })->paginate(8);
+        $items->appends(['search' => $cari]);
 
         return view('pages.user.loker', [
             'lokers' => $items, 'loker2' => $loker2
@@ -297,7 +318,7 @@ class HomeController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
         ];
 
         $this->validate($request, $rules, $customMessages);
@@ -341,14 +362,14 @@ class HomeController extends Controller
     public function ajukan_diskusi_store(Request $request)
     {
         $rules = [
-            'judul' => 'required|string|max:255',
-            'isi' => 'required|string|max:255',
+            'judul' => 'required|string|max:50',
+            'isi' => 'required|string',
         ];
 
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
         ];
 
         $this->validate($request, $rules, $customMessages);

@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Imports\AlumniImport;
 use App\Models\Alumni;
+use App\Models\BeritaKomentar;
+use App\Models\Diskusi;
+use App\Models\DiskusiTanyaJawab;
+use App\Models\Loker;
+use App\Models\LokerTanyaJawab;
 use App\Models\Mahasiswa;
 use App\Models\User;
 use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AlumniController extends Controller
 {
@@ -47,7 +54,7 @@ class AlumniController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'npm' => 'required|string|max:9|unique:users',
+            'npm' => 'required|string|max:9|min:9|unique:users',
             'nama' => 'required|string|max:50',
             'agama' => 'required|string|max:10',
             'tempat_lahir' => 'required|string|max:20',
@@ -56,7 +63,7 @@ class AlumniController extends Controller
             'alamat' => 'required|string|max:255',
             'nama_ayah' => 'required|string|max:40',
             'nama_ibu' => 'required|string|max:40',
-            'alamat_orang_tua' => 'required|string|max:50',
+            'alamat_orang_tua' => 'required|string|max:255',
             'pekerjaan_ayah' => 'required|string|max:20',
             'pekerjaan_ibu' => 'required|string|max:20',
             'no_hp' => 'required|numeric',
@@ -88,8 +95,9 @@ class AlumniController extends Controller
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
             'numeric' => 'Field :attribute harus berupa angka',
-            'max' => 'Field :attribute maksimal :size',
-            'digits' => 'Field :attribute maksimal :value digit',
+            'max' => 'Field :attribute maksimal :max',
+            'min' => 'Field :attribute maksimal :min',
+            'digits' => 'Field :attribute harus :digits digit',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
             'confirmed' => 'Konfirmasi password tidak cocok',
@@ -97,6 +105,17 @@ class AlumniController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);
+
+        if ($request->foto) {
+            $value = $request->file('foto');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/foto-profil', $value, $imageNames);
+            $thumbnailpath = storage_path('app/public/assets/foto-profil/' . $imageNames);
+            $img = Image::make($thumbnailpath)->resize(600, 800)->save($thumbnailpath);
+        }else{
+            $imageNames = '';
+        }
 
         $user = User::create([
             'nama' => $request->nama,
@@ -139,6 +158,7 @@ class AlumniController extends Controller
             'angkatan' => $request->angkatan,
             'pekerjaan' => $request->pekerjaan,
             'tempat_pekerjaan' => $request->tempat_pekerjaan,
+            'foto' => $imageNames,
         ]);
 
         return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Menambah Data Alumni ' . $request->nama]);
@@ -188,7 +208,7 @@ class AlumniController extends Controller
             'alamat' => 'required|string|max:255',
             'nama_ayah' => 'required|string|max:40',
             'nama_ibu' => 'required|string|max:40',
-            'alamat_orang_tua' => 'required|string|max:50',
+            'alamat_orang_tua' => 'required|string|max:255',
             'pekerjaan_ayah' => 'required|string|max:20',
             'pekerjaan_ibu' => 'required|string|max:20',
             'no_hp' => 'required|numeric',
@@ -223,15 +243,16 @@ class AlumniController extends Controller
         ];
 
         $rules4 = [
-            'npm' => 'required|string|max:255|unique:users'
+            'npm' => 'required|string|max:9|min:9|unique:users'
         ];
 
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
             'numeric' => 'Field :attribute harus berupa angka',
-            'max' => 'Field :attribute maksimal :size',
-            'digits' => 'Field :attribute maksimal :value digit',
+            'max' => 'Field :attribute maksimal :max',
+            'min' => 'Field :attribute maksimal :min',
+            'digits' => 'Field :attribute harus :digits digit',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
             'confirmed' => 'Konfirmasi password tidak cocok',
@@ -245,6 +266,17 @@ class AlumniController extends Controller
         }
 
         $item = Alumni::findOrFail($id);
+
+        if ($request->foto) {
+            $value = $request->file('foto');
+            $extension = $value->extension();
+            $imageNames = uniqid('img_', microtime()) . '.' . $extension;
+            Storage::putFileAs('public/assets/foto-profil', $value, $imageNames);
+            $thumbnailpath = storage_path('app/public/assets/foto-profil/' . $imageNames);
+            $img = Image::make($thumbnailpath)->resize(600, 800)->save($thumbnailpath);
+        }else{
+            $imageNames = $item->foto;
+        }
 
         if ($request->email != $item->users->email) {
             $this->validate($request, $rules3, $customMessages);
@@ -295,6 +327,7 @@ class AlumniController extends Controller
             'angkatan' => $request->angkatan,
             'pekerjaan' => $request->pekerjaan,
             'tempat_pekerjaan' => $request->tempat_pekerjaan,
+            'foto' => $imageNames,
         ]);
 
         return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Mengubah Data Alumni ' . $request->nama]);
@@ -311,14 +344,24 @@ class AlumniController extends Controller
         $item = Alumni::findOrFail($id);
         $idd = $item->user_id;
 
-        $item->forceDelete();
+        $check = BeritaKomentar::where('user_id', $idd)->first();
+        $check2 = DiskusiTanyaJawab::where('user_id', $idd)->first();
+        $check3 = LokerTanyaJawab::where('user_id', $idd)->first();
+        $check4 = Diskusi::where('user_id', $idd)->first();
+        $check5 = Loker::where('user_id', $idd)->first();
 
-        $user = User::where('id', $idd)->first();
-        $nama = $user->nama;
+        if ($check || $check2 || $check3 || $check4 || $check5) {
+            return redirect()->back()->with(['error' => 'Data Alumni Tidak Bisa Dihapus']);
+        } else {
+            $item->forceDelete();
 
-        $user->forceDelete();
+            $user = User::where('id', $idd)->first();
+            $nama = $user->nama;
 
-        return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Menambah Data Mahasiswa ' . $nama]);
+            $user->forceDelete();
+
+            return redirect()->route('data-alumni.index')->with(['success' => 'Berhasil Menambah Data Mahasiswa ' . $nama]);
+        }
     }
 
     public function change_to_mahasiswa($id)

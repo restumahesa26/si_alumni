@@ -52,7 +52,7 @@ class AdminController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
             'confirmed' => 'Konfirmasi password tidak cocok',
@@ -120,7 +120,7 @@ class AdminController extends Controller
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
-            'max' => 'Field :attribute maksimal :size',
+            'max' => 'Field :attribute maksimal :max',
             'email' => 'Field :attribute harus berupa email',
             'unique' => 'Field :attribute harus unik',
         ];

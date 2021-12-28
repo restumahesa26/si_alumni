@@ -1,4 +1,4 @@
-<link rel="icon" type="image/png" sizes="16x16" href="{{ url('backend/images/favicon.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ url('logo-unib.png') }}">
 <link href="{{ url('backend/css/style.css') }}" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

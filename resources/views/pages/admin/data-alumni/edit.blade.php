@@ -345,7 +345,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_pembimbing_1'>Dosen Pembimbing 1</label>
                                         <select name="dosen_pembimbing_1" id="dosen_pembimbing_1" class="form-control @error('dosen_pembimbing_1') is-invalid @enderror" required>
-                                            <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
+                                            <option hidden value="">-- Pilih Dosen Pembimbing 1 --</option>
                                             <option value="Drs. Boko Susilo, M.Kom." @if($item->dosen_pembimbing_1 == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
                                             <option value="Rusdi Efendi, S.T., M.Kom." @if($item->dosen_pembimbing_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
                                             <option value="Desi Andreswari, S.T., M.Cs."  @if($item->dosen_pembimbing_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
@@ -375,7 +375,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_pembimbing_2'>Dosen Pembimbing 2</label>
                                         <select name="dosen_pembimbing_2" id="dosen_pembimbing_2" class="form-control @error('dosen_pembimbing_2') is-invalid @enderror" required>
-                                            <option hidden>-- Pilih Dosen Pembimbing 2 --</option>
+                                            <option hidden value="">-- Pilih Dosen Pembimbing 2 --</option>
                                             <option value="Drs. Boko Susilo, M.Kom." @if($item->dosen_pembimbing_2 == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
                                             <option value="Rusdi Efendi, S.T., M.Kom." @if($item->dosen_pembimbing_2 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
                                             <option value="Desi Andreswari, S.T., M.Cs."  @if($item->dosen_pembimbing_2 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
@@ -409,9 +409,9 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_penguji_1'>Dosen Penguji 1</label>
                                         <select name="dosen_penguji_1" id="dosen_penguji_1" class="form-control @error('dosen_penguji_1') is-invalid @enderror" required>
-                                            <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
+                                            <option hidden value="">-- Pilih Dosen Penguji 1 --</option>
                                             <option value="Drs. Boko Susilo, M.Kom." @if($item->dosen_penguji_1 == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
-                                            <option value="Rusdi Efendi, S.T., M.Kom." @if($item->dosen_pembimbing_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
+                                            <option value="Rusdi Efendi, S.T., M.Kom." @if($item->dosen_penguji_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
                                             <option value="Desi Andreswari, S.T., M.Cs."  @if($item->dosen_penguji_1 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>
                                             <option value="Ernawati, S.T., M.Cs."  @if($item->dosen_penguji_1 == "Ernawati, S.T., M.Cs.") selected @endif>Ernawati, S.T., M.Cs.</option>
                                             <option value="Arie Vatresia, S.T., M.T.I.,Ph.D"  @if($item->dosen_penguji_1 == "Arie Vatresia, S.T., M.T.I.,Ph.D") selected @endif>Arie Vatresia, S.T., M.T.I.,Ph.D</option>
@@ -439,7 +439,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <label for='dosen_penguji_2'>Dosen Penguji 2</label>
                                         <select name="dosen_penguji_2" id="dosen_penguji_2" class="form-control @error('dosen_penguji_2') is-invalid @enderror" required>
-                                            <option hidden>-- Pilih Dosen Pembimbing 1 --</option>
+                                            <option hidden>-- Pilih Dosen Penguji 1 --</option>
                                             <option value="Drs. Boko Susilo, M.Kom." @if($item->dosen_penguji_2 == "Drs. Boko Susilo, M.Kom.") selected @endif>Drs. Boko Susilo, M.Kom.</option>
                                             <option value="Rusdi Efendi, S.T., M.Kom." @if($item->dosen_penguji_2 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Rusdi Efendi, S.T., M.Kom.</option>
                                             <option value="Desi Andreswari, S.T., M.Cs."  @if($item->dosen_penguji_2 == "Rusdi Efendi, S.T., M.Kom.") selected @endif>Desi Andreswari, S.T., M.Cs.</option>

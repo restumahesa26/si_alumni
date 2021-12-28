@@ -33,7 +33,7 @@
                         </a>
                     </div>
                     <div class="card-body px-4">
-                        <h3>{{ $item->nama_kerja }}</h3>
+                        <h3>{{ $item->jenis_pekerjaan }}</h3>
                         <p class="" style="color: #000">
                             Diupload oleh <span class="">{{ $item->users->nama }}</span> pada tanggal {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
                         </p>

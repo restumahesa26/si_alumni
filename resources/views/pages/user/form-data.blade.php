@@ -54,7 +54,7 @@
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-end">
-                        <img src="{{ asset('storage/assets/foto-profil/' . $item->foto) }}" alt="" height="150" style="border: 1px solid #000; padding: 5px;">
+                        <img src="{{ asset('storage/assets/foto-profil/' . $item->foto) }}" alt="" width="120" style="border: 1px solid #000; padding: 5px;">
                     </div>
                 </div>
             </div>

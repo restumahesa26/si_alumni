@@ -1,7 +1,7 @@
 @extends('layouts.user')
 
 @section('title')
-    <title>SI Alumni | Masuk</title>
+    <title>SI Alumni Informatika | Masuk</title>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="container h-100">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-6">
-                <h3 class="text-center pt-5 mb-4 ">Selamat Datang</h3>
+                <h3 class="text-center pt-5 mb-4 ">Selamat Datang di Sistem Informasi <br>Alumni Informatika</h3>
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="card">
@@ -61,3 +61,17 @@
     </div>
 </section>
 @endsection
+
+@push('addon-script')
+    <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    @error('login')
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal',
+                text: '{{ $message }}'
+            })
+        </script>
+    @enderror
+@endpush

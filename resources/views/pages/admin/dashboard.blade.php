@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-world text-warning border-warning"></i>
+                            <i class="ti-comments-smiley text-warning border-warning"></i>
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Diskusi</div>
@@ -65,7 +65,7 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-email text-danger border-danger"></i>
+                            <i class="ti-id-badge text-danger border-danger"></i>
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Loker</div>
