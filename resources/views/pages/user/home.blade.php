@@ -130,4 +130,14 @@
         })
     </script>
     @endif
+
+    @if ($message = Session::get('success-register'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Selamat Datang',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
 @endpush
