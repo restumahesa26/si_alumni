@@ -79,7 +79,7 @@
             @if (Auth::user())
             <div class="col-auto ms-3 p-2 mb-3">
                 <div class="row">
-                    <form action="{{ route('user.komentar-store', $berita->id) }}" method="POST">
+                    <form action="{{ route('user.komentar-store', $berita->id) }}" method="POST" id="komentar-form">
                         @csrf
                         <div class="col">
                             <label for="komentar" class="text-secondary fs-2 mb-3">Tambahkan Komentar</label>
@@ -97,7 +97,6 @@
             @else
             <h4 class="mb-5">Harap login terlebih dahulu, untuk menambah komentar</h4>
             @endif
-
         </div>
     </div>
 </section>
@@ -110,4 +109,15 @@
         height: 80,
     });
 </script>
+<script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    @if ($message = Session::get('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
 @endpush

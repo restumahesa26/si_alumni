@@ -135,7 +135,7 @@ class HomeController extends Controller
             'komentar' => $request->komentar
         ]);
 
-        return redirect()->route('user.detail-berita', $id);
+        return redirect()->route('user.detail-berita', $id)->with(['success' => 'Berhasil Menambah Komentar']);
     }
 
     public function delete_komentar($id)
@@ -199,7 +199,6 @@ class HomeController extends Controller
             'logo' => 'required|image|mimes:jpg,jpeg,png'
         ];
 
-
         $customMessages = [
             'required' => 'Field :attribute wajib diisi',
             'string' => 'Field :attribute harus berupa string',
@@ -257,7 +256,7 @@ class HomeController extends Controller
             'tanya_jawab' => $request->tanya_jawab
         ]);
 
-        return redirect()->route('user.detail-loker', $id);
+        return redirect()->route('user.detail-loker', $id)->with(['success' => 'Berhasil Menambah Tanya Jawab']);
     }
 
     public function delete_tanya_jawab_loker($id)
@@ -329,7 +328,7 @@ class HomeController extends Controller
             'tanya_jawab' => $request->tanya_jawab
         ]);
 
-        return redirect()->route('user.detail-diskusi', $id);
+        return redirect()->route('user.detail-diskusi', $id)->with(['success' => 'Berhasil Menambah Tanya Jawab']);
     }
 
     public function hapus_jawaban_diskusi($id)

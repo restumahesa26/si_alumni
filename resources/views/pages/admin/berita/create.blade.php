@@ -36,7 +36,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for='judul'>Judul Berita</label>
-                                <input class='form-control @error('judul') is-invalid @enderror' type='text' name='judul' id='judul' placeholder='Masukkan Judul Berita' value='{{ old('judul') }}' />
+                                <input class='form-control @error('judul') is-invalid @enderror' type='text' name='judul' id='judul' placeholder='Masukkan Judul Berita' value='{{ old('judul') }}' required />
                                 @error('judul')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='isi'>Isi</label>
-                                <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja'>{{ old('isi') }}</textarea>
+                                <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja' required>{{ old('isi') }}</textarea>
                                 @error('isi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='thumbnail'>Thumbnail Berita</label>
-                                <input class='form-control @error('thumbnail') is-invalid @enderror' type='file' name='thumbnail' id='thumbnail' placeholder='Thumbnail Berita' value='{{ old('thumbnail') }}' />
+                                <input class='form-control @error('thumbnail') is-invalid @enderror' type='file' name='thumbnail' id='thumbnail' placeholder='Thumbnail Berita' value='{{ old('thumbnail') }}' required />
                                 @error('thumbnail')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -37,7 +37,7 @@
 
                             <div class="col-md-12 mt-4">
                                 <label for="judul">Judul Pertanyaan</label>
-                                <input class="form-control @error('jenis_pekerjaan') is-invalid @enderror" type="text" name="judul" id="judul"
+                                <input class="form-control @error('judul') is-invalid @enderror" type="text" name="judul" id="judul"
                                     placeholder="Judul Pertanyaan" value="{{ old('judul') }}" />
                                 @error('judul')
                                     <span class="invalid-feedback" role="alert">

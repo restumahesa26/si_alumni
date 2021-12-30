@@ -141,7 +141,7 @@ class DiskusiController extends Controller
 
         $item->delete();
 
-        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Mengubah Diskusi']);
+        return redirect()->route('diskusi.index')->with(['success' => 'Berhasil Menghapus Diskusi']);
     }
 
     public function set_aktif($id)

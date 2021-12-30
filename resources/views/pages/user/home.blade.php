@@ -140,4 +140,14 @@
         })
     </script>
     @endif
+
+    @if ($message = Session::get('success-logout'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Keluar',
+            text: '{{ $message }}'
+        })
+    </script>
+    @endif
 @endpush

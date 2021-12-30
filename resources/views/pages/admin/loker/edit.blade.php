@@ -52,7 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='jenis_pekerjaan'>Jenis Pekerjaan</label>
-                                <input class='form-control @error('jenis_pekerjaan') is-invalid @enderror' type='text' name='jenis_pekerjaan' id='jenis_pekerjaan' placeholder='Masukkan Jenis Pekerjaan' value='{{ $item->jenis_pekerjaan }}' />
+                                <input class='form-control @error('jenis_pekerjaan') is-invalid @enderror' type='text' name='jenis_pekerjaan' id='jenis_pekerjaan' placeholder='Masukkan Jenis Pekerjaan' value='{{ $item->jenis_pekerjaan }}' required />
                                 @error('jenis_pekerjaan')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='tempat_kerja'>Tempat Kerja</label>
-                                <input class='form-control @error('tempat_kerja') is-invalid @enderror' type='text' name='tempat_kerja' id='tempat_kerja' placeholder='Masukkan Tempat Kerja' value='{{ $item->tempat_kerja }}' />
+                                <input class='form-control @error('tempat_kerja') is-invalid @enderror' type='text' name='tempat_kerja' id='tempat_kerja' placeholder='Masukkan Tempat Kerja' value='{{ $item->tempat_kerja }}' required />
                                 @error('tempat_kerja')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='lokasi_kerja'>Lokasi Kerja</label>
-                                <input class='form-control @error('lokasi_kerja') is-invalid @enderror' type='text' name='lokasi_kerja' id='lokasi_kerja' placeholder='Masukkan Lokasi Kerja' value='{{ $item->lokasi_kerja }}' />
+                                <input class='form-control @error('lokasi_kerja') is-invalid @enderror' type='text' name='lokasi_kerja' id='lokasi_kerja' placeholder='Masukkan Lokasi Kerja' value='{{ $item->lokasi_kerja }}' required />
                                 @error('lokasi_kerja')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='isi'>Isi</label>
-                                <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja'>{!! $item->isi !!}</textarea>
+                                <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja' required>{!! $item->isi !!}</textarea>
                             </div>
                             <button type='submit' class='btn btn-primary btn-block py-2 btn-edit'>Simpan</button>
                         </form>

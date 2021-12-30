@@ -38,7 +38,7 @@
                             @method('PUT')
                             <div class="form-group">
                                 <label for='judul'>Judul Diskusi</label>
-                                <input class='form-control @error('judul') is-invalid @enderror' type='text' name='judul' id='judul' placeholder='Masukkan Judul Diskusi' value='{{ $item->judul }}' />
+                                <input class='form-control @error('judul') is-invalid @enderror' type='text' name='judul' id='judul' placeholder='Masukkan Judul Diskusi' value='{{ $item->judul }}' required />
                                 @error('judul')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label for='isi'>Isi</label>
-                                <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja'>{!! $item->isi !!}</textarea>
+                                <textarea class='form-control' name='isi' id='isi' placeholder='Masukkan Isi Lowongan Kerja' required>{!! $item->isi !!}</textarea>
                                 @error('isi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
