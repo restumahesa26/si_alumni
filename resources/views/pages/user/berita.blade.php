@@ -34,7 +34,7 @@
             <div class="col-md-4 mb-4">
                 <a href="{{ route('user.detail-berita', $item->id) }}">
                     <div class="card h-100">
-                        <img class="card-img-top w-100" src="{{ asset('storage/assets/berita-thumbnail/' . $item->thumbnail) }}" alt="courses" />
+                        <img class="card-img-top w-100" src="{{ secure_asset('storage/assets/berita-thumbnail/' . $item->thumbnail) }}" alt="courses" />
                         <div class="card-body">
                             <h5 class="font-sans-serif fw-bold fs-md-0 fs-lg-1">
                                 {{ $item->judul }}
