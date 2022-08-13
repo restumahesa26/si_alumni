@@ -43,7 +43,7 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <img src="{{ asset('storage/assets/berita-thumbnail/' . $item->thumbnail) }}" alt="gambar-thumbnail" style="width: 200px;"></td>
+                                                <img src="{{ secure_asset('storage/assets/berita-thumbnail/' . $item->thumbnail) }}" alt="gambar-thumbnail" style="width: 200px;"></td>
                                             <td>{{ $item->judul }}</td>
                                             <td>
                                                 @if ($item->is_populer == 0)
