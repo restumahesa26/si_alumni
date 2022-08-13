@@ -75,12 +75,52 @@
                 </div>
             </div>
         </div>
+
+        <div class="text-primary">
+            <div class="panel-heading"><b>Grafik Lulusan Alumni</b></div>
+            <div class="panel-body">
+                <canvas id="canvas" height="280" width="600"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
 
 @push('addon-script')
     <script src="{{ url('js/sweetalert2.all.min.js') }}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.js" charset="utf-8"></script>
+    <script>
+        var Years = ['2020','2021','2022'];
+        var Labels = ['nksajfkasf','adjhajsd','adad'];
+        var Prices = [{{ $cAlumni }},{{ $c2Alumni }}, {{ $c3Alumni }}];
+        $(document).ready(function(){
+            var ctx = document.getElementById("canvas").getContext('2d');
+                var myChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: {
+                      labels:Years,
+                      datasets: [{
+                          label: 'Tahun',
+                          data: Prices,
+                          borderWidth: 1,
+                          backgroundColor : [
+                            "blue", 'blue'
+                        ],
+                      }]
+                  },
+                  options: {
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero:true
+                              }
+                          }]
+                      }
+                  }
+              });
+        });
+        </script>
 
     @if ($message = Session::get('success-login'))
     <script>
